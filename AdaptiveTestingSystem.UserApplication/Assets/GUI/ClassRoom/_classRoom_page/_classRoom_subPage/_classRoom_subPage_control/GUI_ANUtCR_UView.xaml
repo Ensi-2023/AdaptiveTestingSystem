@@ -1,0 +1,127 @@
+﻿<UserControl x:Class="AdaptiveTestingSystem.UserApplication.Assets.GUI.ClassRoom._classRoom_page._classRoom_subPage._classRoom_subPage_control.GUI_ANUtCR_UView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AdaptiveTestingSystem.UserApplication.Assets.GUI.ClassRoom._classRoom_page._classRoom_subPage._classRoom_subPage_control"            
+             mc:Ignorable="d" 
+             Loaded="root_Loaded"
+             Unloaded="root_Unloaded"
+             wpf:WindowsAssist.UCTitle="Просмотр учащихся без классов"            
+             xmlns:wpf="clr-namespace:AdaptiveTestingSystem.DLL.wpf;assembly=AdaptiveTestingSystem.DLL"
+             d:DesignHeight="450" d:DesignWidth="800"
+             xmlns:customComponent="clr-namespace:AdaptiveTestingSystem.Control.CustomControl;assembly=AdaptiveTestingSystem.Control"     
+             xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:convert="clr-namespace:AdaptiveTestingSystem.DLL.Converts;assembly=AdaptiveTestingSystem.DLL"
+             Name="root"
+             >
+    <UserControl.Resources>
+
+        <convert:DateTimeToDateConverter x:Key="DateConverter"/>
+        <convert:StringToStringEmptyConvert x:Key="StringConverter"/>
+
+        <DataTemplate x:Key="listTemplate">
+            <StackPanel Margin="5">
+
+
+                <customComponent:UserCard Id="{Binding Path=Index}"
+                                          NameUser="{Binding Path=Name,Converter={StaticResource StringConverter}}"
+                                          DateBirch="{Binding Path=DayBirch,Converter={StaticResource DateConverter}}"
+                                          Gender="{Binding Path=Gender,Converter={StaticResource StringConverter}}"
+                                          MouseDoubleClick="UserCard_MouseDoubleClick"/>
+
+
+            </StackPanel>
+        </DataTemplate>
+
+        <ItemsPanelTemplate x:Key="listPanelTemplate">
+            <WrapPanel/>
+        </ItemsPanelTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="AUto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="5">
+            <Border CornerRadius="5"
+                    Background="{DynamicResource DefaultPanelBackground_dark}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+
+
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="updateDB"
+                            Height="50"
+                            Width="50"
+                            Margin="3"
+                            Grid.Column="2"
+                            ToolTip="Обновить данные"
+                            Click="updateDB_Click"
+                            Style="{DynamicResource IconButtonStyle}"
+                            wpf:ButtonAssist.Icon="Update"/>
+
+                    <TextBox wpf:TextFieldAssist.Icon="TextBoxSearch"
+                         wpf:TextFieldAssist.IconView="True"
+                         wpf:TextFieldAssist.Wotemark="Поиск..."
+                         wpf:TextFieldAssist.WoteMarkView="True"
+                         KeyDown="TextBox_KeyDown"/>
+                </Grid>
+            </Border>
+        </Grid>
+
+
+        <Grid Grid.Row="1"
+              Margin="0">
+            <ListView x:Name="collection" Grid.Row="1"
+                 ItemTemplate="{StaticResource listTemplate}"
+                 ItemsPanel="{StaticResource listPanelTemplate}"
+                 SelectedItem="{Binding SelectedUser,UpdateSourceTrigger=PropertyChanged}"
+                 ItemsSource="{Binding CollectionUser,UpdateSourceTrigger=PropertyChanged}"
+                 VerticalAlignment="Stretch"
+                 
+                 SelectionChanged="collection_SelectionChanged"     
+                      
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" />
+
+        </Grid>
+
+
+
+
+        <customComponent:OverlayControl Grid.Row="0" 
+                                        Grid.RowSpan="2"
+                                        Name="Overlay"
+                                        Visibility="Collapsed"/>
+
+
+
+        <Border Grid.RowSpan="2"
+                Visibility="Collapsed"
+                Name="commandButtonPanel"
+                VerticalAlignment="Bottom"
+                Margin="20">
+            <Grid >
+                <Border CornerRadius="5" Opacity=".8"
+                        Background="{DynamicResource DefaultPanelBackground_OneColor}"/>
+
+                <Grid Margin="4">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Добавить"  Foreground="{DynamicResource NotificationButtonAccept_Foreground}"
+                                Background="{DynamicResource NotificationButtonAccept_Background}" Click="Button_Click_1"/>
+                        <Button Content="Снять выделение" Click="Button_Click"/>
+                    </StackPanel>
+                </Grid>
+
+            </Grid>
+        </Border>
+                
+        
+        
+    </Grid>
+</UserControl>

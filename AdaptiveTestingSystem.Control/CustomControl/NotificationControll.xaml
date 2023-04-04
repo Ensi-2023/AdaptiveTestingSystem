@@ -1,0 +1,129 @@
+﻿<UserControl x:Class="AdaptiveTestingSystem.Control.CustomControl.NotificationControll"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AdaptiveTestingSystem.Control.CustomControl"
+             mc:Ignorable="d" 
+             Name="root"
+             xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:wpf="clr-namespace:AdaptiveTestingSystem.DLL.wpf;assembly=AdaptiveTestingSystem.DLL"
+             PreviewMouseUp="UserControl_PreviewMouseUp"
+             HorizontalAlignment="Right"
+             VerticalAlignment="Bottom"
+             Width="400" 
+             MinHeight="100"
+             Loaded="root_Loaded"
+             Unloaded="root_Unloaded">
+
+
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <EventTrigger.Actions>
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="root" Storyboard.TargetProperty="Opacity" Duration="00:00:00.2" From="0" To="1"/>
+                        <DoubleAnimation Storyboard.TargetName="root" Storyboard.TargetProperty="Width" Duration="00:00:00.15" From="150" To="400"/>
+                        <DoubleAnimation Storyboard.TargetName="root" Storyboard.TargetProperty="Height" Duration="00:00:00.15" From="0" To="100"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger.Actions>
+        </EventTrigger>
+    </UserControl.Triggers>
+
+    <Border 
+        Margin="2"
+        Background="{Binding NotificationBackground,ElementName=root}" 
+        BorderBrush="{Binding BorderColor,ElementName=root}"
+        BorderThickness="0"
+       
+        
+        CornerRadius="10 10 10 10">
+        <Border.OpacityMask>
+            <VisualBrush>
+                <VisualBrush.Visual>
+                    <Border
+                        Background="White"
+                        CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource FindAncestor, AncestorType=Border}}"
+                        Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType=Border}}"
+                        Height="{Binding ActualHeight, RelativeSource={RelativeSource FindAncestor, AncestorType=Border}}"
+                    />
+                </VisualBrush.Visual>
+            </VisualBrush>
+        </Border.OpacityMask>
+
+        <Border.Effect>
+            <DropShadowEffect ShadowDepth="1"
+                                      Opacity=".6"
+                                      Color="{DynamicResource uColorShadow}"/>
+        </Border.Effect>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="5"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Margin="10" Grid.Column="0" Grid.RowSpan="2">
+                    <Ellipse 
+                        Width="50" 
+                        Height="50"
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Center" 
+                        Fill="{Binding NotificationIconColor,ElementName=root}">
+                        <Ellipse.Effect>
+                            <DropShadowEffect ShadowDepth="1"
+                                      Opacity=".6"
+                                      Color="{DynamicResource uColorShadow}"/>
+                        </Ellipse.Effect>
+                    </Ellipse>
+                    <icon:PackIconMaterial 
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Center" 
+                        Foreground="{Binding NotificationTitleForeground,ElementName=root}"
+                        Kind="{Binding Icon,ElementName=root}"/>
+                </Grid>
+
+                <TextBlock VerticalAlignment="center" 
+                           Grid.Column="1"
+                           Margin="10 10 10 0"
+                           Visibility="Collapsed"
+                           Text="{Binding NotificationTitle,ElementName=root}"
+                           Foreground="{Binding NotificationTitleForeground,ElementName=root}" FontSize="15"/>
+
+
+                <TextBlock VerticalAlignment="center" 
+                           Grid.Row="0"
+                           Grid.RowSpan="2"
+                           Grid.Column="1"
+                           
+                           Margin="12 0 10 0"
+                           TextWrapping="Wrap"
+                           FontSize="18"
+                           Text="{Binding NotificationText,ElementName=root}" 
+                           Foreground="{Binding NotificationTextForeground,ElementName=root}"/>
+
+
+            </Grid>
+
+
+            <ProgressBar Grid.Row="1"
+                    wpf:BarAssist.BarCornerRadius="0"
+                    Style="{DynamicResource NotificationProgressStyle}"
+                    x:Name="progressBar" Value="100"  
+                    Foreground="{Binding BarColor,ElementName=root}"/>
+
+        </Grid>
+    </Border>
+</UserControl>

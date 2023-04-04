@@ -1,0 +1,22 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AdaptiveTestingSystem.UserApplication.Assets"
+        xmlns:_user_page="clr-namespace:AdaptiveTestingSystem.UserApplication.Assets.GUI.Users._user_page" x:Class="AdaptiveTestingSystem.UserApplication.Assets.TestWindow"
+        xmlns:control="clr-namespace:AdaptiveTestingSystem.Control.CustomControl.TestingControl;assembly=AdaptiveTestingSystem.Control"
+        mc:Ignorable="d"
+        Title="TestWindow" Height="750" Width="1100">
+    <Grid>
+
+        <StackPanel Orientation="Vertical">
+            <control:AnswerControl/>
+            <control:AnswerControl/>
+            <control:AnswerControl/>
+            <control:AnswerControl GroupIndex="2"/>
+            <control:AnswerControl GroupIndex="2"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

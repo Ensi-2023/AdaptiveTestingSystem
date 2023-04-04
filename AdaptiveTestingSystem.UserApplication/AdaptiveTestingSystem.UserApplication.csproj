@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\Resources\blueTheme.jpg" />
+    <None Remove="Assets\Resources\themeBlack.jpg" />
+    <None Remove="Assets\Resources\themeBlueGradient.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0-beta.701" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AdaptiveTestingSystem.Control\AdaptiveTestingSystem.Control.csproj" />
+    <ProjectReference Include="..\AdaptiveTestingSystem.DLL\AdaptiveTestingSystem.DLL.csproj" />
+    <ProjectReference Include="..\AdaptiveTestingSystem.MVVMLibraly\AdaptiveTestingSystem.MVVMLibraly.csproj" />
+    <ProjectReference Include="..\AdaptiveTestingSystem.UserLibraly\AdaptiveTestingSystem.UserLibraly.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Resources\blueTheme.jpg" />
+    <Resource Include="Assets\Resources\themeBlack.jpg" />
+    <Resource Include="Assets\Resources\themeBlueGradient.jpg" />
+  </ItemGroup>
+
+</Project>

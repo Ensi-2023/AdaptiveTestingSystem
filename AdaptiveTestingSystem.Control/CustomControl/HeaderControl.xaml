@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="AdaptiveTestingSystem.Control.CustomControl.HeaderControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AdaptiveTestingSystem.Control.CustomControl"
+             mc:Ignorable="d" 
+             Name="root"
+             xmlns:wpf="clr-namespace:AdaptiveTestingSystem.DLL.wpf;assembly=AdaptiveTestingSystem.DLL">
+    <Grid Grid.Row="0" 
+                  Name="Header"
+                  MouseDown="Header_MouseDown"
+                  Background="{Binding PanelColor,ElementName=root}">
+        <!--Title-->
+        <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Left">
+
+           
+            <TextBlock Margin="10 0 0 0" Text="{Binding Title,ElementName=root}" 
+                           FontSize="15"
+                           VerticalAlignment="Center"/>
+        </StackPanel>
+        <!--#region Button Header-->
+
+        <StackPanel Orientation="Horizontal" 
+                                HorizontalAlignment="Right">
+            <Button Style="{DynamicResource IconButtonStyle}"
+                            wpf:ButtonAssist.Icon="WindowMinimize"
+                             FontSize="12"        
+                            Name="FormMinimize" Click="FormMinimize_Click" Cursor="Hand"/>
+            <Button Style="{DynamicResource IconButtonStyle}"
+                            wpf:ButtonAssist.Icon="WindowMaximize"
+                             Name="FormMaximize" 
+                             FontSize="12"  
+                            Click="FormMaximize_Click" Cursor="Hand"/>
+            <Button Style="{DynamicResource IconButtonStyle}" 
+                            wpf:ButtonAssist.Icon="Close"
+                             FontSize="12"  
+                            Background="{DynamicResource DefaultButtonHeaderClosed}"
+                            wpf:ButtonAssist.ColorMouseEnter="{DynamicResource DefaultButtonHeaderEnter}"
+                            wpf:ButtonAssist.ColorMouseClick="{DynamicResource DefaultButtonHeaderClick}"
+                            Cursor="Hand" Name="FormClose" Click="FormClose_Click"/>
+        </StackPanel>
+        <!--#endregion-->
+    </Grid>
+
+
+</UserControl>

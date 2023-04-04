@@ -1,0 +1,579 @@
+﻿<UserControl x:Class="AdaptiveTestingSystem.ServerApplication.Assets.GUI.GUI_Setting._Page.GUI_Page_DataBaseSetting"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AdaptiveTestingSystem.ServerApplication.Assets.GUI.GUI_Setting._Page"
+             mc:Ignorable="d" 
+             Loaded="UserControl_Loaded"
+             xmlns:wpf="clr-namespace:AdaptiveTestingSystem.DLL.wpf;assembly=AdaptiveTestingSystem.DLL"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <EventTrigger.Actions>
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="animatedBorder" Duration="00:00:01.1" From="500,0,0,0" To="0">
+                            <ThicknessAnimation.EasingFunction>
+                                <PowerEase EasingMode="EaseOut" Power="6"/>
+                            </ThicknessAnimation.EasingFunction>
+                        </ThicknessAnimation>
+
+
+
+                        <DoubleAnimation Storyboard.TargetName="animatedBorder" Storyboard.TargetProperty="Opacity" Duration="00:00:00.2" From="0" To="1"/>
+                        <DoubleAnimation Storyboard.TargetName="CreateBasePanel" Storyboard.TargetProperty="Opacity" Duration="00:00:00.2" From="0" To="1"/>
+
+
+
+
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger.Actions>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <Grid>
+
+
+        <Grid Name="animatedBorder">
+            <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!--#region  DB setting-->
+
+
+                <Label Content="Настройки базы данных" FontSize="20" Foreground="White" Margin="2" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+
+                <StackPanel Grid.Row="1" Orientation="Vertical" Margin="5">
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Сервер запущен! Изменения не будут внесены" Foreground="Red" FontSize="20" HorizontalAlignment="Center" x:Name="StatusServer" Visibility="Collapsed"/>
+                        <StackPanel Orientation="Horizontal" x:Name="SettingServerBase">
+                            <StackPanel Orientation="Vertical">
+
+                                <Label Content="Основные настройки" Foreground="White" FontSize="18"/>
+
+                                <StackPanel Margin="5 10 5 5" Orientation="Vertical" HorizontalAlignment="Left">
+                                    <Label Content="Сервер базы данных" Foreground="WhiteSmoke" FontSize="15"/>
+                                    <TextBox x:Name="DServer"
+                                         Style="{StaticResource TextBoxDef}"
+                                         
+                                         wpf:TextFieldAssist.Wotemark="Сервер базы данных"
+                                         wpf:TextFieldAssist.WoteMarkView="True"
+                                         wpf:TextFieldAssist.WotemarkFontSize="15"
+                                         wpf:TextFieldAssist.IconView="True"
+                                         wpf:TextFieldAssist.Icon="Server"
+                                         Width="450"  Margin="5" FontSize="20"/>
+                                    <Label Content="База данных"
+                                       Foreground="WhiteSmoke" FontSize="15"/>
+                                    <TextBox x:Name="DBase"  Margin="5" FontSize="20"  
+                                         wpf:TextFieldAssist.Wotemark="База данных"
+                                         wpf:TextFieldAssist.WoteMarkView="True" 
+                                         wpf:TextFieldAssist.WotemarkFontSize="15"
+                                         wpf:TextFieldAssist.IconView="True"
+                                         wpf:TextFieldAssist.Icon="Database"
+                                        />
+
+                                    <Button 
+                                    Click="SaveSettingBase_Click"
+                                    x:Name="SaveSettingBase"
+                                    HorizontalAlignment="Left" 
+                                    wpf:ButtonAssist.Icon="ContentSave"
+                                    wpf:ButtonAssist.IconView="True"
+                                    Margin="10" Cursor="Hand"
+                                    Content="Сохранить"/>
+
+
+                                </StackPanel>
+
+
+                            </StackPanel>
+
+
+
+                        </StackPanel>
+
+                        <Border x:Name="Border_3" BorderBrush="{StaticResource BorderColor}" Margin="5" BorderThickness="0 1.2 1 1"/>
+
+
+                        <StackPanel Orientation="Vertical" x:Name="CreateBasePanel">
+                            <Label Content="Создание новой базы данных" Foreground="White" FontSize="18"/>
+
+                            <Grid>
+                                <StackPanel Margin="5 10 5 5" Orientation="Vertical" HorizontalAlignment="Left">
+                                    <Label Content="Сервер базы данных" Foreground="WhiteSmoke" FontSize="15"/>
+                                    <TextBox x:Name="DServerCreate" 
+                                          wpf:TextFieldAssist.Wotemark="Сервер базы данных"
+                                          wpf:TextFieldAssist.WoteMarkView="True"
+                                          wpf:TextFieldAssist.WotemarkFontSize="15"
+                                          wpf:TextFieldAssist.IconView="True"
+                                          wpf:TextFieldAssist.Icon="Server"
+                                        
+                                         Margin="5" FontSize="20"/>
+
+                                    <Label Content="База данных по умолчанию" Foreground="WhiteSmoke" FontSize="15"/>
+                                    <TextBox x:Name="DBaseDefault" Text="master"
+                                         wpf:TextFieldAssist.Wotemark="master"
+                                         wpf:TextFieldAssist.WotemarkFontSize="15"
+                                         wpf:TextFieldAssist.IconView="True"
+                                         wpf:TextFieldAssist.Icon="Database"
+                                        
+                                         wpf:TextFieldAssist.WoteMarkView="True" Margin="5" FontSize="20" />
+
+                                    <Label Content="Новая база данных" Foreground="WhiteSmoke" FontSize="15"/>
+                                    <TextBox x:Name="DBaseCreate" wpf:TextFieldAssist.WotemarkFontSize="15"
+                                           wpf:TextFieldAssist.Wotemark="Новая база данных"
+                                           wpf:TextFieldAssist.WoteMarkView="True"  
+                                           wpf:TextFieldAssist.IconView="True"                                         
+                                           wpf:TextFieldAssist.Icon="Database"
+                                             Margin="5" FontSize="20"/>
+                                    <StackPanel Orientation="Horizontal">
+
+
+                                        <Button  x:Name="ConnectView" HorizontalAlignment="Left" 
+                                                 wpf:ButtonAssist.Icon="CheckNetwork"
+                                                 wpf:ButtonAssist.IconView="True"
+                                                 Content="Проверить подключение"
+                                                 Click="ConnectView_Click"
+                                                 Margin="10" Cursor="Hand"/>
+
+
+
+                                        <Border BorderBrush="{StaticResource BorderColor}" BorderThickness="1 0 0 0" Margin="5"/>
+
+
+                                        <Button  IsEnabled="False" 
+                                             x:Name="CreateSettingBase"  HorizontalAlignment="Left" Margin="10"
+                                                 wpf:ButtonAssist.Icon="DatabasePlus"
+                                                 wpf:ButtonAssist.IconView="True"
+                                                 Click="CreateSettingBase_Click"
+                                                 Content="Создать базу данных" Cursor="Hand"/>
+
+
+
+                                    </StackPanel>
+                                </StackPanel>
+
+                            </Grid>
+
+
+
+                        </StackPanel>
+
+
+
+                    </StackPanel>
+
+                    <!--#endregion-->
+
+                    <Border x:Name="Border_1" BorderBrush="{StaticResource BorderColor}" Margin="5" BorderThickness="0 1.2 1 1"/>
+
+                    <!--#region Admin data-->
+                    <StackPanel Orientation="Vertical" x:Name="RecoveryAndCopyBase" Visibility="Visible">
+
+
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="Запустите сервер для изенения параметров" Foreground="Red" FontSize="20" HorizontalAlignment="Center" x:Name="StatusServer_2" Visibility="Collapsed"/>
+                            <StackPanel HorizontalAlignment="Left" Orientation="Vertical" x:Name="SysAdminCopir">
+
+                                <StackPanel Orientation="Horizontal">
+
+
+                                    <Label VerticalAlignment="Center" Content="Системный администратор" Foreground="White" FontSize="18"/>
+                                    <Border Style="{StaticResource BorderContentPanel}">
+                                        <StackPanel Margin="5" Orientation="Horizontal">
+
+
+                                            <Button 
+                                    ToolTip="Добавить нового системного администратора"
+                                    Width="50"
+                                    x:Name="CreateSysdmin" 
+                                    HorizontalAlignment="Right" 
+                                    
+                                    Margin="1"
+                                    Click="CreateSysdmin_Click"
+                                    wpf:ButtonAssist.Icon="AccountPlus"
+                                    FontSize="18"
+                                    wpf:ButtonAssist.IconView="True"
+                                    Style="{StaticResource IconButtonStyle}">
+
+                                            </Button>
+
+                                            <Button 
+                                    ToolTip="Редактировать данные системного администратора"
+                                    Width="50" 
+                                    x:Name="EditSysdmin"  
+                                    HorizontalAlignment="Right"
+                                    Margin="1"
+                                    Click="EditSysdmin_Click"
+                                    wpf:ButtonAssist.Icon="AccountEdit"
+                                    wpf:ButtonAssist.IconView="True"
+                                    Style="{StaticResource IconButtonStyle}">
+
+                                            </Button>
+                                            <Button 
+                                    ToolTip="Удалить системного администратора"
+                                    Width="50"
+                                    x:Name="DeleteSysdmin" 
+                                    HorizontalAlignment="Right"
+                                    
+                                    Margin="1" 
+                                    FontSize="18"
+                                    Cursor="Hand"
+                                    Click="DeleteSysdmin_Click"
+                                    wpf:ButtonAssist.Icon="AccountRemove"
+                                    wpf:ButtonAssist.IconView="True"
+                                    Style="{StaticResource IconButtonStyle}">
+
+                                            </Button>
+
+                                            <StackPanel Visibility="Collapsed" Orientation="Horizontal" x:Name="CancelEdit">
+                                                <Border   BorderBrush="{StaticResource BorderColor}" Margin="5 5 5 5" BorderThickness="2 0 0 0"/>
+                                                <Button 
+                                        ToolTip="Отменить редактирование" 
+                                        Width="50"
+                                        FontSize="18"
+                                        Cursor="Hand"
+                                        Name="CancelEditingAdmin"
+                                        Foreground="White" 
+                                        wpf:ButtonAssist.Icon="Cancel"
+                                        wpf:ButtonAssist.IconView="True"
+                                        Style="{StaticResource IconButtonStyle}"
+                                        Click="CancelEditingAdmin_Click"/>
+
+
+
+                                            </StackPanel>
+
+                                        </StackPanel>
+                                    </Border>
+
+
+                                </StackPanel>
+                                <StackPanel x:Name="LoginViewer" Orientation="Vertical">
+                                    <Label Content="Логин" Foreground="WhiteSmoke" FontSize="15"/>
+
+                                    <TextBox HorizontalAlignment="Left" x:Name="DSAdminLogin"  Width="450"  Margin="5" FontSize="20"
+                                         wpf:TextFieldAssist.Wotemark="Логин администратора"
+                                         wpf:TextFieldAssist.WoteMarkView="True"
+                                         wpf:TextFieldAssist.WotemarkFontSize="16"
+                                         wpf:TextFieldAssist.Icon="Account"
+                                         wpf:TextFieldAssist.IconView="True" Cursor="Hand"/>
+                                </StackPanel>
+                                <StackPanel x:Name="PasswordView" Orientation="Vertical">
+                                    <Label x:Name="PasswordTitle" Content="Пароль" Foreground="WhiteSmoke" FontSize="15"/>
+                                    <PasswordBox 
+                                    x:Name="DBBassword"
+                                    Style="{StaticResource PasswordBoxDef}"
+                                    HorizontalAlignment="Left"                                  
+                                    Width="450" 
+                                    Margin="5"
+                                    FontSize="20"
+                                    wpf:TextFieldAssist.Wotemark="Введите пароль"
+                                    wpf:TextFieldAssist.WoteMarkView="True"
+                                    wpf:TextFieldAssist.WotemarkFontSize="16"
+                                    wpf:TextFieldAssist.Icon="FormTextboxPassword"
+                                    wpf:TextFieldAssist.IconView="True" Cursor="Hand"/>
+                                </StackPanel>
+
+                                <StackPanel x:Name="EditPanel" Orientation="Vertical" Visibility="Collapsed">
+                                    <Border BorderBrush="{StaticResource BorderColor}" Margin="5 10 5 5" BorderThickness="0 1.2 1 1"/>
+                                    <Label  x:Name="PasswordNewTitle" Content="Новый пароль" Foreground="WhiteSmoke" FontSize="15"/>
+                                    <PasswordBox 
+                                    x:Name="NewDBBassword"
+                                    Style="{StaticResource PasswordBoxDef}"
+                                    HorizontalAlignment="Left"                           
+                                    Width="450" 
+                                    Margin="5"
+                                    FontSize="20"
+                                    wpf:TextFieldAssist.Wotemark="{Binding Content,ElementName=PasswordNewTitle}"
+                                    wpf:TextFieldAssist.WoteMarkView="True"
+                                    wpf:TextFieldAssist.WotemarkFontSize="16"
+                                    wpf:TextFieldAssist.Icon="FormTextboxPassword"
+                                    wpf:TextFieldAssist.IconView="True" Cursor="Hand"/>
+                                </StackPanel>
+
+                                <StackPanel Margin="0 0 0 5" Orientation="Horizontal">
+
+                                    <Button Visibility="Collapsed"                                    
+                                        x:Name="SaveSysdmin" 
+                                        HorizontalAlignment="Right"
+                                        Margin="10"
+                                            Click="SaveSysdmin_Click"
+                                        wpf:ButtonAssist.Icon="ContentSave"
+                                        wpf:ButtonAssist.IconView="True"   
+                                        Content="Редактировать данные"/>
+
+                                    <Button Visibility="Collapsed"
+                                            Click="AddSysdmin_Click"
+                                            x:Name="AddSysdmin" 
+                                            HorizontalAlignment="Right" 
+                                            Content="Добавить данные"
+                                            wpf:ButtonAssist.Icon="PlusBox"
+                                            wpf:ButtonAssist.IconView="True" 
+                                            Margin="10"/>
+
+
+                                    <Button Visibility="Collapsed" 
+                                            x:Name="DelSysdmin"
+                                            Click="DelSysdmin_Click"
+                                            Content="Удалить данные"
+                                            wpf:ButtonAssist.Icon="Delete"
+                                            wpf:ButtonAssist.IconView="True" 
+                                            Margin="10"/>
+
+                                </StackPanel>
+                            </StackPanel>
+                            <Border x:Name="Border_4" BorderBrush="{StaticResource BorderColor}" Margin="5" BorderThickness="0 1.2 1 1"/>
+
+                        </StackPanel>
+
+
+
+
+                        <!--#endregion-->
+
+
+
+                        <StackPanel Orientation="Vertical" x:Name="ReservCopir">
+                            <Label Content="Резервное копирование базы данных" Foreground="White" FontSize="18"/>
+                            <StackPanel Margin="5" Orientation="Vertical">
+                                <Label Content="Папка сохранения копии" Foreground="White" FontSize="15" VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" >
+                                    <TextBox  FontSize="20"
+                                              Width="350"
+                                              Margin="10"  
+                                              x:Name="FileFolder"  
+                                              wpf:TextFieldAssist.Wotemark="Выберите путь сохранения копии"
+                                              wpf:TextFieldAssist.WotemarkFontSize="16"
+                                              wpf:TextFieldAssist.WoteMarkView="True"
+                                              VerticalAlignment="Center"/>
+
+                                    <Button VerticalAlignment="Center" 
+                                            Grid.Row="0"
+                                            Click="FolderOpen_Click"
+                                            Grid.Column="2" 
+                                            Margin="0 0 0 0"  x:Name="FolderOpen" 
+                                            Style="{StaticResource IconButtonStyle}"
+                                            wpf:ButtonAssist.Icon="Folder" Height="50"
+                                            Width="50" FontSize="26" ToolTip="Выбрать папку сохранения"
+                                            wpf:ButtonAssist.IconView="True"/>
+                                </StackPanel>
+
+                                <Button  HorizontalAlignment="Left"                                        
+                                         Width="350" 
+                                         Click="CopyStart_Click"
+                                         IsEnabled="{Binding ElementName=FileFolder,Path=Text.Length}"
+                                         Margin="10" 
+                                         x:Name="CopyStart" 
+                                         Height="40"
+                                         wpf:ButtonAssist.ColorMouseEnter="Green"
+                                         Content="Начать резервное копирование" Cursor="Hand"/>
+
+
+                            </StackPanel>
+
+
+
+                            <StackPanel  HorizontalAlignment="Center" Orientation="Vertical"  VerticalAlignment="Center">
+
+                                <StackPanel Margin="20" x:Name="ErrorConnect" Orientation="Vertical" VerticalAlignment="Center" Visibility="Collapsed">
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Visibility="Visible">
+
+                                        <Label Foreground="White" Margin="10 2 0 0" Content="Резервное копирование не удалось" VerticalAlignment="Center" FontWeight="Bold"/>
+                                    </StackPanel>
+                                    <TextBlock MaxWidth="500"  TextWrapping="Wrap" Margin="0 10 0 0" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="TitleErrirCinnect" Visibility="Collapsed"/>
+                                </StackPanel>
+
+                                <StackPanel  Margin="20" x:Name="OkConnect"  VerticalAlignment="Center" Orientation="Horizontal" Visibility="Collapsed">
+                                    <Label Foreground="White" Margin="10 2 0 0" Content="Резервное копирование завершено успешно!" VerticalAlignment="Center" FontWeight="Bold"/>
+                                </StackPanel>
+                                <Button  Visibility="Collapsed" 
+                                         Grid.Row="0" 
+                                         Grid.Column="2" 
+                                         Margin="20" 
+                                         x:Name="FolderOpenRedy" 
+                                         Height="40" 
+                                         wpf:ButtonAssist.ColorMouseEnter="BlueViolet"
+                                         wpf:ButtonAssist.Icon="Folder"
+                                         wpf:ButtonAssist.IconView="True"
+                                         Content="Открыть папку с файлом"/>
+
+                            </StackPanel>
+                            <Border x:Name="Border_2" BorderBrush="{StaticResource BorderColor}" Margin="5" BorderThickness="0 1.2 1 1"/>
+                        </StackPanel>
+
+
+
+                        <StackPanel x:Name="RecoveryBase" Orientation="Vertical">
+                            <Label Content="Восстановление базы данных" Foreground="White" FontSize="18"/>
+                            <StackPanel Margin="5" Orientation="Vertical">
+                                <Label Content="Файл копии" Foreground="White" FontSize="15" VerticalAlignment="Center"/>
+
+                                <StackPanel Orientation="Horizontal">
+
+                                    <TextBox Foreground="White"
+                                             FontSize="20"
+                                             Width="350" 
+                                             Margin="10" 
+                                             x:Name="FileFolder_recovery"                                
+                                             VerticalAlignment="Center"
+                                              wpf:TextFieldAssist.Wotemark="Выберите файл копии"
+                                              wpf:TextFieldAssist.WotemarkFontSize="16"
+                                              wpf:TextFieldAssist.WoteMarkView="True"/>
+
+                                    <Button Width="50"  
+                                            VerticalAlignment="Center" 
+                                            Grid.Row="0" 
+                                            Click="FolderOpen_recovery_Click"
+                                            Grid.Column="2" 
+                                            Margin="0 0 0 0"
+                                            x:Name="FolderOpen_recovery"                                            
+                                            Style="{StaticResource IconButtonStyle}"
+                                            wpf:ButtonAssist.Icon="File" Height="50"
+                                            FontSize="26" ToolTip="Выбрать файл копии"
+                                            wpf:ButtonAssist.IconView="True" Cursor="Hand"/>
+
+
+
+                                </StackPanel>
+                                <Button  HorizontalAlignment="Left"                                       
+                                         Width="350"
+                                         Click="Recoverytart_Click"
+                                         IsEnabled="{Binding ElementName=FileFolder_recovery,Path=Text.Length}" 
+                                         Margin="10" 
+                                         x:Name="Recoverytart" 
+                                         Height="40" 
+                                         wpf:ButtonAssist.ColorMouseEnter="Green"
+                                         Content="Начать восстановление базы данных"/>
+
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Vertical"  VerticalAlignment="Center">
+                                <StackPanel  Margin="20" x:Name="ErrorConnectRecovery" Orientation="Vertical" VerticalAlignment="Center" Visibility="Collapsed">
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Visibility="Visible">
+
+                                        <Label Margin="10 2 0 0" Content="Восстановление не удалось" Foreground="White" VerticalAlignment="Center" FontWeight="Bold"/>
+                                    </StackPanel>
+                                    <TextBlock MaxWidth="500"  TextWrapping="Wrap" Margin="0 10 0 0" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="TitleErrorConnectRecovery" Visibility="Collapsed"/>
+
+
+                                </StackPanel>
+                                <StackPanel  Margin="20" x:Name="OkConnectRecovery"  VerticalAlignment="Center" Orientation="Horizontal" Visibility="Collapsed">
+
+                                    <Label Margin="10 2 0 0" Foreground="White" Content="Восстановление базы данных успешно завершено!" VerticalAlignment="Center" FontWeight="Bold"/>
+                                </StackPanel>
+
+                            </StackPanel>
+                            <Border Visibility="Visible" BorderBrush="{StaticResource BorderColor}" Margin="5" BorderThickness="0 1.2 1 1"/>
+
+                        </StackPanel>
+
+
+                    </StackPanel>
+
+
+
+
+
+
+                    <StackPanel Visibility="Visible" Orientation="Vertical">
+
+                        <Label Content="SQL Запросы" Foreground="White" FontSize="18"/>
+                        <Grid>
+                            <Grid Margin="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid  Grid.Row="1">
+                                    <Grid.OpacityMask>
+                                        <VisualBrush Visual="{Binding ElementName=Border1}"/>
+                                    </Grid.OpacityMask>
+                                    <Border x:Name="Border1" CornerRadius="5">
+                                        <Grid Margin="5">
+                                            <RichTextBox  
+                                                MinHeight="200" 
+                                                x:Name="SQL"
+                                                VerticalScrollBarVisibility="Auto"
+                                                Style="{StaticResource DefaultRich}" Cursor="Arrow"/>
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                                <Grid Margin="10 0 10 10" Grid.Row="2">
+                                    <Grid.OpacityMask>
+                                        <VisualBrush Visual="{Binding ElementName=Border2}"/>
+                                    </Grid.OpacityMask>
+                                    <Border x:Name="Border2" CornerRadius="5" >
+                                        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+
+                                            <Button  Margin="5" 
+                                                     x:Name="SQLCLEAR"
+                                                     Content="Очистить"
+                                                     Click="SQLCLEAR_Click"
+                                                     wpf:ButtonAssist.Icon="NoteRemove"
+                                                     wpf:ButtonAssist.IconView="True"/>
+
+
+
+                                            <Button IsEnabled="{Binding ElementName=SQL,Path=Document.Blocks.Count}" 
+                                                    Margin="5" 
+                                                    Click="SQLREQUES_Click"
+                                                    x:Name="SQLREQUES"
+                                                    Content="Выполнить запрос"
+                                                    wpf:ButtonAssist.Icon="CommentQuestion"
+                                                    wpf:ButtonAssist.IconView="True"
+                                                    wpf:ButtonAssist.ColorMouseEnter="Green"/>
+
+
+                                        </StackPanel>
+                                    </Border>
+                                </Grid>
+                                <Grid Margin="10 0 10 10" Grid.Row="3">
+                                    <Grid.OpacityMask>
+                                        <VisualBrush Visual="{Binding ElementName=Border3}"/>
+                                    </Grid.OpacityMask>
+
+                                    <Border x:Name="Border3" CornerRadius="5" >
+                                        <Grid x:Name="ContentBorder">
+
+                                            <StackPanel  HorizontalAlignment="Center" Orientation="Vertical"  VerticalAlignment="Center">
+                                                <StackPanel x:Name="ErrorConnect_sql" Orientation="Vertical" VerticalAlignment="Center" Visibility="Visible">
+                                                    <StackPanel Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Visibility="Collapsed">
+
+                                                        <Label Foreground="White" Margin="10 2 0 0" Content="Запрос не выполнен" VerticalAlignment="Center" FontWeight="Bold"/>
+                                                    </StackPanel>
+                                                    <TextBlock MaxWidth="500" Foreground="White"  TextWrapping="Wrap" Margin="0 10 0 0" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="TitleErrorConnect_sql" Visibility="Collapsed"/>
+                                                </StackPanel>
+
+
+
+
+                                            </StackPanel>
+
+                                            <DataGrid  Visibility="Hidden" Margin="10" Height="Auto" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" x:Name="DataGrid">
+
+                                            </DataGrid>
+
+
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+
+                    </StackPanel>
+
+                </StackPanel>
+            </Grid>
+
+        </Grid>
+    </Grid>
+</UserControl>

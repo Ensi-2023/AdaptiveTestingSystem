@@ -1,0 +1,191 @@
+﻿<Window x:Class="AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage.window.GUI_ReportPage_2_FullViewUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage.window"
+        Template="{DynamicResource WindowTemplate}"
+        Foreground="{DynamicResource DefaultTextForegroud}"
+        xmlns:wpf="clr-namespace:AdaptiveTestingSystem.DLL.wpf;assembly=AdaptiveTestingSystem.DLL"   
+        xmlns:component="clr-namespace:AdaptiveTestingSystem.Control.Themes;assembly=AdaptiveTestingSystem.Control"
+            
+        xmlns:control="clr-namespace:AdaptiveTestingSystem.Control.CustomControl;assembly=AdaptiveTestingSystem.Control"
+        FontFamily="Segoe UI Light"
+        WindowStartupLocation="CenterScreen"
+        Name="root"
+        WindowStyle="None"
+        WindowState="Normal"
+        AllowsTransparency="True"
+        Background="Transparent" 
+        Title="Список пользователей"
+  
+        ResizeMode="CanResize" Height="750" Width="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <control:HeaderControl Name="Header" HeaderButton="Close"
+                                   PanelColor="{DynamicResource BorderColor}"
+                    
+                                   CloseClick="Header_CloseClick"
+                               
+                                   Grid.Row="0"
+                                   Title="{Binding Title,ElementName=root}"/>
+
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Margin="5">
+                <Border CornerRadius="5"
+                    Background="{DynamicResource DefaultPanelBackground}">
+                    <Grid>
+                        <Border CornerRadius="5"
+                            Background="{DynamicResource DefaultPanelBackground}">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="10"
+                                              ShadowDepth="1"/>
+                            </Border.Effect>
+                        </Border>
+
+                        <component:ComboTextBox                               
+                                 Height="40"        
+                                  KeyDown="searchBox_KeyDown"
+                                 IsEditable="True"
+                                 OnSearch="True"
+                                 Wotemark="Поиск..."
+                                 Placment="Bottom"
+                                 wpf:ButtonAssist.VisibilityButton="Collapsed"
+                                 WotemarkVisible="True"
+                                 VisibilityOpenButton="Collapsed"
+                                 wpf:TextFieldAssist.Icon="Text"
+                                 wpf:TextFieldAssist.IconView="True" x:Name="ConsoleBox"
+                                 WotemarkFontSize="20" Cursor="Hand">
+                        </component:ComboTextBox>
+
+
+                    </Grid>
+                </Border>
+            </Grid>
+
+
+            <DataGrid
+                                      Margin="5"    
+                                      Name="userList"
+                                      SelectionMode="Extended"
+                                      CanUserResizeColumns="False"
+                                      FontSize="18"
+                                      Grid.Row="1"
+                                      MouseLeftButtonDown="DataGrid_MouseLeftButtonDown"
+                                        SelectionChanged="userList_SelectionChanged"
+                                      RowDetailsVisibilityMode="VisibleWhenSelected"
+                                      ItemsSource="{Binding UserView,UpdateSourceTrigger=PropertyChanged}"
+                                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                      AutoGenerateColumns="False"
+                                      >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="#"
+                                            MinWidth="40"
+                                            Width="Auto"                               
+                                            Binding="{Binding Index}"/>
+
+                    <DataGridTextColumn Header="ФИО"
+                                            MinWidth="350"
+                                            Width="SizeToCells"                                    
+                                            Binding="{Binding Name}">
+                        
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+
+                    <DataGridTextColumn Header="Пол"
+                                            MinWidth="150"
+                                            Width="SizeToCells"                                    
+                                            Binding="{Binding Gender}">
+
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+
+
+                    <DataGridTextColumn Header="Дата рождения"
+                                            MinWidth="250"
+                                            Width="SizeToCells"                                    
+                                            Binding="{Binding DateBirch}">
+
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+
+        </Grid>
+
+        <Border CornerRadius="5"
+                Name="button_manager"
+                Visibility="Visible"               
+                Grid.Row="2"
+                Margin="5 -5 5 5"
+                Height="0"
+                Grid.Column="1"
+                Grid.ColumnSpan="3"
+                VerticalAlignment="Top"
+                Background="{DynamicResource DefaultDataGridPanelBackground}">
+            
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+           
+             
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                                                Grid.Row="2">
+                    <Button Content="Добавить выделенные"
+                            Name="AppSelectUser"
+                            Click="AppSelectUser_Click"
+                                                Background="{DynamicResource NotificationButtonAccept_Background}"
+                                                Foreground="{DynamicResource NotificationButtonAccept_Foreground}"/>
+                    <Button 
+                        Name="ViewSelectUser"
+                        Click="ViewSelectUser_Click" Content="Посмотреть выделенных" Background="{DynamicResource BorderColor}"/>
+
+                    <Button Name="ViewAllSelect" Visibility="Collapsed"
+                            Click="ViewAllSelect_Click" Content="Показать всех"/>
+
+                    <Button Name="ClearSelect"
+                            Click="ClearSelect_Click" Content="Снять выделение"/>
+                </StackPanel>
+
+            </Grid>
+        </Border>
+
+  
+    </Grid>
+</Window>

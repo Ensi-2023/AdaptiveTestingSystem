@@ -1,0 +1,97 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+
+    <SolidColorBrush x:Key="ElipseBar_AnswerCorrect" Color="#7F0FF50F"/>
+    <SolidColorBrush x:Key="ElipseText_AnswerCorrect" Color="#FF82D87B"/>
+
+    <SolidColorBrush x:Key="ElipseBar_AnswerNotCorrect" Color="#FFAB4444"/>
+    <SolidColorBrush x:Key="ElipseText_AnswerNotCorrect" Color="#FFEA5151"/>
+
+
+
+    <SolidColorBrush x:Key="ElipseBorder_StartConnect" Color="#FFAB4444"/>
+    <SolidColorBrush x:Key="ElipseBar_StartConnect" Color="#FF7E4242"/>
+
+    <SolidColorBrush x:Key="ElipseBorder_Upload" Color="#7546D7"/>
+    <SolidColorBrush x:Key="ElipseBar_Upload" Color="#FF604A76"/>
+
+    <SolidColorBrush x:Key="ElipseBorder_Ready" Color="#A1C465"/>
+    <SolidColorBrush x:Key="ElipseBar_Ready" Color="#A1B853"/>
+
+    <SolidColorBrush x:Key="ElipseBorder_Complited" Color="#D8BF9530"/>
+    <SolidColorBrush x:Key="ElipseBar_Complited" Color="#D08D41"/>
+
+
+
+    <SolidColorBrush x:Key="TestPerc100" Color="#FF3E6330"/>
+    <SolidColorBrush x:Key="TestPerc80" Color="#FF604A76"/>
+    <SolidColorBrush x:Key="TestPerc50" Color="#FF635E2C"/>
+    <SolidColorBrush x:Key="TestPerc30" Color="#FF7E4242"/>
+
+
+    <SolidColorBrush x:Key="NotificationButtonAccept_Background" Color="#7F0FF50F"/>
+    <SolidColorBrush x:Key="NotificationButtonAccept_Foreground" Color="White"/>
+
+
+    <SolidColorBrush x:Key="NotificationButtonIcon" Color="#FFAB4444"/>
+
+    <SolidColorBrush x:Key="NotificationBarColor_Message" Color="#F26D93"/>
+    <SolidColorBrush x:Key="NotificationBorderColor_Message" Color="#F26D93"/>
+    <SolidColorBrush x:Key="NotificationBackground_Message" Color="#D8D8FA3F"/>
+    <SolidColorBrush x:Key="NotificationTextForeground_Message" Color="Black"/>
+    <SolidColorBrush x:Key="NotificationTitleForeground_Message" Color="#FF131313"/>
+    <SolidColorBrush x:Key="NotificationIconColor_Message" Color="#8BF13C"/>
+
+
+    <SolidColorBrush x:Key="NotificationBarColor_Questions" Color="#7546D7"/>
+    <SolidColorBrush x:Key="NotificationBorderColor_Questions" Color="#7546D7"/>
+    <SolidColorBrush x:Key="NotificationBackground_Questions" Color="#D8BF9530"/>
+    <SolidColorBrush x:Key="NotificationTextForeground_Questions" Color="#FF1D1D1D"/>
+    <SolidColorBrush x:Key="NotificationTitleForeground_Questions" Color="#FF2F2F2F"/>
+    <SolidColorBrush x:Key="NotificationIconColor_Questions" Color="#B2A65500"/>
+
+    <SolidColorBrush x:Key="NotificationBarColor_Error" Color="#E7BE6E"/>
+    <SolidColorBrush x:Key="NotificationBorderColor_Error" Color="#E7BE6E"/>
+    <SolidColorBrush x:Key="NotificationBackground_Error" Color="#B2ED4E2D"/>
+    <SolidColorBrush x:Key="NotificationTextForeground_Error" Color="White"/>
+    <SolidColorBrush x:Key="NotificationTitleForeground_Error" Color="White"/>
+    <SolidColorBrush x:Key="NotificationIconColor_Error" Color="#E7978C"/>
+
+
+    <SolidColorBrush x:Key="NotificationBarColor_Warning" Color="#D08D41"/>
+    <SolidColorBrush x:Key="NotificationBorderColor_Warning" Color="#D08D41"/>
+
+    <SolidColorBrush x:Key="NotificationBackground_Warning" Color="#D81C556D"/>
+    <SolidColorBrush x:Key="NotificationTextForeground_Warning" Color="White"/>
+    <SolidColorBrush x:Key="NotificationTitleForeground_Warning" Color="White"/>
+    <SolidColorBrush x:Key="NotificationIconColor_Warning" Color="#8269C5"/>
+
+
+    <SolidColorBrush x:Key="MessageShowBackground_Error" Color="#B2C05757"/>
+    <SolidColorBrush x:Key="MessageShowBackground_Questions" Color="#B257988F"/>
+    <SolidColorBrush x:Key="MessageShowBackground_Message" Color="#B2B5C872"/>
+
+
+    <SolidColorBrush x:Key="MessageShowForeground_Error" Color="White"/>
+    <SolidColorBrush x:Key="MessageShowForeground_Questions" Color="White"/>
+    <SolidColorBrush x:Key="MessageShowForeground_Message" Color="Black"/>
+
+
+
+    <SolidColorBrush x:Key="MessageShowButtonForeground_Error" Color="White"/>
+    <SolidColorBrush x:Key="MessageShowButtonForeground_Questions" Color="White"/>
+    <SolidColorBrush x:Key="MessageShowButtonForeground_Message" Color="White"/>
+
+
+    <SolidColorBrush x:Key="MessageShowButtonBackground_Error" Color="#CF6B6B"/>
+    <SolidColorBrush x:Key="MessageShowButtonBackground_Questions" Color="#A1C465	"/>
+    <SolidColorBrush x:Key="MessageShowButtonBackground_Message" Color="#633C5C"/>
+
+
+    <SolidColorBrush x:Key="MessageShowIconBackground_Error" Color="#CF7676"/>
+    <SolidColorBrush x:Key="MessageShowIconBackground_Questions" Color="#A1C465"/>
+    <SolidColorBrush x:Key="MessageShowIconBackground_Message" Color="#A1B853"/>
+
+</ResourceDictionary>

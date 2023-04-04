@@ -1,0 +1,107 @@
+﻿<UserControl x:Class="AdaptiveTestingSystem.UserApplication.Assets.GUI.Setting.GUI_Setting"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AdaptiveTestingSystem.UserApplication.Assets.GUI.Setting"
+             mc:Ignorable="d" 
+             Name="root" 
+             wpf:WindowsAssist.UCTitle="Настройки приложения"
+             xmlns:wpf="clr-namespace:AdaptiveTestingSystem.DLL.wpf;assembly=AdaptiveTestingSystem.Dll"
+             xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             Uid="2">
+
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <EventTrigger.Actions>
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ThicknessAnimation Storyboard.TargetName="root" Storyboard.TargetProperty="Margin" Duration="00:00:00.6" From="500,0,0,0" To="0">
+                            <ThicknessAnimation.EasingFunction>
+                                <PowerEase EasingMode="EaseOut" Power="7"/>
+                            </ThicknessAnimation.EasingFunction>
+                        </ThicknessAnimation>
+                        <DoubleAnimation Storyboard.TargetName="root" Storyboard.TargetProperty="Opacity" Duration="00:00:00.2" From="0" To="1"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger.Actions>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <Grid>
+        <Border Margin="4">
+            <Grid Margin="5">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="370"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border CornerRadius="5" Background="{DynamicResource DefaultPanelBackground_dark}">
+        
+                    <ListBox Name="MenyItems"
+                             Margin="10"
+                             SelectionChanged="ListBox_SelectionChanged"
+                             Grid.Row="1" Style="{DynamicResource MenyListBox}"
+                             VerticalAlignment="Top">
+                        <ListBoxItem TabIndex="1" FontSize="18">
+                            <StackPanel Orientation="Horizontal">
+                                <icon:PackIconMaterial Kind="Server"  VerticalAlignment="Center"/>
+                                <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" Text="Настройки подключения к серверу"/>
+                            </StackPanel>
+
+                        </ListBoxItem>
+                        <ListBoxItem TabIndex="2" FontSize="18">
+                            <StackPanel Orientation="Horizontal">
+                                <icon:PackIconMaterial Kind="MicrosoftWindows"  VerticalAlignment="Center"/>
+                                <TextBlock Margin="10 0 0 0" Text="Темы"  VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </ListBoxItem>
+                    </ListBox>
+                </Border>
+
+                
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Visibility="Collapsed" VerticalAlignment="Center" Margin="12 0 12 0" Style="{StaticResource ContentPanelStyle2}">
+
+                        <Grid>
+                            <TextBox Margin="-3.83" Style="{StaticResource TextBoxDef}"
+                         wpf:TextFieldAssist.Wotemark="Поиск настроек"
+                         wpf:TextFieldAssist.WoteMarkView="True"
+                         BorderBrush="Transparent"
+                         wpf:TextFieldAssist.WotemarkFontSize="16"
+                         wpf:TextFieldAssist.Icon="SelectionSearch"
+                         wpf:TextFieldAssist.IconView="True" 
+                         FontSize="16"/>
+
+
+
+                        </Grid>
+
+                    </Border>
+
+
+                    <ScrollViewer
+                    Name="ScrollContent"
+                    PreviewMouseWheel="ScrollViewer_PreviewMouseWheel"
+                    HorizontalScrollBarVisibility="Disabled"
+                    VerticalScrollBarVisibility="Visible"
+                    Grid.Row="1">
+                        <StackPanel Name="MyContent" Orientation="Vertical">
+
+                        </StackPanel>
+                    </ScrollViewer>
+
+                </Grid>
+            </Grid>
+        </Border>
+
+
+
+    </Grid>
+</UserControl>
+

@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+    <ControlTemplate x:Key="WindowTemplate" TargetType="{x:Type Window}">
+        <Grid>
+            <Grid >
+                <Border Margin="5" Style="{DynamicResource BorderContentPanel}"/>
+                <Grid Margin="5">
+                    <ContentPresenter/>
+                    <ResizeGrip HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                IsTabStop="False"
+                                Visibility="Hidden"
+                                x:Name="WindowResizeGrip"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </ControlTemplate>
+
+</ResourceDictionary>

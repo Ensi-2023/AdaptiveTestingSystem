@@ -1,0 +1,49 @@
+﻿<Window x:Class="AdaptiveTestingSystem.UserApplication.Assets.GUI.Roly._roly_subpage.window.GUI_AddNewRolyUser"
+        Template="{DynamicResource WindowTemplate}"
+        Foreground="{DynamicResource DefaultTextForegroud}"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AdaptiveTestingSystem.UserApplication.Assets.GUI.Roly._roly_subpage.window"
+        mc:Ignorable="d"
+          xmlns:wpf="clr-namespace:AdaptiveTestingSystem.DLL.wpf;assembly=AdaptiveTestingSystem.DLL"   
+        xmlns:control="clr-namespace:AdaptiveTestingSystem.Control.CustomControl;assembly=AdaptiveTestingSystem.Control"
+        FontFamily="Segoe UI Light"
+        WindowStartupLocation="CenterScreen"
+        Name="root"
+        WindowStyle="None"
+        WindowState="Normal"
+        AllowsTransparency="True"
+        Background="Transparent" 
+        Title="Управление ролями"
+        ResizeMode="CanResizeWithGrip" Height="650" Width="1100">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <control:HeaderControl Name="Header" HeaderButton="Close"
+                                   PanelColor="{DynamicResource BorderColor}"
+                    
+                                   CloseClick="Header_CloseClick"
+                               
+                                   Grid.Row="0"
+                                   Title="{Binding Title,ElementName=root}"/>
+
+
+        <Grid Grid.Row="1" Background="{DynamicResource DefaultPanelBackground_dark}">
+           
+
+            <Grid x:Name="body" Margin="15" />
+
+            <control:OverlayControl Name="Overlay" Visibility="Collapsed" IsVisibleChanged="Overlay_IsVisibleChanged"/>
+
+        </Grid>
+
+
+
+
+    </Grid>
+</Window>

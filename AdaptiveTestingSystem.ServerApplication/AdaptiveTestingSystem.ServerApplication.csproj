@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    
+    <StartupObject>AdaptiveTestingSystem.ServerApplication.App</StartupObject>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AdaptiveTestingSystem.Control\AdaptiveTestingSystem.Control.csproj" />
+    <ProjectReference Include="..\AdaptiveTestingSystem.Data\AdaptiveTestingSystem.Data.csproj" />
+    <ProjectReference Include="..\AdaptiveTestingSystem.DLL\AdaptiveTestingSystem.DLL.csproj" />
+    <ProjectReference Include="..\AdaptiveTestingSystem.ServerLibraly\AdaptiveTestingSystem.ServerLibraly.csproj" />
+  </ItemGroup>
+
+</Project>

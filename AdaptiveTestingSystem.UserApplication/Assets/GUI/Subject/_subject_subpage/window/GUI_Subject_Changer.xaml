@@ -1,0 +1,109 @@
+﻿<Window x:Class="AdaptiveTestingSystem.UserApplication.Assets.GUI.Subject._subject_subpage.window.GUI_Subject_Changer"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AdaptiveTestingSystem.UserApplication.Assets.GUI.Users._user_page.window"
+        mc:Ignorable="d"
+        WindowState="Normal"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        ResizeMode="NoResize"
+        xmlns:wpf="clr-namespace:AdaptiveTestingSystem.DLL.wpf;assembly=AdaptiveTestingSystem.DLL"
+        xmlns:component="clr-namespace:AdaptiveTestingSystem.Control.CustomControl;assembly=AdaptiveTestingSystem.Control"
+        Title="Редактирование предметов" Height="350" Width="650">
+    <Grid>
+        <Grid Margin="2">
+            <Border Style="{DynamicResource BorderContentPanel}"/>
+            <Grid Margin="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <component:HeaderControl Grid.Row="0" 
+                                         Background="Transparent"
+                                         HeaderButton="Close" 
+                                         Foreground="White"
+                                         Title="Редактирование предметов"
+                                         CloseClick="HeaderControl_CloseClick"/>
+                <Grid Grid.Row="1"
+                      Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Название предмета " FontSize="18" Margin="30 0"
+                                   Foreground="{DynamicResource DefaultTextForegroud}"/>
+
+                        <TextBox Height="50" VerticalAlignment="Top" 
+                                 wpf:TextFieldAssist.Wotemark="Введите название предмета"
+                                 wpf:TextFieldAssist.WoteMarkView="True"
+                                 Margin="30"
+                                 Grid.Row="1"
+                                 Name="nameSubject" Cursor="Hand"/>
+
+
+
+                        <StackPanel Grid.Row="2" 
+                                    HorizontalAlignment="Center"
+                                    Orientation="Horizontal">
+
+                            <TextBlock Grid.Row="1" 
+                                   Text="Error"
+                                   FontSize="18"
+                                   Foreground="Red"
+                                   Name="errorMessage"
+                                   Visibility="Collapsed"
+                                   VerticalAlignment="Center"  
+                                   Margin="30"/>
+
+                            <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}" 
+                                         IsIndeterminate="True"
+                                         Foreground="{DynamicResource DefaultTextForegroud}"
+                                         wpf:ProgressbarAssist.LineHeight="3"
+                                         Width="40"
+                                         Visibility="Collapsed"
+                                         Name="loadProgressBar"
+                                         Height="40"/>
+                        </StackPanel>
+
+
+                    </Grid>
+
+
+                    <StackPanel Orientation="Horizontal" 
+                                Grid.Row="1"
+                                HorizontalAlignment="Right">
+                        <Button Content="Сохранить" 
+                                wpf:ButtonAssist.ColorMouseEnter="#7F17AF20"
+                                wpf:ButtonAssist.ColorMouseClick="#7F0DC518"
+                                Cursor="Hand" 
+                                wpf:ButtonAssist.Icon="ContentSaveEdit"
+                                wpf:ButtonAssist.IconView="True"
+                                Name="insertSubject"
+                                
+                                Click="insertSubject_Click"/>
+                        <Button Content="Отменить"  
+                                wpf:ButtonAssist.Icon="ContentSaveOff"
+                                wpf:ButtonAssist.IconView="True"
+                                
+                                Name="cancelSubject"
+                                Click="cancelSubject_Click" Cursor="Hand"/>
+                    </StackPanel>
+
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,89 @@
+﻿<Window Template="{DynamicResource WindowTemplate}"  
+        x:Class="AdaptiveTestingSystem.UserApplication._Main"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AdaptiveTestingSystem.UserApplication"
+        mc:Ignorable="d"
+        xmlns:wpf="clr-namespace:AdaptiveTestingSystem.DLL.wpf;assembly=AdaptiveTestingSystem.DLL"   
+        xmlns:control="clr-namespace:AdaptiveTestingSystem.Control.CustomControl;assembly=AdaptiveTestingSystem.Control"
+        FontFamily="Segoe UI Light"
+        WindowStartupLocation="CenterScreen"
+        Name="root"
+        ResizeMode="CanResizeWithGrip"
+        Title="Система Адаптивного Тестирования"
+        MinWidth="1150"
+        MinHeight="840"
+        WindowStyle="None"
+        WindowState="Normal"
+        AllowsTransparency="True"
+        Background="Transparent"
+    
+        
+        PreviewKeyDown="root_PreviewKeyDown"
+        PreviewKeyUp="root_PreviewKeyUp"
+        Height="840" Width="1370"
+        
+        Foreground="{DynamicResource DefaultTextForegroud}">
+    <Window.Resources>
+
+        <ControlTemplate x:Key="WindowTemplate" TargetType="{x:Type Window}">
+            <Grid>
+                <Grid >
+                    <Border Margin="5" Style="{DynamicResource BorderContentPanel}"/>
+                    <Grid Margin="5">
+                        <ContentPresenter/>
+                        <ResizeGrip HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                IsTabStop="False"
+                                Visibility="Hidden"
+                                x:Name="WindowResizeGrip"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </ControlTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--Header-->
+
+            <control:HeaderControl Name="Header" 
+                                   PanelColor="{DynamicResource BorderColor}"
+                                   MaximizeClick="Header_MaximizeClick" 
+                                   MinimizeClick="Header_MinimizeClick" 
+                                   CloseClick="Header_CloseClick"
+                                   Grid.Row="0"
+                                   Title="{Binding Title,ElementName=root}"/>
+
+          <!--#endregion-->
+
+            <!--Body-->
+            <Grid Grid.Row="1"
+                  Margin="0"
+                  x:Name="MainBody">
+                    
+            </Grid>
+
+            <!--Overlay-->
+            <control:OverlayControl Grid.RowSpan="2" Grid.Row="1" Name="Overlay" Visibility="Collapsed" IsVisibleChanged="Overlay_IsVisibleChanged" 
+                                    OverlayThreadStop="Overlay_OverlayThreadStop"/>
+            <control:NotiricationListControll  Grid.RowSpan="2" Grid.Row="1" Name="NotificationOverlay" Visibility="Collapsed"/>
+
+
+        </Grid>
+
+        <TextBlock Text="alpha 1.0" 
+                   Foreground="{DynamicResource DefaultSubTextForegroud}"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Bottom" 
+                   Opacity=".3"
+                   Margin="5"/>
+    </Grid>
+</Window>

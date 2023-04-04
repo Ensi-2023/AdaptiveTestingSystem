@@ -1,0 +1,149 @@
+﻿<UserControl x:Class="AdaptiveTestingSystem.UserApplication.Assets.GUI.Meny.GUI_MainMeny"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AdaptiveTestingSystem.UserApplication.Assets.GUI.Meny"
+             mc:Ignorable="d" 
+             Name="root"
+             Uid="1"
+             wpf:WindowsAssist.UCTitle="Главное меню"
+             xmlns:wpf="clr-namespace:AdaptiveTestingSystem.DLL.wpf;assembly=AdaptiveTestingSystem.DLL">
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <EventTrigger.Actions>
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ThicknessAnimation Storyboard.TargetName="root" Storyboard.TargetProperty="Margin" Duration="00:00:00.6" From="500,0,0,0" To="0">
+                            <ThicknessAnimation.EasingFunction>
+                                <PowerEase EasingMode="EaseOut" Power="7"/>
+                            </ThicknessAnimation.EasingFunction>
+                        </ThicknessAnimation>
+                        <DoubleAnimation Storyboard.TargetName="root" Storyboard.TargetProperty="Opacity" Duration="00:00:00.2" From="0" To="1"/>
+
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger.Actions>
+        </EventTrigger>
+    </UserControl.Triggers>
+
+    <Grid>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Auto"
+                      PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Content="Основное" FontSize="25" Foreground="{DynamicResource DefaultTextForegroud}" Margin="10 10 10 10"/>
+                    <Border Grid.Row="1" Opacity="0.4" BorderBrush="Gray" BorderThickness="0 1 0 0"  Margin="5"/>
+                    <!--Основные-->
+                    <StackPanel Grid.Row="2" Orientation="Vertical">
+                        <Button HorizontalAlignment="Left" Content="Посмотреть свой профиль" 
+                        wpf:ButtonAssist.Icon="AccountSearch" IsEnabled="True"
+                       
+                         wpf:ButtonAssist.ForegroundMouseEnter="red"   
+                      
+                        wpf:ButtonAssist.IconView="True" Cursor="Hand"/>
+                        <Button HorizontalAlignment="Left" Content="Просмотреть статистику" 
+                        wpf:ButtonAssist.Icon="ChartLine"     
+                        wpf:ButtonAssist.IconView="True" Cursor="Hand"/>
+            
+                        <Button HorizontalAlignment="Left" Content="Настройки приложения" 
+                        wpf:ButtonAssist.Icon="Cog"  Name="settingSoft"
+                                Click="settingSoft_Click"
+                        wpf:ButtonAssist.IconView="True"/>
+
+                    </StackPanel>
+                    <Border Grid.Row="4" Opacity="0.4" BorderBrush="Gray" BorderThickness="0 1 0 0"  Margin="5" Name="dbTitleBorder"/>
+                    <!--Информация о пользователях-->
+                    <Label Grid.Row="3" Content="База данных" FontSize="25" Foreground="{DynamicResource DefaultTextForegroud}" Margin="10"
+                           Name="dbTitleInfo"/>
+                    <StackPanel Orientation="Vertical" Grid.Row="5">
+                        <Button HorizontalAlignment="Left" Content="Пользователи"
+                        Name="BUser"
+                        Click="BUser_Click"
+                        wpf:ButtonAssist.Icon="HumanChild"
+                        wpf:ButtonAssist.IconView="True" Cursor="Hand"/>
+                        <Button HorizontalAlignment="Left" Content="Учителя" 
+                               Name="uUser" Click="uUser_Click"
+                        wpf:ButtonAssist.Icon="HumanMale"  
+                        wpf:ButtonAssist.IconView="True" Cursor="Hand"/>
+
+                        <Button HorizontalAlignment="Left" Content="Индивидуальные пользователи" 
+                               Name="customuUser" Click="customuUser_Click"
+                        wpf:ButtonAssist.Icon="HumanGreeting"  
+                        wpf:ButtonAssist.IconView="True" Cursor="Hand"/>
+
+                        <Button HorizontalAlignment="Left" Content="Классы" 
+                        wpf:ButtonAssist.Icon="School"    
+                        wpf:ButtonAssist.IconView="True"
+                                Name="classRoom"
+                                Click="classRoom_Click"/>
+                        <Button HorizontalAlignment="Left" Content="Предметы" 
+                        wpf:ButtonAssist.Icon="Notebook"   
+                        wpf:ButtonAssist.IconView="True"
+                                Name="subject"
+                                Click="subject_Click"/>
+                        <Button HorizontalAlignment="Left" Content="Роли пользователей" 
+                        Name="roly"
+                                Click="roly_Click"
+                        wpf:ButtonAssist.Icon="AccountDetails"   
+                        wpf:ButtonAssist.IconView="True" Cursor="Hand"/>
+                    </StackPanel>
+                </Grid>
+
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Content="Тестирование" FontSize="25" Foreground="{DynamicResource DefaultTextForegroud}" Margin="10"
+                           Name="testingTitle"/>
+                    <Border Grid.Row="1" Opacity="0.4" BorderBrush="Gray" BorderThickness="0 1 0 0"  Margin="5" Name="testingBorder"/>
+                    <StackPanel Orientation="Vertical" Grid.Row="2">
+                        <Button HorizontalAlignment="Left" Content="Начать тестирование"  Name="testingStart"
+                                Click="testingStart_Click"
+                        wpf:ButtonAssist.Icon="AbTesting"       
+                        wpf:ButtonAssist.IconView="True"/>
+                        <Button HorizontalAlignment="Left" Content="Пройти случайное теcтирование" Name="testingRandom"
+                        wpf:ButtonAssist.Icon="SourceBranch"     Click="testingRandom_Click" Visibility="Collapsed"
+                        wpf:ButtonAssist.IconView="True"/>
+                        <Button HorizontalAlignment="Left" Content="Быстрое подключение к тестированию" 
+                        wpf:ButtonAssist.Icon="AccountGroup"      Name="fastConnectToGroupTest" Click="fastConnectToGroupTest_Click"
+                        wpf:ButtonAssist.IconView="True"/>
+                        <Button HorizontalAlignment="Left" Content="Просмотреть доступные групповые тесты" 
+                        wpf:ButtonAssist.Icon="NoteSearch"     Name="viewGroupTest" Click="viewGroupTest_Click"
+                        wpf:ButtonAssist.IconView="True"/>
+                        <Button HorizontalAlignment="Left" Content="Создать групповой тест" 
+                        wpf:ButtonAssist.Icon="AccountMultiplePlus"   Name="createGroupTest"  Click="createGroupTest_Click"
+                        wpf:ButtonAssist.IconView="True"/>
+                        <Button HorizontalAlignment="Left" Content="Открыть все тесты" 
+                        wpf:ButtonAssist.Icon="Pencil"  Click="viewAllTest_Click"   Name="viewAllTest"  
+                        wpf:ButtonAssist.IconView="True"/>
+                        <Button HorizontalAlignment="Left" Content="Общая статистика" Click="Report_Click"
+                        wpf:ButtonAssist.Icon="ChartArc" Name="Report"    
+                        wpf:ButtonAssist.IconView="True" Cursor="Hand" />
+                    </StackPanel>
+                </Grid>
+
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

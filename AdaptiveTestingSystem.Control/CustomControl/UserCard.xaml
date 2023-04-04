@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="AdaptiveTestingSystem.Control.CustomControl.UserCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AdaptiveTestingSystem.Control.CustomControl"
+             Name="root" Height="220"
+             Width="195"
+             xmlns:convert="clr-namespace:AdaptiveTestingSystem.DLL.Converts;assembly=AdaptiveTestingSystem.DLL"
+             
+             mc:Ignorable="d">
+
+
+    <UserControl.Resources>
+
+    
+        <convert:StringToStringEmptyConvert x:Key="StringConverter"/>
+        <convert:DateTimeToDateConverter x:Key="DateConventor"/>
+    </UserControl.Resources>
+
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <EventTrigger.Actions>
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="root" Storyboard.TargetProperty="Opacity" Duration="00:00:00.2" From="0" To="1"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger.Actions>
+        </EventTrigger>
+    </UserControl.Triggers>
+
+    <Border Margin="5" Background="{DynamicResource DefaultPanelBackground_dark}"
+            CornerRadius="5">
+        <Grid Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            
+            <Image Margin="10" Source="{Binding Path=ImagePath,ElementName=root}" />
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock FontSize="10" HorizontalAlignment="Left" 
+                           Text="ФИО" Grid.Row="0"
+                           Foreground="{DynamicResource DefaultSubTextForegroud}"/>
+                <TextBlock FontSize="10" HorizontalAlignment="Left"
+                           Text="Пол" Grid.Row="1" Foreground="{DynamicResource DefaultSubTextForegroud}"/>
+                <TextBlock FontSize="10" HorizontalAlignment="Left"
+                           Text="Дата рождения" Grid.Row="2" Foreground="{DynamicResource DefaultSubTextForegroud}"/>
+
+
+                <TextBlock FontSize="12" HorizontalAlignment="Right" 
+                           Text="{Binding ElementName=root,Path=NameUser,Converter={StaticResource StringConverter}}" Grid.Row="0" Grid.Column="1"
+                           Foreground="{DynamicResource DefaultTextForegroud}" TextTrimming="CharacterEllipsis"/>
+                <TextBlock FontSize="12" HorizontalAlignment="Right"  Grid.Column="1"
+                           Text="{Binding ElementName=root,Path=Gender,Converter={StaticResource StringConverter}}" Grid.Row="1" Foreground="{DynamicResource DefaultTextForegroud}"/>
+                <TextBlock FontSize="12" HorizontalAlignment="Right" Grid.Column="1"
+                           Text="{Binding ElementName=root,Path=DateBirch}" Grid.Row="2" Foreground="{DynamicResource DefaultTextForegroud}"/>
+
+
+            </Grid>
+            
+
+        </Grid>
+    </Border>
+
+</UserControl>

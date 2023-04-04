@@ -1,0 +1,199 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"            
+                    xmlns:local="clr-namespace:AdaptiveTestingSystem.Control.Themes"
+                    xmlns:custom="clr-namespace:AdaptiveTestingSystem.Control.CustomControl"
+                    xmlns:testingControl="clr-namespace:AdaptiveTestingSystem.Control.CustomControl.TestingControl">
+
+
+
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/AdaptiveTestingSystem.Control;component/Themes/Color/BlackColorTheme.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/AdaptiveTestingSystem.Control;component/Themes/Color/NotificationColor.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/AdaptiveTestingSystem.Control;component/Themes/Style/ButtonStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/AdaptiveTestingSystem.Control;component/Themes/Style/CheckBoxStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/AdaptiveTestingSystem.Control;component/Themes/Style/DataGridStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/AdaptiveTestingSystem.Control;component/Themes/Style/DatePickerStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/AdaptiveTestingSystem.Control;component/Themes/Style/ListBoxStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/AdaptiveTestingSystem.Control;component/Themes/Style/NotificationProgressBarStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/AdaptiveTestingSystem.Control;component/Themes/Style/PanelStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/AdaptiveTestingSystem.Control;component/Themes/Style/ProgressBarStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/AdaptiveTestingSystem.Control;component/Themes/Style/RadioButtonStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/AdaptiveTestingSystem.Control;component/Themes/Style/RichEditStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/AdaptiveTestingSystem.Control;component/Themes/Style/ScrollStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/AdaptiveTestingSystem.Control;component/Themes/Style/TextFieldStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/AdaptiveTestingSystem.Control;component/Themes/Style/ListViewStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/AdaptiveTestingSystem.Control;component/Themes/Style/WindowsStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/AdaptiveTestingSystem.Control;component/Themes/Style/SliderStyle.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+
+
+
+
+
+    <Style TargetType="{x:Type local:SmallImageOrTextControl}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="ImageWidth" Value="110"/>
+        <Setter Property="ImageHeight" Value="110"/>
+        <Setter Property="Padding" Value="10"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:SmallImageOrTextControl}">
+                    <Border CornerRadius="5"
+                            Background="{TemplateBinding Background}">
+                        <Grid>
+                            <TextBlock Text="{TemplateBinding Title}"
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       Margin="{TemplateBinding Padding}"
+                                       x:Name="PART_Title"
+                                       TextWrapping="Wrap"
+                                       Visibility="Visible"
+                                       Foreground="{DynamicResource DefaultTextForegroud}"
+                                       FontSize="{TemplateBinding TextSize}"/>
+
+                            <Image x:Name="PART_Image" Visibility="Collapsed"
+                                   Margin="{TemplateBinding Padding}"
+                                   Stretch="Uniform"
+                                   Width="{TemplateBinding ImageWidth}"
+                                   Height="{TemplateBinding ImageHeight}"
+                                   Source="{TemplateBinding Image}"/>
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsImage" Value="True">
+                            <Setter Property="Visibility" TargetName="PART_Title" Value="Collapsed"/>
+                            <Setter Property="Visibility" TargetName="PART_Image" Value="Visible"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+    <Style TargetType="{x:Type testingControl:AnswerControl}">
+        <Setter Property="BgCardColor" Value="{DynamicResource DefaultPanelBackground_OneColor}"/>
+        <Setter Property="SubTextForeground" Value="{DynamicResource DefaultSubTextForegroud}"/>
+        <Style.Triggers>
+            <Trigger Property="IsSelect" Value="True">
+                <Setter Property="BgCardColor" Value="{DynamicResource DataGridSelectSolid}"/>
+                <Setter Property="SubTextForeground" Value="{DynamicResource DefaultTextForegroud}"/>
+            </Trigger>
+
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="CardColor" Value="{DynamicResource BorderColor_MouseEnter}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <Style TargetType="{x:Type custom:CustomTextOrImage}">
+  
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="CardColor" Value="{DynamicResource BorderColor_MouseEnter}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <Style TargetType="{x:Type custom:LogAnswerControl}">
+  
+        <Style.Triggers>
+            <Trigger Property="IsCorrect" Value="True">
+                <Setter Property="ElipseColor" Value="{DynamicResource ElipseBar_AnswerCorrect}"/>
+            </Trigger>
+
+            <Trigger Property="IsCorrect" Value="False">
+                <Setter Property="ElipseColor" Value="{DynamicResource ElipseBar_AnswerNotCorrect}"/>
+            </Trigger>
+
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type custom:StatusConnectControl}">
+  
+        <Style.Triggers>
+            <Trigger Property="IsCode" Value="ConnectedToServer">
+                <Setter Property="BorderColor" Value="{DynamicResource ElipseBorder_StartConnect}"/>
+                <Setter Property="BarColor" Value="{DynamicResource ElipseBar_StartConnect}"/>
+            </Trigger>
+
+            <Trigger Property="IsCode" Value="UploadingData">
+                <Setter Property="BorderColor" Value="{DynamicResource ElipseBorder_Upload}"/>
+                <Setter Property="BarColor" Value="{DynamicResource ElipseBar_Upload}"/>
+            </Trigger>
+
+
+            <Trigger Property="IsCode" Value="UploadSuccessfull">
+                <Setter Property="BorderColor" Value="{DynamicResource ElipseBorder_Ready}"/>
+                <Setter Property="BarColor" Value="{DynamicResource ElipseBar_Ready}"/>
+            </Trigger>
+
+
+            <Trigger Property="IsCode" Value="TestingCompleted">
+                <Setter Property="BorderColor" Value="{DynamicResource ElipseBorder_Complited}"/>
+                <Setter Property="BarColor" Value="{DynamicResource ElipseBar_Complited}"/>
+            </Trigger>
+
+
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="NoMouseOverBGChange" TargetType="{x:Type custom:CustomTextOrImage}">
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+               <Setter Property="CardColor" Value="Transparent"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+
+    <Style TargetType="{x:Type local:PopupItemControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:PopupItemControl}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock 
+                                Text="{TemplateBinding Caption}" 
+                                HorizontalAlignment="{TemplateBinding CommandHorizontalAlignment}" 
+                                VerticalAlignment="{TemplateBinding CommandVerticalAlignment}" 
+                                Foreground="{TemplateBinding CommandForeground}"
+                                FontSize="{TemplateBinding CommandFontSize}"
+                                Grid.Column="0"/>
+                        <TextBlock 
+                                Text="{TemplateBinding Description}" 
+                                HorizontalAlignment="{TemplateBinding DescriptionHorizontalAlignment}" 
+                                VerticalAlignment="{TemplateBinding DescriptionVerticalAlignment}" 
+                                Foreground="{TemplateBinding DescriptionForeground}"
+                                FontSize="{TemplateBinding DecriptionFontSize}"
+                                Grid.Column="1"/>
+
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type custom:AccountInformationCard}">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="CardColor" Value="{DynamicResource BorderColor_MouseEnter}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,14 @@
+﻿global using AdaptiveTestingSystem.ServerLibraly;
+global using AdaptiveTestingSystem.DLL;
+global using AdaptiveTestingSystem.ServerApplication.Assets;
+global using AdaptiveTestingSystem.ServerApplication.Server;
+global using AdaptiveTestingSystem.Control;
+global using AdaptiveTestingSystem.DLL.CScript;
+global using AdaptiveTestingSystem.ServerApplication.Assets.CScript;
+global using AdaptiveTestingSystem.ServerApplication.Assets.Setting;
+global using AdaptiveTestingSystem.Data.NotEntityFramework;
+global using AdaptiveTestingSystem.Data;
+global using AdaptiveTestingSystem.Data.JsonData;
+global using AdaptiveTestingSystem.Control.Windows;
+global using AdaptiveTestingSystem.Control.Themes;
+global using System.Net;

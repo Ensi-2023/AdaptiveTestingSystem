@@ -1,0 +1,74 @@
+﻿<Window x:Class="AdaptiveTestingSystem.UserApplication.Assets.GUI.ClassRoom._classRoom_page._classRoom_subPage.GUI_AddNewUserToClassRoom"
+        Template="{DynamicResource WindowTemplate}"
+        Foreground="{DynamicResource DefaultTextForegroud}"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AdaptiveTestingSystem.UserApplication.Assets.GUI.ClassRoom._classRoom_page._classRoom_subPage"
+        mc:Ignorable="d"
+        xmlns:wpf="clr-namespace:AdaptiveTestingSystem.DLL.wpf;assembly=AdaptiveTestingSystem.DLL"   
+        xmlns:control="clr-namespace:AdaptiveTestingSystem.Control.CustomControl;assembly=AdaptiveTestingSystem.Control"
+        FontFamily="Segoe UI Light"
+        WindowStartupLocation="CenterScreen"
+        Name="root"
+        WindowStyle="None"
+        WindowState="Normal"
+        AllowsTransparency="True"
+        Background="Transparent" 
+        Title="Добавление нового учащегося в класс"
+        ResizeMode="CanResizeWithGrip" Height="650" Width="1100">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <control:HeaderControl Name="Header" HeaderButton="Close"
+                                   PanelColor="{DynamicResource BorderColor}"
+                    
+                                   CloseClick="Header_CloseClick"
+                               
+                                   Grid.Row="0"
+                                   Title="{Binding Title,ElementName=root}"/>
+
+
+        <Grid Grid.Row="1" Background="{DynamicResource DefaultPanelBackground_dark}">
+            <Grid.RowDefinitions>
+
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0">
+                <Grid>
+                    <Border Background="{DynamicResource DefaultPanelBackground}">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="1" ShadowDepth="1"
+                                               Color="Black"/>
+                        </Border.Effect>
+                    </Border>
+
+                    <Grid x:Name="header">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="15 2 15 2">
+                            <Button Height="40"  Width="50"  x:Name="Meny" Click="Meny_Click" Style="{DynamicResource IconButtonStyle}" wpf:ButtonAssist.Icon="Menu" Cursor="Hand"/>
+                            <StackPanel x:Name="ButtonAndTitleBackToHome" Orientation="Horizontal">
+                                <Button Height="40" Margin="2"  Width="50" HorizontalAlignment="Left" x:Name="BackPage" Style="{DynamicResource IconButtonStyle}" wpf:ButtonAssist.Icon="ArrowLeft" Cursor="Hand" Click="BackPage_Click"/>
+                                <Label Content="NULL" x:Name="TitlesButton" Foreground="White"  Margin="5 0" FontSize="18" Grid.Row="0" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+
+                </Grid>
+            </Border>
+
+
+            <Grid x:Name="body" Margin="5" Grid.Row="1"/>
+
+        </Grid>
+
+
+
+
+    </Grid>
+</Window>

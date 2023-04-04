@@ -1,0 +1,482 @@
+﻿<UserControl x:Class="AdaptiveTestingSystem.UserApplication.Assets.GUI.Users._user_page.GUI_Users_Insert"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AdaptiveTestingSystem.UserApplication.Assets.GUI.Users._user_page"
+             mc:Ignorable="d" 
+             xmlns:wpf="clr-namespace:AdaptiveTestingSystem.DLL.wpf;assembly=AdaptiveTestingSystem.DLL"
+             xmlns:component="clr-namespace:AdaptiveTestingSystem.Control.Themes;assembly=AdaptiveTestingSystem.Control"
+             wpf:WindowsAssist.UCTitle="Добавление нового пользователя"
+             Uid="31"
+             Name="root"
+             Loaded="root_Loaded"
+              d:DesignWidth="800">
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <EventTrigger.Actions>
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ThicknessAnimation Storyboard.TargetName="root" Storyboard.TargetProperty="Margin" Duration="00:00:00.6" From="500,0,0,0" To="0">
+                            <ThicknessAnimation.EasingFunction>
+                                <PowerEase EasingMode="EaseOut" Power="7"/>
+                            </ThicknessAnimation.EasingFunction>
+                        </ThicknessAnimation>
+                        <DoubleAnimation Storyboard.TargetName="root" Storyboard.TargetProperty="Opacity" Duration="00:00:00.2" From="0" To="1"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger.Actions>
+        </EventTrigger>
+    </UserControl.Triggers>
+
+    <Grid>
+        <!--Body-->
+        <Grid Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <Grid Grid.Column="1" 
+                  Width="1"
+                  Margin="5 0 0 0"          
+                  x:Name="classLine"
+                  Background="{DynamicResource LinearBackground}"/>
+
+            <!--#region Klasses-->
+            <Grid 
+                Grid.Column="0"
+                Width="35"
+                x:Name="klasses_GUI">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!--Klasses Header-->
+                <StackPanel Orientation="Horizontal"
+                        Grid.Column="0"
+                        Grid.Row="0"
+                            Name="panelClassRoom">
+
+
+                    <Button Style="{DynamicResource IconButtonStyle}"
+                        wpf:ButtonAssist.Icon="ArrowRight"
+                        Name="klassInfo" Click="klassInfo_Click"
+                            ToolTip="Управление школьными классами"/>
+                    <Label                   
+                   Content="Данные о классах" 
+                   Foreground="{DynamicResource DefaultTextForegroud}" 
+                   FontSize="20"
+                   Margin="0 0 0 0" 
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"/>
+
+
+
+                </StackPanel>
+                <!--Klasses Body-->
+                <Grid 
+                    Grid.Row="1"
+                    Opacity="0"
+                    x:Name="klassesBody">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <!--Klasses Body Header-->
+                    <StackPanel 
+                        Orientation="Horizontal"                    
+                        Grid.Row="0">
+                        <Label
+                           Content="Тип пользователя:" 
+                           Foreground="{DynamicResource DefaultTextForegroud}" 
+                           FontSize="16"
+                           Margin="10 0 0 0" 
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"/>
+                        <RadioButton 
+                            Unchecked="student_Unchecked"
+                            Content="Ученик"
+                            Name="student" 
+                            Checked="student_Checked" Cursor="Hand">
+                        </RadioButton>
+                        <RadioButton Content="Учитель" Name="sotrud"/>
+
+                    </StackPanel>
+                    <!--#region Klasses Body Content-->
+                    <Grid 
+                        Grid.Row="1"
+                        Name="mainClassRoomPanel">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                  
+                        </Grid.RowDefinitions>
+                        <Label
+                           Content="Учится в:" 
+                           Foreground="{DynamicResource DefaultTextForegroud}" 
+                           FontSize="16"
+                           Name="titleKlass"
+                           Margin="10 0 0 0" 
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"/>
+
+                        <TextBox Margin="10" Grid.Row="1"
+                         wpf:TextFieldAssist.Wotemark="Поиск класса"
+                         wpf:TextFieldAssist.WotemarkFontSize="18"
+                         wpf:TextFieldAssist.WoteMarkView="True"
+                         wpf:TextFieldAssist.Icon="SelectSearch"
+                         wpf:TextFieldAssist.IconView="True"
+                         Name="searchKlasses"
+                         TextChanged="searchKlasses_TextChanged"/>
+
+
+                        <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                              PreviewMouseWheel="ScrollViewer_PreviewMouseWheel"
+                              VerticalScrollBarVisibility="Auto"  Grid.Row="2">
+                                <StackPanel Orientation="Vertical"   MaxWidth="350"                         
+                            Name="studentKlasses" >
+                            </StackPanel>
+                 
+
+                             
+                            
+                        </ScrollViewer>
+
+             
+                        <Separator Grid.Row="3" Margin="10" Background="{DynamicResource LinearBackground}"/>
+
+                        <Grid Grid.Row="4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Grid.Column="0" 
+                                        VerticalAlignment="Center"
+                                        wpf:BarAssist.BarCornerRadius="5"
+                                        Background="{DynamicResource BorderColor}"
+                                        HorizontalAlignment="Center"
+                                        Name="InsertKlassData" 
+                                        Content="Добавить запись" 
+                                    Click="InsertKlassData_Click"    
+                                    Cursor="Hand"/>
+
+                            <Button Grid.Column="1" 
+                                        VerticalAlignment="Center"
+                                        wpf:BarAssist.BarCornerRadius="5"
+                                        Background="{DynamicResource BorderColor}"
+                                        HorizontalAlignment="Center"
+                                    Name="DeleteKlassData"  
+                                    Click="DeleteKlassData_Click"
+                                    Content="Удалить запись" Cursor="Hand"/>
+
+                        </Grid>
+                        
+                
+
+                 
+
+                        <Border Name="OverlayKlass" 
+                        Visibility="Collapsed"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Height="70"
+                        Width="100"
+                        Grid.Row="2">
+                            <Grid>
+                                <Border CornerRadius="5"
+                                Background="{DynamicResource BorderColor}">
+
+                                </Border>
+
+                                <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}"
+                                     Foreground="{DynamicResource DefaultTextForegroud}"
+                                     IsIndeterminate="True" Height="40"
+                                     Width="40"/>
+                            </Grid>
+                        </Border>
+
+                    </Grid>
+                    <!--#endregion-->
+                </Grid>
+
+            </Grid>
+            <!--#endregion-->
+            <!--#region Information User-->
+            <Grid 
+                Grid.Column="2"
+                x:Name="informationUserGUI">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!--Header-->
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label 
+                       Grid.Column="0"
+                       Grid.Row="0"
+                       Content="Основные данные" 
+                       Foreground="{DynamicResource DefaultTextForegroud}" 
+                       FontSize="20"
+                       Margin="10 0 0 0" 
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"/>
+                    <Label Grid.Column="1" Grid.Row="1" Content="*" Foreground="Red" FontSize="15" Margin="10 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Left" FontStyle="Italic"/>
+                    <Label  Grid.Column="2" Grid.Row="0" Content=" - Обязательно к заполнению" Foreground="{DynamicResource DefaultTextForegroud}" FontSize="15" Margin="0 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Left" FontStyle="Italic"/>
+
+
+                </Grid>
+                <!--Body-->
+                <ScrollViewer 
+                    Grid.Row="1"               
+                    HorizontalScrollBarVisibility="Disabled"
+                    VerticalScrollBarVisibility="Auto"
+                    PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
+                    <!--#region Content-->
+                    <Grid >
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+
+                        <Grid Margin="15 0 0 0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Grid.Row="0" Content="Фамилия Имя" Foreground="{DynamicResource DefaultTextForegroud}" FontSize="15" Margin="10 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+
+                            <Label Grid.Column="1"  Grid.Row="1" Content="*" Foreground="Red" FontSize="15" Margin="10 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            <TextBox Grid.Column="0" Text="" Grid.Row="1"  wpf:TextFieldAssist.Wotemark="Фамилия Имя (Отчество)"
+                                 x:Name="FIOUser"
+                                 wpf:TextFieldAssist.WoteMarkView="True"
+                                 wpf:TextFieldAssist.WotemarkFontSize="18"
+                                 FontSize="18" Cursor="Hand"/>
+                        </Grid>
+
+
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0" Grid.Row="0" Content="Дата рождения" Foreground="{DynamicResource DefaultTextForegroud}" FontSize="15" Margin="25 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+
+
+                            <Label Grid.Column="1" Grid.Row="1" Content="*" Foreground="Red" FontSize="15" Margin="10 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+
+                            <component:CustomDatePicker Grid.Row="1"  Wotemark="Введите дату рождения" 
+                                                 WotemarkView="True"
+                                                 Text=""
+                                                 x:Name="DatebirchUser"
+                                                 WotemarkFontSize="18"
+                                                 Margin="6 0 -0.8 0"
+                                                 MinWidth="320"
+                                                 VerticalAlignment="Center" 
+                                                 />
+
+                        </Grid>
+
+
+                        <Grid Margin="16 0 0 0" Grid.Row="3">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Grid.Row="0" Content="Пол" Foreground="{DynamicResource DefaultTextForegroud}" FontSize="15" Margin="10 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+
+
+                            <Label Grid.Column="1" Grid.Row="1" Content="*" Foreground="Red" FontSize="15" Margin="10 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+
+
+                            <component:ComboTextBox x:Name="GenderUser" 
+                                        Height="45"
+                                        IsEditable="False"
+                                        OnSearch="True"
+                                        WotemarkFontSize="18"
+                                        Wotemark="Выберите пол" 
+                                        SelectedIndex="0"
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        Margin="3 6 6 0">
+                                <component:ComboTextBox.Items>
+                                    <component:PopupItemControl Caption="Мужской" Description=""/>
+                                    <component:PopupItemControl Caption="Женский" Description=""/>
+                                </component:ComboTextBox.Items>
+                            </component:ComboTextBox>
+
+
+                        </Grid>
+
+
+                        <Label Grid.Column="0"
+                   Grid.Row="4"
+                   Content="Данные от профиля" 
+                   Foreground="{DynamicResource DefaultTextForegroud}" 
+                   FontSize="20"
+                   Margin="10 20 0 0" 
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"/>
+
+
+
+                        <Grid  Margin="15 0 0 0" Grid.Row="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Grid.Row="0" Content="Введите логин" Foreground="{DynamicResource DefaultTextForegroud}" FontSize="15" Margin="10 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            <Label Grid.Column="1" Grid.Row="1" Content="*" Foreground="Red" FontSize="15" Margin="10 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+
+
+                            <TextBox x:Name="UserLogin"                             
+                             Grid.Row="1"
+                            Height="45"  FontSize="18" 
+                             SelectionBrush="White" 
+                             wpf:TextFieldAssist.Icon="Account"
+                             wpf:TextFieldAssist.IconView="True"
+                             wpf:TextFieldAssist.Wotemark="Логин"
+                             wpf:TextFieldAssist.WoteMarkView="True"
+                             wpf:TextFieldAssist.WotemarkFontSize="18"/>
+                        </Grid>
+                        <Grid  Margin="15 0 0 0" Grid.Row="6">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Grid.Row="0" Content="Введите пароль" Foreground="{DynamicResource DefaultTextForegroud}" FontSize="15" Margin="10 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            <Label Grid.Column="1" Grid.Row="1" Content="*" Foreground="Red" FontSize="15" Margin="10 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+
+
+                            <PasswordBox x:Name="UserPassword" 
+                                Grid.Row="1"
+                                 wpf:TextFieldAssist.Icon="Lock"
+                                 wpf:TextFieldAssist.IconView="True"
+                                 wpf:TextFieldAssist.Wotemark="Пароль"
+                                 wpf:TextFieldAssist.WoteMarkView="True"
+                                 wpf:TextFieldAssist.WotemarkFontSize="18"
+                                 Style="{DynamicResource PasswordBoxDef}"
+                                 Height="45"  
+                                 FontSize="18" SelectionBrush="White" Cursor="Hand"
+                                      />
+                        </Grid>
+                        <Grid  Margin="15 0 0 0" Grid.Row="7">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Grid.Row="0" Content="Повторите пароль" Foreground="{DynamicResource DefaultTextForegroud}" FontSize="15" Margin="10 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            <Label Grid.Column="1" Grid.Row="1" Content="*" Foreground="Red" FontSize="15" Margin="10 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+
+
+                            <PasswordBox x:Name="UserVertyPassword" 
+                                 Grid.Row="1"
+                                 wpf:TextFieldAssist.Icon="Lock"
+                                 wpf:TextFieldAssist.IconView="True"
+                                 wpf:TextFieldAssist.Wotemark="Повторите пароль"
+                                 wpf:TextFieldAssist.WoteMarkView="True"
+                                 wpf:TextFieldAssist.WotemarkFontSize="18"
+                                 Style="{DynamicResource PasswordBoxDef}"
+                                 Height="45"  
+                                 FontSize="18" SelectionBrush="White" Cursor="Hand"
+                                      />
+                        </Grid>
+
+
+
+
+                        <StackPanel Grid.Row="8" 
+                            Height="60" Margin="0 0 10 0"
+                            HorizontalAlignment="Right" 
+                            Orientation="Horizontal" >
+
+
+                            <Button wpf:ButtonAssist.Icon="Check"
+                        Width="160"
+                        wpf:ButtonAssist.IconView="True"
+                        x:Name="RegistrationButton"
+                        Height="50"
+                        Click="RegistrationButton_Click"
+                        Background="{DynamicResource ListBoxItemSelectSolid}"
+                        Content="Добавить" Cursor="Hand"/>
+
+                            <Button wpf:ButtonAssist.Icon="Cancel"
+                        wpf:ButtonAssist.IconView="True"  
+                         Height="50" Name="clearData"
+                                   Click="clearData_Click"
+                        Content="Очистить" Cursor="Hand"/>
+
+                        </StackPanel>
+
+
+                    </Grid>
+
+
+                    <!--#endregion-->
+                </ScrollViewer>
+            </Grid>
+            <!--#endregion-->
+        </Grid>
+    </Grid>
+</UserControl>

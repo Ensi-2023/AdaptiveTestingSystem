@@ -1,0 +1,126 @@
+﻿<Window x:Class="AdaptiveTestingSystem.UserApplication.Assets.GUI.Roly._roly_subpage.window.GUI_RolyChanger"
+        Template="{DynamicResource WindowTemplate}"
+        Foreground="{DynamicResource DefaultTextForegroud}"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AdaptiveTestingSystem.UserApplication.Assets.GUI.Roly._roly_subpage.window"
+        mc:Ignorable="d"
+        Loaded="root_Loaded"
+        Unloaded="root_Unloaded"
+        xmlns:wpf="clr-namespace:AdaptiveTestingSystem.DLL.wpf;assembly=AdaptiveTestingSystem.DLL"   
+        xmlns:control="clr-namespace:AdaptiveTestingSystem.Control.CustomControl;assembly=AdaptiveTestingSystem.Control"
+        FontFamily="Segoe UI Light"
+        WindowStartupLocation="CenterScreen"
+        Name="root"
+        WindowStyle="None"
+        WindowState="Normal"
+        AllowsTransparency="True"
+        Background="Transparent" 
+        Title="Управление ролями"
+        ResizeMode="CanResizeWithGrip" Height="650" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <control:HeaderControl Name="Header" HeaderButton="Close"
+                                   PanelColor="{DynamicResource BorderColor}"
+                    
+                                   CloseClick="Header_CloseClick"
+                               
+                                   Grid.Row="0"
+                                   Title="{Binding Title,ElementName=root}"/>
+
+
+        <Grid Grid.Row="1" Background="{DynamicResource DefaultPanelBackground_dark}">
+
+
+            <Grid x:Name="body" Margin="15" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Margin="5">
+                    <Border CornerRadius="5"
+                    Background="{DynamicResource DefaultPanelBackground_dark}">
+                        <TextBox wpf:TextFieldAssist.Icon="TextBoxSearch"
+                         wpf:TextFieldAssist.IconView="True"
+                         wpf:TextFieldAssist.Wotemark="Поиск..."
+                         wpf:TextFieldAssist.WoteMarkView="True"
+                         KeyDown="TextBox_KeyDown"/>
+                    </Border>
+                </Grid>
+
+                <Border 
+                    Grid.Row="1"
+                    Margin="3">
+                    <Grid>
+                        <ListView 
+                            SelectionMode="Single"
+                            HorizontalContentAlignment="Stretch"
+                            ItemsSource="{Binding RolyCollectionViewer,UpdateSourceTrigger=PropertyChanged}"
+                            SelectedItem="{Binding SelectedRoly,UpdateSourceTrigger=PropertyChanged}" Name="listViewBox">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <control:CustomItemViewList Number="{Binding Index,UpdateSourceTrigger=PropertyChanged}"
+                                                                Title="{Binding Name,UpdateSourceTrigger=PropertyChanged}"/>
+                                </DataTemplate>
+                                
+                                
+                            </ListView.ItemTemplate>
+
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Vertical"/>
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                        </ListView>
+
+                    </Grid>
+                </Border>
+
+
+
+                <Border Grid.Row="2"
+                Visibility="Visible"
+                Name="commandButtonPanel"
+                VerticalAlignment="Bottom"
+                Margin="0">
+                    <Grid >
+                        <Border CornerRadius="5" Opacity=".8"
+                        Background="{DynamicResource DefaultPanelBackground_OneColor}"/>
+
+                        <Grid Margin="4">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button Content="Изменить роль"
+                                Name="rolyChanger"
+                                Click="rolyChanger_Click"
+                                Foreground="{DynamicResource NotificationButtonAccept_Foreground}"
+                                Background="{DynamicResource NotificationButtonAccept_Background}"/>
+                                <Button Content="Отменить"  Name="CloseWindow"
+                                 Click="CloseWindow_Click"/>
+                            </StackPanel>
+                        </Grid>
+
+                    </Grid>
+                </Border>
+
+
+            </Grid>
+
+            <control:OverlayControl Name="Overlay" Visibility="Collapsed" IsVisibleChanged="Overlay_IsVisibleChanged"/>
+
+
+        </Grid>
+
+
+
+
+    </Grid>
+</Window>
+

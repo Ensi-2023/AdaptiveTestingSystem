@@ -1,0 +1,438 @@
+﻿<UserControl x:Class="AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage.GUI_Report_Page2"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage"
+             xmlns:wpf="clr-namespace:AdaptiveTestingSystem.DLL.wpf;assembly=AdaptiveTestingSystem.Dll"
+             xmlns:component="clr-namespace:AdaptiveTestingSystem.Control.Themes;assembly=AdaptiveTestingSystem.Control"
+             xmlns:convert="clr-namespace:AdaptiveTestingSystem.DLL.Converts;assembly=AdaptiveTestingSystem.DLL"  
+             xmlns:ucm ="clr-namespace:AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage.uc_control"
+             Name="root"
+           
+             mc:Ignorable="d"
+             Loaded="root_Loaded"
+             Unloaded="root_Unloaded">
+
+
+    <UserControl.Resources>
+        <convert:StringToPercentString x:Key="StringToPercentString"/>
+        <convert:ItemsCountToString x:Key="ItemsCountToString"/>
+    </UserControl.Resources>
+
+
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <EventTrigger.Actions>
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ThicknessAnimation Storyboard.TargetName="root" Storyboard.TargetProperty="Margin" Duration="00:00:00.2" From="250,0,0,0" To="0">
+                            <ThicknessAnimation.EasingFunction>
+                                <PowerEase EasingMode="EaseOut" Power="7"/>
+                            </ThicknessAnimation.EasingFunction>
+                        </ThicknessAnimation>
+
+
+                        <ThicknessAnimation Storyboard.TargetName="Chart_1" Storyboard.TargetProperty="Margin" Duration="00:00:00.6" From="0,250,0,0" To="8">
+                            <ThicknessAnimation.EasingFunction>
+                                <PowerEase EasingMode="EaseOut" Power="7"/>
+                            </ThicknessAnimation.EasingFunction>
+                        </ThicknessAnimation>
+
+
+                        <ThicknessAnimation Storyboard.TargetName="Chart_2" Storyboard.TargetProperty="Margin" Duration="00:00:00.8" From="0,250,0,0" To="8">
+                            <ThicknessAnimation.EasingFunction>
+                                <PowerEase EasingMode="EaseOut" Power="7"/>
+                            </ThicknessAnimation.EasingFunction>
+                        </ThicknessAnimation>
+
+                        <ThicknessAnimation Storyboard.TargetName="managerFilter" Storyboard.TargetProperty="Margin" Duration="00:00:00.4" From="0,250,0,0" To="8">
+                            <ThicknessAnimation.EasingFunction>
+                                <PowerEase EasingMode="EaseOut" Power="7"/>
+                            </ThicknessAnimation.EasingFunction>
+                        </ThicknessAnimation>
+
+                        <ThicknessAnimation Storyboard.TargetName="Chart_3" Storyboard.TargetProperty="Margin" Duration="00:00:01.2" From="0,250,0,0" To="8">
+                            <ThicknessAnimation.EasingFunction>
+                                <PowerEase EasingMode="EaseOut" Power="7"/>
+                            </ThicknessAnimation.EasingFunction>
+                        </ThicknessAnimation>
+
+                        <DoubleAnimation Storyboard.TargetName="root" Storyboard.TargetProperty="Opacity" Duration="00:00:00.2" From="0" To="1"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger.Actions>
+        </EventTrigger>
+    </UserControl.Triggers>
+
+    <Grid>
+        <Grid Name="body" Visibility="Visible">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="1" Margin="5" Name="managerFilter">
+
+                <Border CornerRadius="5"
+                    Background="{DynamicResource DefaultPanelBackground}">
+                    <Grid>
+                        <Border CornerRadius="5"
+                            Background="{DynamicResource DefaultPanelBackground}">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="10"
+                                              ShadowDepth="1"/>
+                            </Border.Effect>
+                        </Border>
+
+                        <Grid Margin="5" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition  Width="*"/>
+                                <ColumnDefinition  Width="Auto"/>
+                                <ColumnDefinition  Width="Auto"/>
+                                <ColumnDefinition  Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                     
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0"  Grid.RowSpan="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <DataGrid
+                                      Margin="5"    
+                                      Name="userList"
+                                      SelectionMode="Extended"
+                                      CanUserResizeColumns="False"
+                                      FontSize="18"
+                                      MaxHeight="350"
+                                      RowDetailsVisibilityMode="VisibleWhenSelected"
+                                      Height="350"
+                                      MinWidth="230"
+                                      MouseLeftButtonDown="DataGrid_MouseLeftButtonDown"
+                                      SelectionChanged="DataGrid_SelectionChanged"
+                                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                      AutoGenerateColumns="False"
+                                      ItemsSource="{Binding UserView,UpdateSourceTrigger=PropertyChanged}">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="#"
+                                            MinWidth="40"
+                                            Width="Auto"                               
+                                            Binding="{Binding Index}"/>
+
+                                        <DataGridTextColumn Header="ФИО"
+                                            MinWidth="150"
+                                            Width="SizeToCells"                                    
+                                            Binding="{Binding Name}">
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                                                </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                        </DataGridTextColumn>
+
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                                <Border CornerRadius="5"
+                                        Name="button_cancleSelect"
+                                        Visibility="Collapsed"
+                                        Grid.Row="1"
+                                    Margin="5"
+                                    Grid.Column="2"
+                                    Background="{DynamicResource DefaultDataGridPanelBackground}">
+                                    <Grid Margin="10">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center">
+                                            <TextBlock Text="Выделено: " FontSize="18" Foreground="{DynamicResource DefaultTextForegroud}"/>
+                                            <TextBlock Name="titleCountSelect" FontSize="18" Foreground="{DynamicResource DefaultTextForegroud}"/>
+                                        </StackPanel>
+                                        <Button Margin="0 10" Grid.Row="1" Content="Отменить выделение" 
+                                                Background="{DynamicResource BorderColor}"
+                                                Click="Button_Click"/>
+                                    </Grid>
+                                </Border>
+
+                                <Button HorizontalAlignment="Right"
+                                        VerticalAlignment="Top"
+                                        Height="50"
+                                        Width="50"
+                                        Click="openUserViewer_Click"
+                                        Name="openUserViewer"
+                                        Style="{DynamicResource IconButtonStyle}"
+                                        wpf:ButtonAssist.Icon="ArrangeBringForward"/>
+
+                            </Grid> 
+                            
+                            <Border CornerRadius="5"
+                                    Margin="5"
+                                    Grid.Column="2"
+                                    Background="{DynamicResource DefaultDataGridPanelBackground}">
+                                <Grid Margin="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="Диапазон поиска"
+                                               FontSize="18"
+                                               Foreground="{DynamicResource DefaultTextForegroud}"/>
+
+                                    <Separator Background="{DynamicResource BorderColor}"
+                                               Grid.Row="1"
+                                               Margin="5"/>
+                                    <Grid Name="filterRangeData" Grid.Row="2"/>
+                                </Grid>
+                            </Border>
+
+                            <Border CornerRadius="5"
+                                    Margin="5"
+                                    Grid.Column="1"
+                                    Background="{DynamicResource DefaultDataGridPanelBackground}">
+                                    <Grid Margin="10">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Text="Расширить поиск по"
+                                               FontSize="18"
+                                               Foreground="{DynamicResource DefaultTextForegroud}"/>
+                                    <Separator Background="{DynamicResource BorderColor}"
+                                               Grid.Row="1"
+                                               Margin="5"/>
+                                    <StackPanel HorizontalAlignment="Center" Orientation="Vertical"
+                                                    Grid.Row="2">
+                                        <RadioButton Uid="1" Checked="RadioButton_Checked" Content="Дням" Name ="dayRadioButton" Width="150"/>
+
+                                        <RadioButton Uid="2" Checked="RadioButton_Checked" Content="Месяцам" Width="150"/>
+                                        <RadioButton Uid="3" Checked="RadioButton_Checked" Content="Годам" Width="150"/>
+                                    </StackPanel>
+                                        
+                                    </Grid>
+                                </Border>
+
+                            <Border CornerRadius="5"
+                                Margin="5"
+                                Grid.Column="3"
+                                Background="{DynamicResource DefaultDataGridPanelBackground}">
+                                <Grid Margin="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="Пол"
+                                           FontSize="18"
+                                           Foreground="{DynamicResource DefaultTextForegroud}"/>
+                                    <Separator Background="{DynamicResource BorderColor}"
+                                               Grid.Row="1"
+                                               Margin="5"/>
+                                    <StackPanel Orientation="Vertical"
+                                                    Grid.Row="2">
+                                        <RadioButton Content="Мужской"/>
+                                        <RadioButton Content="Женский"/>
+                                        <RadioButton Content="Все" IsChecked="True"/>
+                                    </StackPanel>
+
+                                </Grid>
+                            </Border>
+
+                            <Border CornerRadius="5"
+                                    Margin="5 5 5 10"
+                                    Grid.Column="1"
+                                    Grid.ColumnSpan="3"
+                                    Grid.Row="1" 
+                                    Background="{DynamicResource DefaultDataGridPanelBackground}">
+                                <Grid Margin="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <TextBlock Text="Сформировать"
+                                               FontSize="18"
+                                               Foreground="{DynamicResource DefaultTextForegroud}"/>
+
+                                    <Separator Background="{DynamicResource BorderColor}"
+                                               Grid.Row="1"
+                                               Margin="5"/>
+
+                                    <StackPanel Orientation="Horizontal"
+                                                VerticalAlignment="Top"
+                                                Grid.Row="2">
+                                        <Button Content="Сформировать"
+                                                Background="{DynamicResource NotificationButtonAccept_Background}"
+                                                Foreground="{DynamicResource NotificationButtonAccept_Foreground}"/>
+                                    </StackPanel>
+
+                                </Grid>
+                            </Border>
+
+                        </Grid>
+                    </Grid>
+                </Border>
+
+            </Grid>
+
+            <Grid Grid.Row="0" Margin="5">
+                <Border CornerRadius="5"
+                    Background="{DynamicResource DefaultPanelBackground}">
+                    <Grid>
+                        <Border CornerRadius="5"
+                            Background="{DynamicResource DefaultPanelBackground}">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="10"
+                                              ShadowDepth="1"/>
+                            </Border.Effect>
+                        </Border>
+
+                        <component:ComboTextBox                               
+                                 Height="40"        
+                                 KeyDown="searchBox_KeyDown"  
+                                 IsEditable="True"
+                                 OnSearch="True"
+                                 Wotemark="Поиск..."
+                                 Placment="Bottom"
+                                 wpf:ButtonAssist.VisibilityButton="Collapsed"
+                                 WotemarkVisible="True"
+                                 VisibilityOpenButton="Collapsed"
+                                 wpf:TextFieldAssist.Icon="Text"
+                                 wpf:TextFieldAssist.IconView="True" x:Name="ConsoleBox"
+                                 WotemarkFontSize="20" Cursor="Hand">
+                        </component:ComboTextBox>
+
+
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Margin="5" Name="Chart_1"
+                  Grid.Column="0">
+                    <Border CornerRadius="5"
+                    Background="{DynamicResource DefaultPanelBackground}">
+                        <Grid>
+                            <Border CornerRadius="5"
+                            Background="{DynamicResource DefaultPanelBackground}">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="10"
+                                              ShadowDepth="1"/>
+                                </Border.Effect>
+                            </Border>
+                            <Grid Margin="10">
+
+                            </Grid>
+
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                <Grid Grid.Row="0" Margin="5" Name="Chart_2"
+                  Grid.Column="1">
+                    <Border CornerRadius="5"
+                    Background="{DynamicResource DefaultPanelBackground}">
+                        <Grid>
+                            <Border CornerRadius="5"
+                            Background="{DynamicResource DefaultPanelBackground}">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="10"
+                                              ShadowDepth="1"/>
+                                </Border.Effect>
+                            </Border>
+                            <Grid Margin="10">
+
+                            </Grid>
+
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                <Grid Grid.Row="1" Margin="5" Name="Chart_3"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="2">
+                    <Border CornerRadius="5"
+                    Background="{DynamicResource DefaultPanelBackground}">
+                        <Grid>
+                            <Border CornerRadius="5"
+                            Background="{DynamicResource DefaultPanelBackground}">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="10"
+                                              ShadowDepth="1"/>
+                                </Border.Effect>
+                            </Border>
+                            <Grid Margin="10">
+
+                            </Grid>
+
+                        </Grid>
+                    </Border>
+                </Grid>
+
+            </Grid>
+
+        </Grid>
+        <Grid x:Name="overlay" Visibility="Collapsed">
+            <Border Margin="10" Background="Black" Opacity=".1"/>
+            <Border CornerRadius="5" HorizontalAlignment="Center"
+                    VerticalAlignment="Center" Background="Black" Opacity=".6">
+                <Grid Margin="20"
+                      Height="150"
+                      Width="150">
+
+                    <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}"
+                                 IsIndeterminate="True"
+                                 Height="110"
+                                 Name="indicator"
+                                 Width="110"/>
+
+                    <TextBlock Text="{Binding ElementName=indicator,Path=Value,Converter={StaticResource StringToPercentString}}" Visibility="Collapsed" Name="percUpload" HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="20" MouseEnter="percUpload_MouseEnter"
+                               Foreground="{DynamicResource DefaultTextForegroud}"/>
+
+                    <Button HorizontalAlignment="Center"
+                            VerticalAlignment="Center" Width="50"
+                            Height="50" Name="buttonCloseThread"
+                            Click="buttonCloseThread_Click" Visibility="Collapsed"
+                            wpf:ButtonAssist.Icon="Close" MouseLeave="Button_MouseLeave"
+                            Style="{DynamicResource IconButtonStyle}"/>
+
+                    <Button HorizontalAlignment="Center"
+                            VerticalAlignment="Center" Width="50"
+                            Height="50" Name="retryUpload"
+                            Click="retryUpload_Click" Visibility="Collapsed"
+                            wpf:ButtonAssist.Icon="Update" MouseLeave="Button_MouseLeave"
+                            Style="{DynamicResource IconButtonStyle}"/>
+
+                </Grid>
+            </Border>
+        </Grid>
+
+    </Grid>
+</UserControl>

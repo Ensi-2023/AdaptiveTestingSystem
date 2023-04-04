@@ -1,0 +1,229 @@
+﻿<UserControl x:Class="AdaptiveTestingSystem.UserApplication.Assets.GUI.Testing._testing_subpage.GUI_QuestionEdit"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AdaptiveTestingSystem.UserApplication.Assets.GUI.Testing._testing_subpage"
+             mc:Ignorable="d" 
+             Uid="74"
+             Unloaded="UserControl_Unloaded"
+             Loaded="UserControl_Loaded"
+             wpf:WindowsAssist.UCTitle="Редактирование вопросов"
+             xmlns:wpf="clr-namespace:AdaptiveTestingSystem.DLL.wpf;assembly=AdaptiveTestingSystem.DLL"
+             xmlns:ccontrol="clr-namespace:AdaptiveTestingSystem.Control.CustomControl;assembly=AdaptiveTestingSystem.Control"
+             xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks"     
+             xmlns:control="clr-namespace:AdaptiveTestingSystem.Control.Themes;assembly=AdaptiveTestingSystem.Control">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                          PreviewMouseWheel="contentAnsw_PreviewMouseWheel"
+                          VerticalScrollBarVisibility="Auto" Grid.Row="0" Name="contentAnsw">
+
+            
+                       
+            
+            <Border Grid.Row="3" Margin="5"
+                    CornerRadius="5">
+                <Grid>
+                    <Border Grid.Row="3" Margin="2"
+                        CornerRadius="5"
+                        Background="{DynamicResource DefaultPanelBackground_OneColor}">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="20" Opacity=".2" ShadowDepth="0"/>
+                        </Border.Effect>
+                    </Border>
+
+
+
+
+                    <StackPanel Orientation="Vertical">
+
+                        <!--Answer-->
+                        <TextBlock Text="Вопрос"
+                       Grid.Row="2" Margin="10"
+                           FontSize="20"
+                           Foreground="{DynamicResource DefaultTextForegroud}"/>
+                        <ccontrol:ImageTextBoxControl
+                        Name="questionPanel"
+                       
+                Wotemark="Введите вопрос.." Margin="5"
+                Grid.Row="2" ImageView="ImageTextBoxControl_ImageView"/>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock 
+                           Text="Ответы"
+                           Margin="10"
+                           FontSize="20"
+                           Foreground="{DynamicResource DefaultTextForegroud}"/>
+
+                            <StackPanel Margin="5" Grid.Column="1" Orientation="Horizontal">
+
+                                <Button x:Name="deleteTest"
+                            Height="50"
+                            Width="50" Visibility="Collapsed"
+                            Margin="3"
+                            Click="deleteTest_Click"
+                            Grid.Column="1"
+                            Style="{DynamicResource IconButtonStyle}"
+                            wpf:ButtonAssist.Icon="Delete"/>
+
+                                <Button x:Name="addAnsw"
+                            Height="50"
+                            Width="50"
+                            Margin="3"
+                            Grid.Column="3"
+                                    Click="addAnsw_Click"
+                            Style="{DynamicResource IconButtonStyle}"
+                            wpf:ButtonAssist.Icon="Plus"/>
+                            </StackPanel>
+
+                        </Grid>
+
+                        <StackPanel Orientation="Vertical"
+                                Name="answerList" >
+
+                        </StackPanel>
+
+                        <Grid Margin="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Border Grid.Row="0" Margin="5"
+                               CornerRadius="5">
+                                <Grid>
+                                    <Border Margin="2"
+                        CornerRadius="5"
+                        Background="{DynamicResource DefaultPanelBackground_OneColor}">
+                                        <Border.Effect>
+                                            <DropShadowEffect BlurRadius="20" Opacity=".2" ShadowDepth="0"/>
+                                        </Border.Effect>
+                                    </Border>
+
+
+                                    <Grid Margin="3">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="Правильный ответ: "
+                                       Grid.Row="2" Margin="10"
+                                           FontSize="17" VerticalAlignment="Center"
+                                           Foreground="{DynamicResource DefaultTextForegroud}"/>
+                                        <control:ComboTextBox BorderBrush="Transparent" Grid.Column="1" x:Name="CorrectAnsw" Height="40" Width="80" IsEditable="False" OnSearch="True" WotemarkFontSize="18" Wotemark="0" SelectedIndex="0">
+
+                                        </control:ComboTextBox>
+                                    </Grid>
+                                </Grid>
+                            </Border>
+
+                            <Border Grid.Row="1" Margin="5"
+                               CornerRadius="5">
+                                <Grid>
+                                    <Border Margin="2"
+                        CornerRadius="5"
+                        Background="{DynamicResource DefaultPanelBackground_OneColor}">
+                                        <Border.Effect>
+                                            <DropShadowEffect BlurRadius="20" Opacity=".2" ShadowDepth="0"/>
+                                        </Border.Effect>
+                                    </Border>
+
+
+                                    <Grid Margin="3">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="Сложность: "
+                                       Grid.Row="2" Margin="10"
+                                           FontSize="17" VerticalAlignment="Center"
+                                           Foreground="{DynamicResource DefaultTextForegroud}"/>
+                                        <Slider Name="complex" Value="0" Grid.Column="1" Width="250" VerticalAlignment="Center"/>
+                                    </Grid>
+                                </Grid>
+                            </Border>
+
+                        </Grid>
+
+
+                    </StackPanel>
+
+                </Grid>
+
+
+            </Border>
+        </ScrollViewer>
+
+
+        <Border Grid.Row="3" Margin="5"
+                    CornerRadius="5" Name="buttonManager">
+            <Grid>
+                <Border Grid.Row="3" Margin="2"
+                        CornerRadius="5"
+                        Background="{DynamicResource DefaultPanelBackground_OneColor}">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="20" Opacity=".2" ShadowDepth="0"/>
+                    </Border.Effect>
+                </Border>
+
+
+                <Grid Margin="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+
+
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                                   Grid.Column="2">
+
+
+                        <Button
+                            Height="50"
+                            Click="RetryData_Click"
+                            Margin="3"
+                            Name="RetryData"
+                            Grid.Column="1"
+                            Content="Вернуть к исходному"
+                            wpf:ButtonAssist.ColorMouseEnter="{DynamicResource NotificationButtonAccept_Background}"
+                            wpf:ButtonAssist.IconView="True"
+                            wpf:ButtonAssist.Icon="Refresh"/>
+
+                        <Button
+                            Height="50"
+                       
+                            Margin="3"
+                            Name="AddAnswerToTest"
+                            Grid.Column="1"
+                            Content="Сохранить данные"
+                            wpf:ButtonAssist.ColorMouseEnter="{DynamicResource NotificationButtonAccept_Background}"
+                            wpf:ButtonAssist.IconView="True"
+                            wpf:ButtonAssist.Icon="ContentSave" Click="AddAnswerToTest_Click"/>
+
+                       
+                    </StackPanel>
+
+                </Grid>
+
+            </Grid>
+
+
+        </Border>
+
+    </Grid>
+</UserControl>

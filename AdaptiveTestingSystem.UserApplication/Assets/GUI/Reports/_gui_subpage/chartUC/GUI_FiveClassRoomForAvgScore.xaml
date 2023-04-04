@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage.chartUC.GUI_FiveClassRoomForAvgScore"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage.chartUC"
+             mc:Ignorable="d"  Loaded="UserControl_Loaded"
+              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+           xmlns:wpf="clr-namespace:AdaptiveTestingSystem.DLL.wpf;assembly=AdaptiveTestingSystem.DLL"
+             xmlns:vms="clr-namespace:AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage.viewmodel"
+             >
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1" Background="Transparent" Height="350"  Width="750"
+              Name="charVisual">
+            <lvc:PieChart Margin="5"
+            Series="{Binding Series,UpdateSourceTrigger=PropertyChanged}" 
+            Title="{Binding Title}" Name="Chart" Grid.Row="1"
+            LegendPosition="Right">
+            </lvc:PieChart>
+
+        </Grid>
+
+        <Border CornerRadius="5" Margin="5"
+                Background="{DynamicResource DefaultPanelBackground}"
+                HorizontalAlignment="Right"
+                Grid.Row="0">
+            <Grid>
+             
+
+                <Grid Margin="5">
+                    <Button wpf:ButtonAssist.Icon="ContentSave"  Height="50"  Width="50"
+                            Style="{DynamicResource IconButtonStyle}"
+                            Click="Button_Click"/>
+                </Grid>
+            </Grid>
+        </Border>
+
+    </Grid>
+</UserControl>

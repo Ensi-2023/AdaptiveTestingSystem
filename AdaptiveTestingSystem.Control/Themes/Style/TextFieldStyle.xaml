@@ -1,0 +1,741 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:wpf="clr-namespace:AdaptiveTestingSystem.DLL.wpf;assembly=AdaptiveTestingSystem.DLL"
+                    x:Class="AdaptiveTestingSystem.Control.ControlAssist.TextFieldClassAssist"
+                    xmlns:component="clr-namespace:AdaptiveTestingSystem.Control.Themes"
+                    xmlns:customControll="clr-namespace:AdaptiveTestingSystem.Control.CustomControl"
+                    xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                    xmlns:assist="clr-namespace:AdaptiveTestingSystem.Control.ControlAssist;assembly=AdaptiveTestingSystem.Control">
+
+
+
+    <Style TargetType="{x:Type TextBox}">
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="wpf:TextFieldAssist.Wotemark" Value=""/>
+        <Setter Property="wpf:TextFieldAssist.WoteMarkView" Value="False"/>
+        <Setter Property="wpf:TextFieldAssist.WotemarkFontSize" Value="15"/>
+        <Setter Property="wpf:TextFieldAssist.CornerRadius" Value="5"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter  Property="CaretBrush" Value="{DynamicResource CurretBrushes}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderColor}"/>
+        <Setter Property="Background" Value="{DynamicResource TextBoxDefault}"/>
+        <Setter Property="wpf:TextFieldAssist.IconView" Value="False"/>
+        <Setter Property="wpf:TextFieldAssist.Icon" Value="Abacus"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextFieldForegroud}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border Name="root"
+                            CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:TextFieldAssist.CornerRadius)}"
+                            Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            Width="{TemplateBinding Width}" 
+                            Height="{TemplateBinding Height}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <icon:PackIconMaterial Kind="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:TextFieldAssist.Icon)}" 
+                                                   Grid.Column="0" 
+                                                   VerticalAlignment="Center"
+                                                   Name="_icons"
+                                                    Margin="5"
+                                                   Foreground="{DynamicResource WotemarkColor}"
+                                                   Visibility="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:TextFieldAssist.IconVisibility)}"/>
+
+                            <TextBlock Grid.Column="1"
+                                       Name="wotemark" Visibility="Collapsed"
+                                       Text="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:TextFieldAssist.Wotemark)}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Focusable="False"
+                                       Margin="5 0 0 0"
+                                       FontSize="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:TextFieldAssist.WotemarkFontSize)}"
+                                       Foreground="{DynamicResource WotemarkColor}"/>
+                            <ScrollViewer Grid.Column="1" 
+                                          VerticalAlignment="Center"
+                                          BorderThickness="0" IsTabStop="False" 
+                                          x:Name="PART_ContentHost" 
+                                          Margin="0" 
+                                          Padding="{TemplateBinding Padding}"/>
+
+
+
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="root" Property="Background" Value="{DynamicResource BorderColor_MouseEnter}"/>
+                        </Trigger>
+
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="root"  Property="Background" Value="{DynamicResource BorderColor_Focused}"/>
+                            <Setter TargetName="_icons" Property="Foreground" Value="{DynamicResource TextFieldForegroud}"/>
+                            <Setter TargetName="wotemark" Property="Foreground" Value="{DynamicResource TextFieldForegroud}"/>
+                        </Trigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value=""/>
+                                <Condition Property="wpf:TextFieldAssist.WoteMarkView" Value="true"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="wotemark" Property="Visibility" Value="Visible"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Cursor" Value="Hand"/>
+    </Style>
+
+
+    <Style TargetType="{x:Type TextBox}" x:Key="TextBoxDef">
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="wpf:TextFieldAssist.Wotemark" Value=""/>
+        <Setter Property="wpf:TextFieldAssist.WoteMarkView" Value="False"/>
+        <Setter Property="wpf:TextFieldAssist.WotemarkFontSize" Value="15"/>
+        <Setter Property="wpf:TextFieldAssist.CornerRadius" Value="5"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter  Property="CaretBrush" Value="{DynamicResource CurretBrushes}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderColor}"/>
+        <Setter Property="Background" Value="{DynamicResource TextBoxDefault}"/>
+        <Setter Property="wpf:TextFieldAssist.IconView" Value="False"/>
+        <Setter Property="wpf:TextFieldAssist.Icon" Value="Abacus"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextFieldForegroud}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border Name="root"
+                            CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:TextFieldAssist.CornerRadius)}"
+                            Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            Width="{TemplateBinding Width}" 
+                            Height="{TemplateBinding Height}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <icon:PackIconMaterial Kind="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:TextFieldAssist.Icon)}" 
+                                                   Grid.Column="0" 
+                                                   VerticalAlignment="Center"
+                                                   Name="_icons"
+                                                    Margin="5"
+                                                   Foreground="{DynamicResource WotemarkColor}"
+                                                   Visibility="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:TextFieldAssist.IconVisibility)}"/>
+
+                            <TextBlock Grid.Column="1"
+                                       Name="wotemark" Visibility="Collapsed"
+                                       Text="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:TextFieldAssist.Wotemark)}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Focusable="False"
+                                       Margin="5 0 0 0"
+                                       FontSize="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:TextFieldAssist.WotemarkFontSize)}"
+                                       Foreground="{DynamicResource WotemarkColor}" Cursor="Hand"/>
+                            <ScrollViewer Grid.Column="1" 
+                                          VerticalAlignment="Center"
+                                          BorderThickness="0" IsTabStop="False" 
+                                          x:Name="PART_ContentHost" 
+                                          Margin="0" 
+                                          Padding="{TemplateBinding Padding}"/>
+
+
+
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="root" Property="Background" Value="{DynamicResource BorderColor_MouseEnter}"/>
+                        </Trigger>
+
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="root"  Property="Background" Value="{DynamicResource BorderColor_Focused}"/>
+                            <Setter TargetName="_icons" Property="Foreground" Value="{DynamicResource TextFieldForegroud}"/>
+                            <Setter TargetName="wotemark" Property="Foreground" Value="{DynamicResource TextFieldForegroud}"/>
+                        </Trigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value=""/>
+                                <Condition Property="wpf:TextFieldAssist.WoteMarkView" Value="true"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="wotemark" Property="Visibility" Value="Visible"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type TextBox}" x:Key="TextBoxMultiLine">
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="wpf:TextFieldAssist.CornerRadius" Value="5"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="AcceptsReturn" Value="True"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="VerticalContentAlignment" Value="Top"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="HorizontalScrollBarVisibility" Value="Disabled"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter  Property="CaretBrush" Value="{DynamicResource CurretBrushes}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderColor}"/>
+        <Setter Property="Background" Value="{DynamicResource TextBoxDefault}"/>
+        <Setter Property="wpf:TextFieldAssist.IconView" Value="False"/>
+        <Setter Property="wpf:TextFieldAssist.Icon" Value="Abacus"/>
+
+        <Setter Property="Foreground" Value="{DynamicResource MultiTextFieldForegroud}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border Name="root"
+                            CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:TextFieldAssist.CornerRadius)}"
+                            Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            Width="{TemplateBinding Width}" 
+                            Height="{TemplateBinding Height}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <icon:PackIconMaterial Kind="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:TextFieldAssist.Icon)}" 
+                                                   Grid.Column="0" 
+                                                   VerticalAlignment="Center"
+                                                   Name="_icons"
+                                                   Foreground="{DynamicResource WotemarkColor}"
+                                                   Visibility="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:TextFieldAssist.IconVisibility)}"/>
+
+
+                            <ScrollViewer Grid.Column="1" 
+                                          VerticalAlignment="Top"
+                                          BorderThickness="0" IsTabStop="False" 
+                                          x:Name="PART_ContentHost" 
+                                          Margin="0" 
+                                          Padding="{TemplateBinding Padding}"/>
+
+
+
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="root" Property="Background" Value="{DynamicResource TextBoxDefault}"/>
+                        </Trigger>
+
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="root"  Property="Background" Value="{DynamicResource TextBoxDefault}"/>
+                            <Setter TargetName="_icons" Property="Foreground" Value="{DynamicResource TextFieldForegroud}"/>
+                        </Trigger>
+
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="{x:Type PasswordBox}" x:Key="PasswordBoxDef">
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="wpf:TextFieldAssist.Wotemark" Value=""/>
+        <Setter Property="wpf:TextFieldAssist.WoteMarkView" Value="False"/>
+        <Setter Property="wpf:TextFieldAssist.WotemarkFontSize" Value="15"/>
+        <Setter Property="wpf:TextFieldAssist.CornerRadius" Value="5"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <EventSetter Event="PasswordChanged" Handler="OnPasswordText"/>
+        <Setter Property="CaretBrush" Value="{DynamicResource CurretBrushes}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderColor}"/>
+        <Setter Property="Background" Value="{DynamicResource TextBoxDefault}"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextFieldForegroud}"/>
+        <Setter Property="wpf:TextFieldAssist.IconView" Value="False"/>
+        <Setter Property="wpf:TextFieldAssist.Icon" Value="Onepassword"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="PasswordBox">
+                    <Border Name="root"
+                            CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:TextFieldAssist.CornerRadius)}"
+                            Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <icon:PackIconMaterial Kind="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:TextFieldAssist.Icon)}" 
+                                                   Grid.Column="0" 
+                                                   VerticalAlignment="Center"
+                                                   Name="_icons"
+                                                   Margin="5"
+                                                   Foreground="{DynamicResource WotemarkColor}"
+                                                   Visibility="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:TextFieldAssist.IconVisibility)}"/>
+
+                            <TextBlock Grid.Column="1"
+                                       Name="wotemark" Visibility="Collapsed"
+                                       Text="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:TextFieldAssist.Wotemark)}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Focusable="False"
+                                       Margin="5 0 0 0"
+                                       FontSize="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:TextFieldAssist.WotemarkFontSize)}"
+                                       Foreground="{DynamicResource WotemarkColor}"/>
+                            <ScrollViewer Grid.Column="1" 
+                                          VerticalAlignment="Center"
+                                          BorderThickness="0" IsTabStop="False" 
+                                          x:Name="PART_ContentHost" 
+                                          Margin="0" 
+                                          Padding="{TemplateBinding Padding}"/>
+
+                            <TextBlock Grid.Column="1"
+                                     Name="PasswordView" 
+                                     Visibility="Collapsed" 
+                                     VerticalAlignment="Center"
+                                     FontSize="{TemplateBinding FontSize}"
+                                     Foreground="{TemplateBinding Foreground}"
+                                     Text="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(assist:TextFieldClassAssist.Passwords)}"
+                                     />
+
+                            <Button Grid.Column="2" 
+                                    PreviewMouseLeftButtonDown="OnMouse_Down" 
+                                    PreviewMouseLeftButtonUp="OnMouse_Up" 
+                                    wpf:ButtonAssist.Icon="Eye"
+                                    wpf:ButtonAssist.IconView="True"
+                                    Name="viewButtonPassword"
+                                    Foreground="{DynamicResource WotemarkColor}"
+                                    Style="{DynamicResource IconButtonStyle}"/>
+
+
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="wpf:TextFieldAssist.ViewButtonCheckPassword" Value="False">
+                            <Setter Property="Visibility" Value="Collapsed" TargetName="viewButtonPassword"/>
+                        </Trigger>
+
+                        <Trigger Property="assist:TextFieldClassAssist.ViewPassword" Value="true">
+                            <Setter Property="Visibility" Value="Collapsed" TargetName="PART_ContentHost"/>
+                            <Setter Property="Visibility" Value="Visible" TargetName="PasswordView"/>
+                        </Trigger>
+
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="root" Property="Background" Value="{DynamicResource BorderColor_MouseEnter}"/>
+                        </Trigger>
+
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="root"  Property="Background" Value="{DynamicResource BorderColor_Focused}"/>
+                            <Setter TargetName="_icons" Property="Foreground" Value="{DynamicResource TextFieldForegroud}"/>
+                            <Setter TargetName="wotemark" Property="Foreground" Value="{DynamicResource TextFieldForegroud}"/>
+                            <Setter TargetName="viewButtonPassword" Property="Foreground" Value="{DynamicResource TextFieldForegroud}"/>
+                        </Trigger>
+
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="assist:TextFieldClassAssist.VertyPassword" Value="true"/>
+                                <Condition Property="wpf:TextFieldAssist.WoteMarkView" Value="true"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="wotemark" Property="Visibility" Value="Visible"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+     <Style TargetType="{x:Type ListBox}" x:Key="ListBoxStyle">
+        <Setter Property="Margin" Value="10 10 10 10"/>
+        <Setter Property="MaxHeight" Value="250"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="ItemContainerStyle" Value="{DynamicResource ListBoxItemStyle}"/>
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBox}">
+                    <Border Style="{DynamicResource PopupPanelStyle}">
+                        <ScrollViewer Margin="0" Focusable="False" x:Name="PART_ScrollViewer">
+                            <StackPanel Margin="0" IsItemsHost="True"/>
+                        </ScrollViewer>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+
+    <!--<Style TargetType="{x:Type customControll:Console_PopupItemControll}">
+        <Setter Property="CommandFontSize" Value="13"/>
+        <Setter Property="CommandForeground" Value="White"/>
+        <Setter Property="DecriptionFontSize" Value="13"/>
+        <Setter Property="DescriptionForeground" Value="LightGray"/>
+    </Style>-->
+
+    <Style x:Key="ListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Border CornerRadius="5" Background="Transparent" Margin="2" Name="main">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="SelectionStates">
+                                <VisualState x:Name="Unselected" />
+                                <VisualState x:Name="Selected">
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames  
+                                            Storyboard.TargetName="main"
+                                            Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" 
+                                            >
+                                            <EasingColorKeyFrame KeyTime="0:0:0.1" Value="{DynamicResource ListBoxItemSelect}"/>
+                                        </ColorAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="SelectedUnfocused">
+
+                                </VisualState>
+                                <VisualState Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames  
+                                            Storyboard.TargetName="main"
+                                            Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" 
+                                            >
+                                            <EasingColorKeyFrame KeyTime="0:0:0.1" Value="{DynamicResource ListBoxItemSelect}"/>
+                                        </ColorAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+
+
+                        </VisualStateManager.VisualStateGroups>
+                        <ContentPresenter Margin="5" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+
+    <ControlTemplate x:Key="PtextboxNoEditable"  TargetType="{x:Type component:ComboTextBox}">
+
+        <Border Name="root"
+                            CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:TextFieldAssist.CornerRadius)}"
+                            Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            Width="{TemplateBinding Width}" 
+                            Height="{TemplateBinding Height}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+
+                <Button Grid.Column="2"
+                                    wpf:ButtonAssist.Icon="ChevronDown"
+                                    wpf:ButtonAssist.IconView="True"
+                                    Style="{DynamicResource IconButtonStyle}"
+                                    Visibility="{Binding RelativeSource={RelativeSource TemplatedParent},Path=VisibilityOpenButton}"
+                                    FontSize="10"
+                                    VerticalAlignment="Center"                                 
+                                    Height="25"
+                                    Width="25"
+                                    Foreground="{DynamicResource WotemarkColor}"
+                                    x:Name="PART_Button"/>
+
+                <icon:PackIconMaterial 
+                                Foreground="{DynamicResource WotemarkColor}"
+                                Height="10"
+                                Width="10" 
+                                Margin="5"
+                                Kind="ChevronDown" 
+                                VerticalAlignment="Center"
+                                Grid.Column="2"
+                                Visibility="Collapsed"
+                                x:Name="PART_IconNoEditable"/>
+
+                <Popup 
+                                Placement="Top"
+                                Grid.Column="0" 
+                                VerticalOffset="-2"
+                                StaysOpen ="False"
+                                HorizontalOffset="-10"
+                                Grid.ColumnSpan="2"
+                                AllowsTransparency="True"
+                                IsOpen="{TemplateBinding IsOpen}"
+                                x:Name="PART_Popup">
+                    <ListBox x:Name="PART_CollectionList" SelectedIndex="{TemplateBinding SelectedIndex}" ItemsSource="{TemplateBinding Items}" Style="{DynamicResource ListBoxStyle}"/>
+
+                </Popup>
+
+
+                <icon:PackIconMaterial Kind="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:TextFieldAssist.Icon)}" 
+                                                   Grid.Column="0" 
+                                                   VerticalAlignment="Center"
+                                                   Name="_icons"
+                                                   Margin="5"
+                                                   Foreground="{DynamicResource WotemarkColor}"
+                                                   Visibility="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:TextFieldAssist.IconVisibility)}"/>
+
+                <TextBlock Grid.Column="1"
+                                       Name="PART_Wotemark" 
+                                       Visibility="Collapsed"
+                                       Text="{TemplateBinding Wotemark}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Focusable="False"
+                                       Margin="5 0 0 0"
+                                       FontSize="{TemplateBinding WotemarkFontSize}"
+                                       Foreground="{DynamicResource WotemarkColor}"/>
+
+
+                <ContentPresenter  Grid.Column="1" Visibility="Visible"
+                                   Content="{TemplateBinding Text}"
+                                   Margin="5 0 0 0"
+                                   VerticalAlignment="Center"/>
+
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+
+
+            <Trigger Property="IsEditable" Value="False">
+                <Setter Property="Visibility" Value="Collapsed" TargetName="PART_Wotemark"/>
+                <Setter Property="Visibility" Value="Collapsed" TargetName="PART_Button"/>
+                <Setter Property="Visibility" Value="Visible" TargetName="PART_IconNoEditable"/>
+                <Setter Property="IsReadOnly" Value="True"/>
+            </Trigger>
+
+            <Trigger Property="IsOpen" Value="True">
+                <Setter Property="wpf:ButtonAssist.Icon" TargetName="PART_Button" Value="ChevronUp"/>
+                <Setter Property="Kind" TargetName="PART_IconNoEditable" Value="ChevronUp"/>
+            </Trigger>
+
+
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="root" Property="Background" Value="{DynamicResource BorderColor_MouseEnter}"/>
+
+            </Trigger>
+
+            <Trigger Property="IsFocused" Value="True">
+                <Setter TargetName="root"  Property="Background" Value="{DynamicResource BorderColor_Focused}"/>
+                <Setter TargetName="_icons" Property="Foreground" Value="{DynamicResource TextFieldForegroud}"/>
+                <Setter TargetName="PART_Wotemark" Property="Foreground" Value="{DynamicResource TextFieldForegroud}"/>
+                <Setter TargetName="PART_Button" Property="Foreground" Value="{DynamicResource TextFieldForegroud}"/>
+                <Setter TargetName="PART_IconNoEditable" Property="Foreground" Value="{DynamicResource TextFieldForegroud}"/>
+            </Trigger>
+
+
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Text" Value=""/>
+                    <Condition Property="WotemarkVisible" Value="true"/>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter TargetName="PART_Wotemark" Property="Visibility" Value="Visible"/>
+                </MultiTrigger.Setters>
+            </MultiTrigger>
+        </ControlTemplate.Triggers>
+
+    </ControlTemplate>
+
+    <Style TargetType="{x:Type component:ComboTextBox}">
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="wpf:TextFieldAssist.Wotemark" Value=""/>
+        <Setter Property="wpf:TextFieldAssist.WoteMarkView" Value="False"/>
+        <Setter Property="wpf:TextFieldAssist.WotemarkFontSize" Value="15"/>
+        <Setter Property="wpf:TextFieldAssist.CornerRadius" Value="5"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Placment" Value="Top"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter  Property="CaretBrush" Value="{DynamicResource CurretBrushes}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderColor}"/>
+        <Setter Property="Background" Value="{DynamicResource TextBoxDefault}"/>
+        <Setter Property="VisibilityOpenButton" Value="Visible"/>
+        <Setter Property="wpf:TextFieldAssist.IconView" Value="False"/>
+        <Setter Property="wpf:TextFieldAssist.Icon" Value="Abacus"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextFieldForegroud}"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type component:ComboTextBox}">
+                    <Border Name="root"
+                            CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:TextFieldAssist.CornerRadius)}"
+                            Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            Width="{TemplateBinding Width}" 
+                            Height="{TemplateBinding Height}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+
+                            <Button Grid.Column="2"
+                                    wpf:ButtonAssist.Icon="ChevronDown"
+                                    wpf:ButtonAssist.IconView="True"
+                                    Style="{DynamicResource IconButtonStyle}"
+                                    Visibility="{TemplateBinding VisibilityOpenButton}"
+                                    FontSize="10"
+                                    VerticalAlignment="Center"                                 
+                                    Height="25"
+                                    Width="25"
+                                    Foreground="{DynamicResource WotemarkColor}"
+                                    x:Name="P_Button"/>
+
+
+                            <Popup 
+                                Placement="{TemplateBinding Placment}"
+                                Grid.Column="0" 
+                                VerticalOffset="-2"
+                                StaysOpen ="False"
+                                HorizontalOffset="-10"
+                                Grid.ColumnSpan="2"
+                                AllowsTransparency="True"
+                              
+                                IsOpen="{TemplateBinding IsOpen}"
+                                x:Name="PART_Popup">
+                                <ListBox x:Name="PART_CollectionList" MaxHeight="{TemplateBinding MaxPopupHeight}" SelectedIndex="{TemplateBinding SelectedIndex}" ItemsSource="{TemplateBinding Items}" Style="{DynamicResource ListBoxStyle}"/>
+
+                            </Popup>
+
+
+                            <icon:PackIconMaterial Kind="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:TextFieldAssist.Icon)}" 
+                                                   Grid.Column="0" 
+                                                   VerticalAlignment="Center"
+                                                   Name="_icons"
+                                                   Margin="5"
+                                                   Foreground="{DynamicResource WotemarkColor}"
+                                                   Visibility="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:TextFieldAssist.IconVisibility)}"/>
+
+                            <TextBlock Grid.Column="1"
+                                       Name="PART_Wotemark" 
+                                       Visibility="Collapsed"
+                                       Text="{TemplateBinding Wotemark}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Focusable="False"
+                                       Margin="5 0 0 0"
+                                       FontSize="{TemplateBinding WotemarkFontSize}"
+                                       Foreground="{DynamicResource WotemarkColor}"/>
+
+
+                            <ScrollViewer Grid.Column="1" Visibility="Visible"
+                                          VerticalAlignment="Center"
+                                          BorderThickness="0"
+                                          IsTabStop="False" 
+                                          x:Name="PART_ContentHost" 
+                                          Margin="0" 
+                                          Padding="{TemplateBinding Padding}"/>
+
+
+
+
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+
+
+                        <Trigger Property="Popup.IsOpen" SourceName="PART_Popup" Value="True">
+                            <Setter Property="wpf:ButtonAssist.Icon" TargetName="P_Button" Value="ChevronUp"/>
+                        </Trigger>
+
+
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="root" Property="Background" Value="{DynamicResource BorderColor_MouseEnter}"/>
+
+                        </Trigger>
+
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="root"  Property="Background" Value="{DynamicResource BorderColor_Focused}"/>
+                            <Setter TargetName="_icons" Property="Foreground" Value="{DynamicResource TextFieldForegroud}"/>
+                            <Setter TargetName="PART_Wotemark" Property="Foreground" Value="{DynamicResource TextFieldForegroud}"/>
+                        </Trigger>
+
+
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value=""/>
+                                <Condition Property="WotemarkVisible" Value="true"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="PART_Wotemark" Property="Visibility" Value="Visible"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsEditable" Value="False">
+                <Setter Property="Template" Value="{StaticResource PtextboxNoEditable}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+</ResourceDictionary>

@@ -1,0 +1,93 @@
+﻿<UserControl x:Class="AdaptiveTestingSystem.Control.CustomControl.AccountInformationCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AdaptiveTestingSystem.Control.CustomControl"
+             xmlns:wpf="clr-namespace:AdaptiveTestingSystem.DLL.wpf;assembly=AdaptiveTestingSystem.DLL"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             Name="root"
+             MaxWidth="250"
+             mc:Ignorable="d">
+
+    <Border Background="{Binding ElementName=root,Path=CardColor}" CornerRadius="5">
+    <Grid Name="main">
+    <StackPanel 
+        Margin="5 2"
+        Orientation="Horizontal"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Center">
+        
+        <Border CornerRadius="10" Width="40" Height="40" Background="{DynamicResource DefaultSubPanelBackground}">
+      
+                <TextBlock Text="{Binding ElementName=root,Path=IconText,UpdateSourceTrigger=PropertyChanged}" 
+                                       FontWeight="SemiBold"
+                                       
+                                       Foreground="{DynamicResource DefaultTextForegroud}"
+                                       HorizontalAlignment="Center" 
+                                       VerticalAlignment="Center"
+                                       FontSize="22"/>
+        </Border>
+        <StackPanel Margin="10 0 0 0" 
+                    VerticalAlignment="Center">
+                <TextBlock TextTrimming="CharacterEllipsis" MaxWidth="145" Text="{Binding ElementName=root,Path=AccountName}" FontSize="15" Margin="0 0 0 5" Foreground="{DynamicResource DefaultTextForegroud}"/>
+            <TextBlock Text="{Binding ElementName=root,Path=RolyName}" FontSize="11"  Foreground="{DynamicResource DefaultSubTextForegroud}"/>
+        </StackPanel>
+
+           
+        </StackPanel>
+
+        <Popup Name="popupContent"
+               Placement="Bottom"              
+               AllowsTransparency="True"
+               PlacementTarget="{Binding ElementName=root}"
+               StaysOpen="False">
+       
+            <Grid Margin="10" Height="Auto" >
+                    <Border Style="{DynamicResource BorderContentPanel}" Background="{DynamicResource DefaultPopupPanelBackground}"/>
+
+
+                    <Border>
+                        <Grid>
+                            <Border Style="{DynamicResource BorderContentPanel}"/>
+
+                            <Grid Margin="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Margin="20" Grid.Row="0" Orientation="Vertical">
+                                    <iconPacks:PackIconMaterial Kind="AccountCircle" HorizontalAlignment="Center" Height="120" Width="120" Foreground="White"/>
+                                </StackPanel>
+
+
+                                <TextBlock  Margin="10" TextWrapping="Wrap" TextTrimming="WordEllipsis" Text="{Binding ElementName=root,Path=AccountName}"  Grid.Row="1" HorizontalAlignment="Center" FontSize="18" Foreground="White"/>
+                                <TextBlock  Margin="0 0 0 5" TextWrapping="Wrap" TextTrimming="WordEllipsis" Text="{Binding ElementName=root,Path=RolyName}"  Grid.Row="2" HorizontalAlignment="Center" FontSize="18" Foreground="White" Opacity="0.6"/>
+
+                                <Border Opacity="0.4" BorderBrush="Gray" BorderThickness="0 1 0 0" Grid.Row="3" Margin="5"/>
+
+
+                                <StackPanel Grid.Row="4" Margin="10 0 10 20" Orientation="Vertical">
+                                    <Button Width="239" Name="MyProfil"  wpf:ButtonAssist.Icon="AccountDetails" wpf:ButtonAssist.IconView="True" Content="Просмотреть профиль" Cursor="Hand" Click="MyProfil_Click"/>
+                                    <Button Width="239" Name="_AccountExit"  wpf:ButtonAssist.Icon="ExitRun" wpf:ButtonAssist.IconView="True"  Content="Выйти из профиля" Click="AccountExit_Click"/>
+                                    <Button Width="239" Name="ExitApp"  wpf:ButtonAssist.Icon="ExitToApp" wpf:ButtonAssist.IconView="True"  Content="Выйти из программы" Cursor="Hand" Click="ExitApp_Click"/>
+                                </StackPanel>
+
+
+                            </Grid>
+                        </Grid>
+
+
+
+                    </Border>
+                </Grid>
+        </Popup>
+        
+    </Grid>
+    </Border>
+</UserControl>

@@ -1,0 +1,238 @@
+﻿<Window x:Class="AdaptiveTestingSystem.UserApplication.Assets.GUI.Testing._testing_subpage.window.GUI_ViewCreateQuestions"
+              Template="{DynamicResource WindowTemplate}"
+        Foreground="{DynamicResource DefaultTextForegroud}"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AdaptiveTestingSystem.UserApplication.Assets.GUI.Testing._testing_subpage.window"
+        mc:Ignorable="d"
+        xmlns:wpf="clr-namespace:AdaptiveTestingSystem.DLL.wpf;assembly=AdaptiveTestingSystem.DLL"   
+        xmlns:control="clr-namespace:AdaptiveTestingSystem.Control.CustomControl;assembly=AdaptiveTestingSystem.Control"
+        FontFamily="Segoe UI Light"
+        WindowStartupLocation="CenterScreen"
+        Name="root"
+        WindowStyle="None"
+        WindowState="Normal"
+        AllowsTransparency="True"
+        Background="Transparent" 
+        Title="Созданные вопросы"
+        Loaded="root_Loaded"
+        Unloaded="root_Unloaded"
+        ResizeMode="CanResize" Height="750" Width="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <control:HeaderControl Name="Header" HeaderButton="Close"
+                                   PanelColor="{DynamicResource BorderColor}"
+                    
+                                   CloseClick="Header_CloseClick"
+                               
+                                   Grid.Row="0"
+                                   Title="{Binding Title,ElementName=root}"/>
+
+
+        <Grid Grid.Row="1" Background="{DynamicResource DefaultPanelBackground_dark}">
+
+
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+
+            <Grid Grid.Row="0" Margin="0 0 0 0">
+                <Border CornerRadius="0 0 5 5"
+                    Background="Transparent">
+
+                    <Grid>
+                        <Border CornerRadius="0 0 5 5"
+                    Background="{DynamicResource DefaultPanelBackground_OneColor}">
+                            <Border.Effect>
+                                <DropShadowEffect Opacity=".2" Direction="270" BlurRadius="20" ShadowDepth="10"/>
+                            </Border.Effect>
+                        </Border>
+                        <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox wpf:TextFieldAssist.Icon="TextBoxSearch"
+                         wpf:TextFieldAssist.IconView="True"
+                         wpf:TextFieldAssist.Wotemark="Поиск вопросов..."
+                         wpf:TextFieldAssist.WoteMarkView="True"
+                         KeyDown="searchBox_KeyDown"
+                         Grid.Column="1"
+                         Margin="10 0 0 0"
+                         BorderBrush="Transparent"
+                         Name="searchBox"/>
+
+                    </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+
+            <Grid Margin="5 8 5 8" Grid.Row="1">
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                              VerticalScrollBarVisibility="Auto" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
+                    <StackPanel  x:Name="body" Orientation="Vertical">
+    
+                    </StackPanel>
+                </ScrollViewer>
+            
+            </Grid>
+
+
+            
+
+            <Grid Grid.Row="3" Margin="0 0 0 0">
+                <Border CornerRadius="0 0 5 5"
+                    Background="Transparent">
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+
+
+                        <Border CornerRadius="5 5 0 0" Grid.RowSpan="3"
+                    Background="{DynamicResource DefaultPanelBackground_OneColor}">
+                            <Border.Effect>
+                                <DropShadowEffect Opacity=".2" Direction="90" BlurRadius="20" ShadowDepth="10"/>
+                            </Border.Effect>
+                        </Border>
+
+
+                        <Grid Name="Description" Height="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock 
+                           Text="Описание"
+                           Margin="10"
+                           FontSize="20"
+                           Foreground="{DynamicResource DefaultTextForegroud}"/>
+
+
+                            <Button
+                            Height="50"
+                            HorizontalAlignment="Right"
+                            Margin="3"
+                            Width="50"
+                                Name="dascClose"
+                                Click="dascClose_Click"
+                            Grid.Column="1"
+                            Style="{DynamicResource IconButtonStyle}"
+                            wpf:ButtonAssist.ColorMouseEnter="{DynamicResource NotificationButtonAccept_Background}"
+                            wpf:ButtonAssist.IconView="True"
+                            wpf:ButtonAssist.Icon="ArrowDown"/>
+
+
+                    
+                            <TextBox TextWrapping="Wrap" AcceptsReturn="True" Grid.Row="1" 
+                                     VerticalAlignment="Stretch"
+                                     Name="description"
+                                     Style="{DynamicResource TextBoxMultiLine}"/>
+
+
+                        </Grid>
+                        
+                        <Grid Margin="10" Grid.Row="2">
+                            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                <Button
+                            Height="50"
+                            Click="AddToTest_Click"
+                            Margin="3"
+                            Name="AddToTest"
+                            Grid.Column="1"
+                            Content="Сгенерировать тест"
+                            wpf:ButtonAssist.ColorMouseEnter="{DynamicResource NotificationButtonAccept_Background}"
+                            wpf:ButtonAssist.IconView="True"
+                            wpf:ButtonAssist.Icon="Creation"/>
+
+                     
+                            </StackPanel>
+
+
+
+                            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                <Button
+                            Height="50"
+                         
+                            Margin="3"
+                           Name="exPort"
+                                    Click="exPort_Click"
+                            Grid.Column="1"
+                            Content="Экспорт"
+                            wpf:ButtonAssist.ColorMouseEnter="{DynamicResource NotificationButtonAccept_Background}"
+                            wpf:ButtonAssist.IconView="True"
+                            wpf:ButtonAssist.Icon="Export"/>
+                <Button
+                            Height="50"
+                         
+                            Margin="3"
+                           Name="imPort"
+                                    Click="imPort_Click"
+                            Grid.Column="1"
+                            Content="Импорт"
+                            wpf:ButtonAssist.ColorMouseEnter="{DynamicResource NotificationButtonAccept_Background}"
+                            wpf:ButtonAssist.IconView="True"
+                            wpf:ButtonAssist.Icon="Import"/>
+
+
+
+                                <Button
+                            Height="50"
+                         
+                            Margin="3"
+                            Name="descCreate"
+                            Click="descCreate_Click"
+                            Grid.Column="1"
+                            Content="Добавить описание"
+                            wpf:ButtonAssist.ColorMouseEnter="{DynamicResource NotificationButtonAccept_Background}"
+                            wpf:ButtonAssist.IconView="True"
+                            wpf:ButtonAssist.Icon="BookEdit"/>
+
+
+
+                           <Button
+                            Height="50"
+                         
+                            Margin="3"
+                            Name="testTesting"
+                            Click="testTesting_Click"
+                            Grid.Column="1"
+                            Content="Протестировать"
+                            wpf:ButtonAssist.ColorMouseEnter="{DynamicResource NotificationButtonAccept_Background}"
+                            wpf:ButtonAssist.IconView="True"
+                            wpf:ButtonAssist.Icon="AbTesting"/>
+
+
+                            </StackPanel>
+
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+        </Grid>
+
+
+
+        <control:OverlayControl Grid.Row="1"  Name="Overlay" Visibility="Collapsed" IsVisibleChanged="Overlay_IsVisibleChanged"
+                                OverlayThreadStop="Overlay_OverlayThreadStop"/>
+
+
+    </Grid>
+</Window>

@@ -1,0 +1,471 @@
+﻿<UserControl x:Class="AdaptiveTestingSystem.UserApplication.Assets.GUI.Roly._roly_subpage.window.page.GUI_page_UpdateRoly"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AdaptiveTestingSystem.UserApplication.Assets.GUI.Roly._roly_subpage.window.page"
+             mc:Ignorable="d"
+             Loaded="UserControl_Loaded"
+             xmlns:wpf="clr-namespace:AdaptiveTestingSystem.DLL.wpf;assembly=AdaptiveTestingSystem.DLL"
+             xmlns:ccontrol="clr-namespace:AdaptiveTestingSystem.Control.CustomControl;assembly=AdaptiveTestingSystem.Control"
+             xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:control="clr-namespace:AdaptiveTestingSystem.Control.Themes;assembly=AdaptiveTestingSystem.Control">
+
+    <Grid>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+
+
+            <Border Grid.Row="0"
+                    CornerRadius="5"
+                    Background="{DynamicResource DefaultPanelBackground}">
+
+                <TextBox wpf:TextFieldAssist.Icon="Text"
+                         wpf:TextFieldAssist.IconView="True"
+                         wpf:TextFieldAssist.Wotemark="Введите название роли"
+                         wpf:TextFieldAssist.WoteMarkView="True"                     
+                         Name="dataBox"/>
+
+            </Border>
+
+
+            <Grid 
+                Margin="10"
+                Grid.Row="1">
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                              VerticalScrollBarVisibility="Auto">
+
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+
+
+                        <!--View user-->
+
+
+                        <TextBlock Text="Просмотр пользователей"
+                                   Foreground="{DynamicResource DefaultTextForegroud}"
+                                   FontSize="20"
+                                   Grid.Row="0"
+                                   VerticalAlignment="Center"/>
+
+                        <RadioButton
+                                     GroupName="12"
+                                     Grid.Row="0"
+                                     Grid.Column="2" 
+                                     x:Name="ViewUserYes" 
+                                     Background="{DynamicResource DefaultPanelBackground_OneColor}"
+                                     Content="Да" Width="80" />
+
+
+                        <RadioButton Grid.Row="0"
+                                     GroupName="12"
+                                     Grid.Column="3"
+                                     x:Name="ViewUserNo"
+                                     Background="{DynamicResource DefaultPanelBackground_OneColor}"
+                                     Content="Нет" Width="80"/>
+
+
+                        <!--data user-->
+
+                        <TextBlock Text="Редактировать данные пользователей"
+                                   Foreground="{DynamicResource DefaultTextForegroud}"
+                                   FontSize="20"
+                                   Grid.Row="1"
+                                   VerticalAlignment="Center"/>
+
+                        <RadioButton
+                                     GroupName="1"
+                                     Grid.Row="1" 
+                                     Grid.Column="2" 
+                                     x:Name="ReadUserYes" 
+                                     Background="{DynamicResource DefaultPanelBackground_OneColor}"
+                                     Content="Да" Width="80" />
+
+
+                        <RadioButton Grid.Row="1"
+                                     GroupName="1"
+                                     Grid.Column="3"
+                                     x:Name="ReadUserNo"
+                                     Background="{DynamicResource DefaultPanelBackground_OneColor}"
+                                     Content="Нет" Width="80"/>
+
+                        <!--data emp-->
+
+
+                        <TextBlock Text="Редактировать данные учителей"
+                                   Foreground="{DynamicResource DefaultTextForegroud}"
+                                   FontSize="20"
+                                   Grid.Row="2"
+                                   VerticalAlignment="Center"/>
+
+                        <RadioButton
+                           GroupName="2"
+                                     Grid.Row="2"
+                                     Grid.Column="2" 
+                                     x:Name="ReadSotrudYes" 
+                                     Background="{DynamicResource DefaultPanelBackground_OneColor}"
+                                     Content="Да" Width="80" />
+
+
+                        <RadioButton Grid.Row="2"
+                                         GroupName="2"
+                                     Grid.Column="3"
+                                     x:Name="ReadSotrudNo"
+                                     Background="{DynamicResource DefaultPanelBackground_OneColor}"
+                                     Content="Нет" Width="80"/>
+
+                        <!--data klass-->
+                        <TextBlock Text="Редактировать классы"
+                                   Foreground="{DynamicResource DefaultTextForegroud}"
+                                   FontSize="20"
+                                   Grid.Row="3"
+                                   VerticalAlignment="Center"/>
+
+                        <RadioButton
+                               GroupName="3"
+                                     Grid.Row="3"
+                                     Grid.Column="2" 
+                                     x:Name="ReadClassdYes" 
+                                     Background="{DynamicResource DefaultPanelBackground_OneColor}"
+                                     Content="Да" Width="80" />
+
+
+                        <RadioButton Grid.Row="3"
+                                     GroupName="3"
+                                     Grid.Column="3"
+                                     x:Name="ReadClassdNo"
+                                     Background="{DynamicResource DefaultPanelBackground_OneColor}"
+                                     Content="Нет" Width="80"/>
+
+                        <!--data predmet-->
+
+                        <TextBlock Text="Редактировать предметы"
+                                   Foreground="{DynamicResource DefaultTextForegroud}"
+                                   FontSize="20"
+                                   Grid.Row="4"
+                                   VerticalAlignment="Center"/>
+
+                        <RadioButton
+                           GroupName="4"
+                                     Grid.Row="4"
+                                     Grid.Column="2" 
+                                     x:Name="ReadPredmetYes" 
+                                     Background="{DynamicResource DefaultPanelBackground_OneColor}"
+                                     Content="Да" Width="80" />
+
+
+                        <RadioButton Grid.Row="4"
+                                     GroupName="4"
+                                     Grid.Column="3"
+                                     x:Name="ReadPredmetNo"
+                                     Background="{DynamicResource DefaultPanelBackground_OneColor}"
+                                     Content="Нет" Width="80"/>
+
+                        <!--data add predmet user-->
+
+                        <TextBlock Text="Добавлять предметы сотрудникам"
+                                   Foreground="{DynamicResource DefaultTextForegroud}"
+                                   FontSize="20"
+                                   Grid.Row="5"
+                                   VerticalAlignment="Center"/>
+
+                        <RadioButton
+                           GroupName="5"
+                                     Grid.Row="5"
+                                     Grid.Column="2" 
+                                     x:Name="AddSotrudForPredmetYes" 
+                                     Background="{DynamicResource DefaultPanelBackground_OneColor}"
+                                     Content="Да" Width="80" />
+
+
+                        <RadioButton Grid.Row="5"
+                                       GroupName="5"
+                                     Grid.Column="3"
+                                     x:Name="AddSotrudForPredmetNo"
+                                     Background="{DynamicResource DefaultPanelBackground_OneColor}"
+                                     Content="Нет" Width="80"/>
+                        <!--delete data predmet sotrud-->
+
+
+                        <TextBlock Text="Удалять предметы у сотрудников"
+                                   Foreground="{DynamicResource DefaultTextForegroud}"
+                                   FontSize="20"
+                                   Grid.Row="6"
+                                   VerticalAlignment="Center"/>
+
+                        <RadioButton
+                             GroupName="6"
+                                     Grid.Row="6"
+                                     Grid.Column="2" 
+                                     x:Name="DeleteSotrudForPredmetYes" 
+                                     Background="{DynamicResource DefaultPanelBackground_OneColor}"
+                                     Content="Да" Width="80" />
+
+
+                        <RadioButton Grid.Row="6"
+                                        GroupName="6"
+                                     Grid.Column="3"
+                                     x:Name="DeleteSotrudForPredmetNo"
+                                     Background="{DynamicResource DefaultPanelBackground_OneColor}"
+                                     Content="Нет" Width="80"/>
+
+                        <!--report data-->
+
+
+                        <TextBlock Text="Формировать отчеты и просматривать статистику"
+                                   Foreground="{DynamicResource DefaultTextForegroud}"
+                                   FontSize="20"
+                                   Grid.Row="7"
+                                   VerticalAlignment="Center"/>
+
+                        <RadioButton
+                              GroupName="7"
+                                     Grid.Row="7"
+                                     Grid.Column="2" 
+                                     x:Name="CreateAndViewReportYes" 
+                                     Background="{DynamicResource DefaultPanelBackground_OneColor}"
+                                     Content="Да" Width="80" />
+
+
+                        <RadioButton Grid.Row="7"
+                                        GroupName="7"
+                                     Grid.Column="3"
+                                     x:Name="CreateAndViewReportNo"
+                                     Background="{DynamicResource DefaultPanelBackground_OneColor}"
+                                     Content="Нет" Width="80"/>
+                        <!--testing-->
+
+                        <TextBlock Text="Проходить тесты"
+                                   Foreground="{DynamicResource DefaultTextForegroud}"
+                                   FontSize="20"
+                                   Grid.Row="8"
+                                   VerticalAlignment="Center"/>
+
+                        <RadioButton
+                              GroupName="8"
+                                     Grid.Row="8"
+                                     Grid.Column="2" 
+                                     x:Name="TestYes" 
+                                     Background="{DynamicResource DefaultPanelBackground_OneColor}"
+                                     Content="Да" Width="80" />
+
+
+                        <RadioButton Grid.Row="8"
+                                      GroupName="8"
+                                     Grid.Column="3"
+                                     x:Name="TestNo"
+                                     Background="{DynamicResource DefaultPanelBackground_OneColor}"
+                                     Content="Нет" Width="80"/>
+                        <!--create testing-->
+
+                        <TextBlock Text="Создавать тесты"
+                                   Foreground="{DynamicResource DefaultTextForegroud}"
+                                   FontSize="20"
+                                   Grid.Row="9"
+                                   VerticalAlignment="Center"/>
+
+                        <RadioButton
+                            GroupName="9"
+                                     Grid.Row="9"
+                                     Grid.Column="2" 
+                                     x:Name="CreateTestYes" 
+                                     Background="{DynamicResource DefaultPanelBackground_OneColor}"
+                                     Content="Да" Width="80" />
+
+
+                        <RadioButton Grid.Row="9"
+                                         GroupName="9"
+                                     Grid.Column="3"
+                                     x:Name="CreateTestNo"
+                                     Background="{DynamicResource DefaultPanelBackground_OneColor}"
+                                     Content="Нет" Width="80"/>
+                        <!--create group test-->
+
+
+                        <TextBlock Text="Создавать групповые тесты"
+                                   Foreground="{DynamicResource DefaultTextForegroud}"
+                                   FontSize="20"
+                                   Grid.Row="10"
+                                   VerticalAlignment="Center"/>
+
+                        <RadioButton
+                               GroupName="10"
+                                     Grid.Row="10"
+                                     Grid.Column="2" 
+                                     x:Name="CreateGroupYes" 
+                                     Background="{DynamicResource DefaultPanelBackground_OneColor}"
+                                     Content="Да" Width="80" />
+
+
+                        <RadioButton Grid.Row="10"
+                                          GroupName="10"
+                                     Grid.Column="3"
+                                     x:Name="CreateGroupNo"
+                                     Background="{DynamicResource DefaultPanelBackground_OneColor}"
+                                     Content="Нет" Width="80"/>
+                        <!--connecting group test-->
+
+                        <TextBlock Text="Подключатся к групповым тестам"
+                                   Foreground="{DynamicResource DefaultTextForegroud}"
+                                   FontSize="20"
+                                   Grid.Row="11"
+                                   VerticalAlignment="Center"/>
+
+                        <RadioButton
+                                     GroupName="11"
+                                     Grid.Row="11"
+                                     Grid.Column="2" 
+                                     x:Name="ConnectGroupYes" 
+                                     Background="{DynamicResource DefaultPanelBackground_OneColor}"
+                                     Content="Да" Width="80" />
+
+
+                        <RadioButton Grid.Row="11"
+                                     GroupName="11"
+                                     Grid.Column="3"
+                                     x:Name="ConnectGroupNo"
+                                     Background="{DynamicResource DefaultPanelBackground_OneColor}"
+                                     Content="Нет" Width="80"/>
+
+
+
+                        <!--view predmet-->
+
+                        <TextBlock Text="Просмотр предметов"
+                                   Foreground="{DynamicResource DefaultTextForegroud}"
+                                   FontSize="20"
+                                   Grid.Row="12"
+                                   VerticalAlignment="Center"/>
+
+                        <RadioButton
+                                     GroupName="13"
+                                     Grid.Row="12"
+                                     Grid.Column="2" 
+                                     x:Name="ViewPredmetYes" 
+                                     Background="{DynamicResource DefaultPanelBackground_OneColor}"
+                                     Content="Да" Width="80" />
+
+
+                        <RadioButton Grid.Row="12"
+                                     GroupName="13"
+                                     Grid.Column="3"
+                                     x:Name="ViewPredmetNo"
+                                     Background="{DynamicResource DefaultPanelBackground_OneColor}"
+                                     Content="Нет" Width="80"/>
+
+                        <!--view sotrud-->
+
+
+                        <TextBlock Text="Просмотр сотрудников"
+                                   Foreground="{DynamicResource DefaultTextForegroud}"
+                                   FontSize="20"
+                                   Grid.Row="13"
+                                   VerticalAlignment="Center"/>
+
+                        <RadioButton
+                                     GroupName="14"
+                                     Grid.Row="13"
+                                     Grid.Column="2" 
+                                     x:Name="ViewSotrudYes" 
+                                     Background="{DynamicResource DefaultPanelBackground_OneColor}"
+                                     Content="Да" Width="80" />
+
+
+                        <RadioButton Grid.Row="13"
+                                     GroupName="14"
+                                     Grid.Column="3"
+                                     x:Name="ViewSotrudNo"
+                                     Background="{DynamicResource DefaultPanelBackground_OneColor}"
+                                     Content="Нет" Width="80"/>
+
+                        <!--view vlass-->
+
+
+                        <TextBlock Text="Просмотр Классов"
+                                   Foreground="{DynamicResource DefaultTextForegroud}"
+                                   FontSize="20"
+                                   Grid.Row="14"
+                                   VerticalAlignment="Center"/>
+
+                        <RadioButton
+                                     GroupName="15"
+                                     Grid.Row="14"
+                                     Grid.Column="2" 
+                                     x:Name="ViewClassYes" 
+                                     Background="{DynamicResource DefaultPanelBackground_OneColor}"
+                                     Content="Да" Width="80" />
+
+
+                        <RadioButton Grid.Row="14"
+                                     GroupName="15"
+                                     Grid.Column="3"
+                                     x:Name="ViewClassNo"
+                                     Background="{DynamicResource DefaultPanelBackground_OneColor}"
+                                     Content="Нет" Width="80"/>
+
+
+
+                    </Grid>
+                </ScrollViewer>
+            </Grid>
+
+
+            <Border Grid.Row="2"
+                    CornerRadius="5"
+                    Background="{DynamicResource DefaultPanelBackground}">
+                <Grid Margin="5">
+                    <StackPanel Height="40" HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="2">
+
+
+                        <Button wpf:ButtonAssist.Icon="DatabaseEdit"
+                        Width="160"
+                        wpf:ButtonAssist.IconView="True"
+                        x:Name="AddNew"
+                        Click="AddNew_Click"
+                        Foreground="White"
+                        Background="{DynamicResource ButtonAcceptColor}"
+                        Content="Изменить" Cursor="Hand"/>
+
+                        <Button wpf:ButtonAssist.Icon="Cancel"
+                        wpf:ButtonAssist.IconView="True"                      
+                        Content="Вернуть по умолчанию" Name="default"
+                                Click="default_Click" Cursor="Hand"/>
+
+
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+        </Grid>
+    </Grid>
+</UserControl>
+

@@ -1,0 +1,211 @@
+﻿<UserControl x:Class="AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage.uc_control.GUI_ReportPage_2_SearchRangeYear"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage.uc_control"
+             mc:Ignorable="d" 
+               xmlns:wpf="clr-namespace:AdaptiveTestingSystem.DLL.wpf;assembly=AdaptiveTestingSystem.Dll"
+             xmlns:component="clr-namespace:AdaptiveTestingSystem.Control.Themes;assembly=AdaptiveTestingSystem.Control"
+             xmlns:convert="clr-namespace:AdaptiveTestingSystem.DLL.Converts;assembly=AdaptiveTestingSystem.DLL">
+
+    <Grid>
+        <Grid Name="search_Day">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+ 
+
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+
+                </Grid.ColumnDefinitions>
+
+
+                <component:ComboTextBox           
+                    Grid.Column="1"
+                    Height="40"  
+                    Width="150"
+                    BorderThickness="0"
+                    IsEditable="True"
+                    OnSearch="True"
+                         PreviewTextInput="YearBox_PreviewTextInput"
+                    Wotemark="Год c.."
+                    Placment="Bottom"
+                     wpf:ButtonAssist.VisibilityButton="Collapsed"
+                    WotemarkVisible="True"
+                    VisibilityOpenButton="Collapsed"
+                    wpf:TextFieldAssist.Icon="CalendarMonth"
+                    wpf:TextFieldAssist.IconView="True" 
+                    x:Name="YearBox_start"
+                    WotemarkFontSize="20" Cursor="Hand">
+                </component:ComboTextBox>
+
+                <component:ComboTextBox           
+                    Grid.Column="3"
+                    Height="40"  
+                    BorderThickness="0"
+                    Width="150"
+                    IsEditable="True"
+                    OnSearch="True"
+                          PreviewTextInput="YearBox_PreviewTextInput"
+                    IsEnabled="{Binding ElementName=YearBox_start,Path=Text.Length}"
+                    Wotemark="Год по.."
+                    Placment="Bottom"
+                    wpf:ButtonAssist.VisibilityButton="Collapsed"
+                    WotemarkVisible="True"
+                    VisibilityOpenButton="Collapsed"
+                    wpf:TextFieldAssist.Icon="CalendarMonth"
+                    wpf:TextFieldAssist.IconView="True" 
+                    x:Name="YearBox_end"
+                    ToolTipService.Placement="Bottom"
+                    
+                    WotemarkFontSize="20" Cursor="Hand">
+
+                </component:ComboTextBox>
+
+
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+
+                </Grid.ColumnDefinitions>
+
+
+                <component:ComboTextBox           
+                    Grid.Column="1"
+                    Height="40"  
+                    Width="150"
+                    BorderThickness="0"
+                    IsEditable="True"
+                    OnSearch="True"
+                    IsEnabled="{Binding ElementName=YearBox,Path=Text.Length}"
+                   
+                    Wotemark="Месяц c.."
+                    Placment="Bottom"
+                    wpf:ButtonAssist.VisibilityButton="Collapsed"
+                    WotemarkVisible="True"
+                    VisibilityOpenButton="Collapsed"
+                    wpf:TextFieldAssist.Icon="CalendarMonth"
+                    wpf:TextFieldAssist.IconView="True" 
+                    x:Name="MonthBox_start"
+                    WotemarkFontSize="20" Cursor="Hand">
+                </component:ComboTextBox>
+
+                <component:ComboTextBox           
+                    Grid.Column="3"
+                    Height="40"  
+                    BorderThickness="0"
+                    Width="150"
+                    IsEditable="True"
+                    OnSearch="True"
+                    IsEnabled="{Binding ElementName=MonthBox_start,Path=Text.Length}"
+                    Wotemark="Месяц по.."
+                    Placment="Bottom"
+                    wpf:ButtonAssist.VisibilityButton="Collapsed"
+                    WotemarkVisible="True"
+                    VisibilityOpenButton="Collapsed"
+                    wpf:TextFieldAssist.Icon="CalendarMonth"
+                    wpf:TextFieldAssist.IconView="True" 
+                    x:Name="MonthBox_end"
+                    ToolTipService.Placement="Bottom"
+                    
+                    WotemarkFontSize="20" Cursor="Hand">
+
+                </component:ComboTextBox>
+
+
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+
+                </Grid.ColumnDefinitions>
+
+
+                <component:ComboTextBox           
+                    Grid.Column="1"
+                    Height="40"  
+                    Width="150"
+                      BorderThickness="0"
+                    IsEditable="True"
+                    OnSearch="True"
+                    Wotemark="День c.."
+                    Placment="Bottom"
+                    MaxLength="2"
+                          PreviewTextInput="YearBox_PreviewTextInput"
+                    wpf:ButtonAssist.VisibilityButton="Collapsed"
+                    WotemarkVisible="True"
+                    LostFocus="DayBox_start_LostFocus"
+                    VisibilityOpenButton="Collapsed"
+                    wpf:TextFieldAssist.Icon="CalendarToday"
+                    wpf:TextFieldAssist.IconView="True" 
+                    x:Name="DayBox_start"
+                    WotemarkFontSize="20" Cursor="Hand">
+                </component:ComboTextBox>
+
+                <component:ComboTextBox           
+                    Grid.Column="3"
+                    Height="40"  
+                    BorderThickness="0"
+                    Width="150"
+                    IsEditable="True"
+                    OnSearch="True"
+                    MaxLength="2"
+                    IsEnabled="{Binding ElementName=DayBox_start,Path=Text.Length}"
+                    Wotemark="День по.."
+                    Placment="Bottom"
+                             PreviewTextInput="YearBox_PreviewTextInput"
+                    TextChanged="DayBox_end_TextChanged"
+                    wpf:ButtonAssist.VisibilityButton="Collapsed"
+                    WotemarkVisible="True"
+                    VisibilityOpenButton="Collapsed"
+                    wpf:TextFieldAssist.Icon="CalendarToday"
+                    wpf:TextFieldAssist.IconView="True" 
+                    x:Name="DayBox_end"
+                    ToolTipService.Placement="Bottom"
+                    
+                    WotemarkFontSize="20" Cursor="Hand">
+
+                </component:ComboTextBox>
+
+
+            </Grid>
+
+
+        </Grid>
+        <Grid Name="overlay" Visibility="Collapsed">
+            <Grid Background="Black"
+                  Opacity=".0"/>
+
+            <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}"
+                         IsIndeterminate="True"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         Height="30"
+                         Width="30"/>
+        </Grid>
+
+    </Grid>
+</UserControl>

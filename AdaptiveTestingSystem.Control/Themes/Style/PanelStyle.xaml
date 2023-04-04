@@ -1,0 +1,229 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+    <Style x:Key="BorderMainPanel" TargetType="{x:Type Border}">
+        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="Background" Value="{DynamicResource DefaultWindowBackground}"/>
+        <Setter Property="Margin" Value="10"/>
+
+
+
+
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect ShadowDepth="1"
+                                      Opacity=".6"
+                                      RenderingBias="Quality"
+                                      Color="{DynamicResource uColorShadow}"/>
+            </Setter.Value>
+        </Setter>
+
+
+
+    </Style>
+
+
+    <Style x:Key="GridHeaderPanelStyle" TargetType="{x:Type Grid}">
+        <Setter Property="Background" Value="{DynamicResource  DefaultPopupPanelBackground}"/>
+    </Style>
+
+    <Style x:Key="BorderErrorPanel" TargetType="{x:Type Border}">
+        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="Background" Value="{DynamicResource MessageShowBackground_Error}"/>
+        <Setter Property="Margin" Value="10"/>
+
+
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect ShadowDepth="1"
+                                  RenderingBias="Quality"
+                                      Opacity=".6"
+                                      Color="{DynamicResource uColorShadow}"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="BorderMessagePanel" TargetType="{x:Type Border}">
+        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="Background" Value="{DynamicResource MessageShowBackground_Message}"/>
+        <Setter Property="Margin" Value="10"/>
+
+
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect ShadowDepth="1"
+                                  RenderingBias="Quality"
+                                      Opacity=".6"
+                                      Color="{DynamicResource uColorShadow}"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+
+    <Style x:Key="BorderQuestionPanel" TargetType="{x:Type Border}">
+        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="Background" Value="{DynamicResource MessageShowBackground_Questions}"/>
+        <Setter Property="Margin" Value="10"/>
+
+
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect ShadowDepth="1"
+                                  RenderingBias="Quality"
+                                      Opacity=".6"
+                                      Color="{DynamicResource uColorShadow}"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+
+
+    <Style x:Key="GridMainPanel" TargetType="{x:Type Grid}">
+
+        <Setter Property="Background" Value="{DynamicResource DefaultWindowBackground}"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect ShadowDepth="1"
+                                      Opacity=".6"
+                                  RenderingBias="Quality"
+                                      Color="{DynamicResource uColorShadow}"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+    <Style x:Key="CalenderHeaderBorderPanel" TargetType="{x:Type Border}">
+        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="Background" Value="{DynamicResource DefaultPanelBackground}"/>
+
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect ShadowDepth="0"
+                                      Opacity=".4"
+                                  RenderingBias="Quality"
+                                      Color="{DynamicResource uColorShadow}"/>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+
+
+    <Style x:Key="CalenderContentBorderPanel" TargetType="{x:Type Border}">
+        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="Background" Value="{DynamicResource DefaultWindowBackground}"/>
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="Padding" Value="0"/>
+
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect ShadowDepth="1"
+                                      Opacity=".6"
+                                  RenderingBias="Quality"
+                                      Color="{DynamicResource uColorShadow}"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+    <Style x:Key="BorderContentPanel" TargetType="{x:Type Border}">
+        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="Background" Value="{DynamicResource DefaultPanelBackground}"/>
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="Padding" Value="3"/>
+
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect ShadowDepth="1"
+                                      Opacity=".6"
+                                      RenderingBias="Quality"
+                                      Color="{DynamicResource uColorShadow}"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ListBoxPanelStyle" TargetType="{x:Type Border}">
+        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="Background" Value="{DynamicResource DefaultPopupPanelBackground}"/>
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="Padding" Value="10"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect ShadowDepth="1"
+                                      Opacity=".2"
+                                  RenderingBias="Quality"
+                                      Color="{DynamicResource uColorShadow}"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="ListViewPanelStyle" TargetType="{x:Type Border}">
+        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="Background" Value="{DynamicResource DefaultPopupPanelBackground}"/>
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="Padding" Value="10"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect ShadowDepth="1"
+                                      Opacity=".2"
+                                  RenderingBias="Quality"
+                                      Color="{DynamicResource uColorShadow}"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="MenyListBoxPanelStyle" TargetType="{x:Type Border}">
+        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Margin" Value="2 5 0 5"/>
+
+        <Setter Property="VerticalAlignment" Value="Top"/>
+      
+    </Style>
+
+
+    <Style x:Key="ContentPanelStyle2" TargetType="{x:Type Border}">
+        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="Background" Value="{DynamicResource DefaultPopupPanelBackground}"/>
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="Padding" Value="10"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect ShadowDepth="1"
+                                      Opacity=".2"
+                                  RenderingBias="Quality"
+                                      Color="{DynamicResource uColorShadow}"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="PopupPanelStyle" TargetType="{x:Type Border}">
+        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="Background" Value="{DynamicResource DefaultPopupPanelBackground}"/>
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="Padding" Value="7"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect ShadowDepth="1"
+                                  RenderingBias="Quality"
+                                      Opacity=".3"
+                                      Color="{DynamicResource uColorShadow}"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+</ResourceDictionary>

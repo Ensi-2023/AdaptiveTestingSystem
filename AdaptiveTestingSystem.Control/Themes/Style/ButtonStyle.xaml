@@ -1,0 +1,799 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:wpf="clr-namespace:AdaptiveTestingSystem.DLL.wpf;assembly=AdaptiveTestingSystem.DLL"
+                    xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                    xmlns:local="clr-namespace:AdaptiveTestingSystem.Control.Themes">
+
+
+    <Style TargetType="{x:Type local:HeaderPageButton}">
+        <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="MinHeight" Value="40"/>
+        <Setter Property="MinWidth" Value="40"/>
+        <Setter Property="wpf:ButtonAssist.IconMargin" Value="10 0 5 0"/>
+        <Setter Property="wpf:ButtonAssist.IconPosition" Value="left"/>
+        <Setter Property="wpf:ButtonAssist.IconView" Value="False"/>
+        <Setter Property="wpf:ButtonAssist.Icon" Value="Abacus"/>
+        <Setter Property="wpf:ButtonAssist.BorderRadius" Value="5"/>
+        <Setter Property="wpf:ButtonAssist.IconSize" Value="15"/>
+        <Setter Property="wpf:ButtonAssist.ColorMouseEnter" Value="{DynamicResource DefaultButtonMouseEnter}"/>
+        <Setter Property="wpf:ButtonAssist.ColorMouseClick" Value="{DynamicResource DefaultButtonMouseClick}"/>
+        <Setter Property="wpf:ButtonAssist.ForegroundMouseEnter" Value="{DynamicResource ForegroundMouseEnter}"/>
+        <Setter Property="Background" Value="{DynamicResource DefaultButtonBackground}"/>
+        <Setter Property="Foreground" Value="{DynamicResource DefaultButtonForegroud}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="3"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:HeaderPageButton}">
+                    <Border Background="{TemplateBinding Background}"
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                           
+                            CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonAssist.BorderRadius)}">
+
+                        <Grid>
+                            <Border x:Name="root" Width="{TemplateBinding Width}" Visibility="Collapsed"
+                                Height="{TemplateBinding Height}"
+                                Background="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.ColorMouseEnter)}"
+                                CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonAssist.BorderRadius)}"/>
+
+                            <Grid VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <icon:PackIconMaterial Grid.Column="0" 
+                                                   Kind="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.Icon)}" 
+                                                   FontSize="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.IconSize)}"
+                                                   Width="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.IconSize)}"
+                                                   Height="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.IconSize)}"
+                                                   VerticalAlignment="Center"
+                                                   Margin="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.IconMargin)}"
+                                                   Name="leftPosition"
+                                                   Foreground="{TemplateBinding Foreground}"/>
+
+                                <ContentPresenter Grid.Column="1" Margin="0 0 10 0" 
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"                                               
+                                                  Cursor="Hand"/>
+
+                                <icon:PackIconMaterial Grid.Column="2" 
+                                                   Kind="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.Icon)}" 
+                                                   FontSize="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.IconSize)}"
+                                                   Width="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.IconSize)}"
+                                                   Height="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.IconSize)}"
+                                                   VerticalAlignment="Center"
+                                                   Margin="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.IconMargin)}"                                                  
+                                                   Name="rightPosition"
+                                                   Foreground="{TemplateBinding Foreground}"
+                                                   Visibility="Collapsed"/>
+
+
+                            </Grid>
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+
+
+                        <Trigger Property="wpf:ButtonAssist.IconView" Value="False">
+                            <Setter TargetName="leftPosition" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="rightPosition" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="wpf:ButtonAssist.IconView" Value="true"/>
+                                <Condition Property="wpf:ButtonAssist.IconPosition" Value="left"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="leftPosition" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="rightPosition" Property="Visibility" Value="Collapsed"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="wpf:ButtonAssist.IconView" Value="true"/>
+                                <Condition Property="wpf:ButtonAssist.IconPosition" Value="right"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="leftPosition" Property="Visibility" Value="Collapsed"/>
+                                <Setter TargetName="rightPosition" Property="Visibility" Value="Visible"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="root" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.ColorMouseClick)}"/>
+                            <Setter Property="Foreground" TargetName="leftPosition" Value="{DynamicResource DefaultButtonForegroudClick}"/>
+                            <Setter Property="Foreground" TargetName="rightPosition" Value="{DynamicResource DefaultButtonForegroudClick}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource DefaultButtonForegroudClick}"/>
+                        </Trigger>
+
+
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="root" Property="Visibility" Value="Visible"/>
+                            <Setter Property="Foreground" TargetName="leftPosition" Value="{DynamicResource DefaultButtonForegroudEnter}"/>
+                            <Setter Property="Foreground" TargetName="rightPosition" Value="{DynamicResource DefaultButtonForegroudEnter}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource DefaultButtonForegroudEnter}"/>
+                        </Trigger>
+
+
+
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter  Property="Foreground" Value="{DynamicResource DefaultButtonTextNotEnabled}"/>
+                            <Setter  Property="Background" Value="{DynamicResource DefaultButtonNotEnabled}"/>
+                        </Trigger>
+
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type Button}">
+        <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="MinHeight" Value="40"/>
+        <Setter Property="MinWidth" Value="40"/>
+        <Setter Property="wpf:ButtonAssist.IconMargin" Value="10 0 5 0"/>
+        <Setter Property="wpf:ButtonAssist.IconPosition" Value="left"/>
+        <Setter Property="wpf:ButtonAssist.IconView" Value="False"/>
+        <Setter Property="wpf:ButtonAssist.Icon" Value="Abacus"/>
+        <Setter Property="wpf:ButtonAssist.BorderRadius" Value="5"/>
+        <Setter Property="wpf:ButtonAssist.IconSize" Value="15"/>
+        <Setter Property="wpf:ButtonAssist.ColorMouseEnter" Value="{DynamicResource DefaultButtonMouseEnter}"/>
+        <Setter Property="wpf:ButtonAssist.ColorMouseClick" Value="{DynamicResource DefaultButtonMouseClick}"/>
+        <Setter Property="wpf:ButtonAssist.ForegroundMouseEnter" Value="{DynamicResource ForegroundMouseEnter}"/>
+        <Setter Property="Background" Value="{DynamicResource DefaultButtonBackground}"/>
+        <Setter Property="Foreground" Value="{DynamicResource DefaultButtonForegroud}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="3"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}"
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                           BorderThickness="{TemplateBinding BorderThickness}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonAssist.BorderRadius)}">
+
+                        <Grid>
+                            <Border x:Name="root" Width="{TemplateBinding Width}" Visibility="Collapsed"
+                                Height="{TemplateBinding Height}"
+                                Background="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.ColorMouseEnter)}"
+                                CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonAssist.BorderRadius)}"/>
+
+                            <Grid VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <icon:PackIconMaterial Grid.Column="0" 
+                                                   Kind="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.Icon)}" 
+                                                   FontSize="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.IconSize)}"
+                                                   Width="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.IconSize)}"
+                                                   Height="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.IconSize)}"
+                                                   VerticalAlignment="Center"
+                                                   Margin="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.IconMargin)}"
+                                                   Name="leftPosition"
+                                                   Foreground="{TemplateBinding Foreground}"/>
+
+                                <ContentPresenter Grid.Column="1" Margin="10 0 10 0" 
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"                                               
+                                                  Cursor="Hand"/>
+
+                                <icon:PackIconMaterial Grid.Column="2" 
+                                                   Kind="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.Icon)}" 
+                                                   FontSize="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.IconSize)}"
+                                                   Width="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.IconSize)}"
+                                                   Height="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.IconSize)}"
+                                                   VerticalAlignment="Center"
+                                                   Margin="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.IconMargin)}"                                                  
+                                                   Name="rightPosition"
+                                                   Foreground="{TemplateBinding Foreground}"
+                                                   Visibility="Collapsed"/>
+
+
+                            </Grid>
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+
+
+                        <Trigger Property="wpf:ButtonAssist.IconView" Value="False">
+                            <Setter TargetName="leftPosition" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="rightPosition" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="wpf:ButtonAssist.IconView" Value="true"/>
+                                <Condition Property="wpf:ButtonAssist.IconPosition" Value="left"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="leftPosition" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="rightPosition" Property="Visibility" Value="Collapsed"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="wpf:ButtonAssist.IconView" Value="true"/>
+                                <Condition Property="wpf:ButtonAssist.IconPosition" Value="right"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="leftPosition" Property="Visibility" Value="Collapsed"/>
+                                <Setter TargetName="rightPosition" Property="Visibility" Value="Visible"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="root" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.ColorMouseClick)}"/>
+                            <Setter Property="Foreground" TargetName="leftPosition" Value="{DynamicResource DefaultButtonForegroudClick}"/>
+                            <Setter Property="Foreground" TargetName="rightPosition" Value="{DynamicResource DefaultButtonForegroudClick}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource DefaultButtonForegroudClick}"/>
+                        </Trigger>
+
+
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="root" Property="Visibility" Value="Visible"/>
+                            <Setter Property="Foreground" TargetName="leftPosition" Value="{DynamicResource DefaultButtonForegroudEnter}"/>
+                            <Setter Property="Foreground" TargetName="rightPosition" Value="{DynamicResource DefaultButtonForegroudEnter}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource DefaultButtonForegroudEnter}"/>
+                        </Trigger>
+
+                  
+
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter  Property="Foreground" Value="{DynamicResource DefaultButtonTextNotEnabled}"/>
+                            <Setter  Property="Background" Value="{DynamicResource DefaultButtonNotEnabled}"/>
+                        </Trigger>
+
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="{x:Type Button}" x:Key="IconButtonStyle">
+        <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="wpf:ButtonAssist.IconView" Value="True"/>
+        <Setter Property="wpf:ButtonAssist.Icon" Value="Abacus"/>
+        <Setter Property="wpf:ButtonAssist.BorderRadius" Value="5"/>
+        <Setter Property="wpf:ButtonAssist.ColorMouseEnter" Value="{DynamicResource DefaultButtonMouseEnter}"/>
+        <Setter Property="wpf:ButtonAssist.ColorMouseClick" Value="{DynamicResource DefaultButtonMouseClick}"/>
+        <Setter Property="Background" Value="{DynamicResource DefaultButtonBackground}"/>
+        <Setter Property="Foreground" Value="{DynamicResource DefaultTextForegroud}"/>
+    
+        <Setter Property="Padding" Value="2"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}"
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            
+                            CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonAssist.BorderRadius)}">
+
+                        <Grid>
+                            <Border x:Name="root" Width="{TemplateBinding Width}" Visibility="Collapsed"
+                                Height="{TemplateBinding Height}"
+                                Background="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.ColorMouseEnter)}"
+                                CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonAssist.BorderRadius)}"/>
+
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand">
+
+                                <icon:PackIconMaterial Kind="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.Icon)}" 
+                                                   FontSize="{TemplateBinding FontSize}"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   Width="{TemplateBinding FontSize}"
+                                                   Height="{TemplateBinding FontSize}"
+                                                   Foreground="{TemplateBinding Foreground}"
+                                                   Name="PART_Icon"
+                                                   Margin="0 2 0 0"
+                                                   Visibility="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.IconVisibility)}"/>
+
+                                <ContentPresenter Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand"/>
+                            </StackPanel>
+
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="root" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="PART_Icon" Property="Foreground" Value="{DynamicResource TextFieldForegroud}"/>
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="PART_Icon" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.ColorMouseClick)}"/>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="{DynamicResource DefaultButtonTextNotEnabled}"/>
+                            <Setter TargetName="root" Property="Background" Value="{DynamicResource DefaultButtonNotEnabled}"/>
+
+                        </Trigger>
+
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+    <Style TargetType="{x:Type local:NotificationButton}">
+        <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="wpf:ButtonAssist.IconView" Value="True"/>
+        <Setter Property="wpf:ButtonAssist.Icon" Value="Abacus"/>
+        <Setter Property="wpf:ButtonAssist.BorderRadius" Value="5"/>
+        <Setter Property="wpf:ButtonAssist.ColorMouseEnter" Value="{DynamicResource DefaultButtonMouseEnter}"/>
+        <Setter Property="wpf:ButtonAssist.ColorMouseClick" Value="{DynamicResource DefaultButtonMouseClick}"/>
+        <Setter Property="Background" Value="{DynamicResource DefaultButtonBackground}"/>
+        <Setter Property="Foreground" Value="{DynamicResource DefaultTextForegroud}"/>
+        <Setter Property="VisibleCountNotification" Value="true"/>
+        <Setter Property="Padding" Value="2"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:NotificationButton}">
+                    <Border Background="{TemplateBinding Background}"
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            
+                            CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonAssist.BorderRadius)}">
+
+                        <Grid>
+                            <Border x:Name="root" Width="{TemplateBinding Width}" Visibility="Collapsed"
+                                Height="{TemplateBinding Height}"
+                                Background="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.ColorMouseEnter)}"
+                                CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonAssist.BorderRadius)}"/>
+
+
+                            <Grid Cursor="Hand">
+
+                                <icon:PackIconMaterial Kind="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.Icon)}" 
+                                                   FontSize="{TemplateBinding IconSize}"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   Width="{TemplateBinding IconSize}"
+                                                   Height="{TemplateBinding IconSize}"
+                                                   Foreground="{TemplateBinding Foreground}"
+                                                   Name="PART_Icon"
+                                                   Margin="0 2 0 0"
+                                                   Visibility="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.IconVisibility)}"/>
+
+
+                                <Grid 
+                                      Background="Transparent"
+                                      Margin="2" Name="content"
+                                      HorizontalAlignment="Right"
+                                      VerticalAlignment="Bottom"
+                                    Visibility="Collapsed"
+                                    Width="17"
+                                    Height="17">
+
+
+
+                                    <Ellipse Fill="{DynamicResource NotificationButtonIcon}"
+                                        
+                                         Width="{Binding ElementName=content,Path=Width}"
+                                         Height="{Binding ElementName=content,Path=Height}"
+                                         HorizontalAlignment="Center" VerticalAlignment="Center"
+                                         />
+
+
+
+                                    <ContentPresenter Content="{TemplateBinding Count}" 
+                                                     
+                                                      HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center" />
+
+                                </Grid>
+                            
+
+
+                       
+                            </Grid>
+
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="VisibleCountNotification" Value="True">
+                            <Setter TargetName="content" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+
+                        <Trigger Property="Count" Value="0">
+                            <Setter Property="VisibleCountNotification" Value="false"/>
+                        </Trigger>
+                        
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="root" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="PART_Icon" Property="Foreground" Value="{DynamicResource TextFieldForegroud}"/>
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="PART_Icon" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.ColorMouseClick)}"/>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="{DynamicResource DefaultButtonTextNotEnabled}"/>
+                            <Setter TargetName="root" Property="Background" Value="{DynamicResource DefaultButtonNotEnabled}"/>
+
+                        </Trigger>
+
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+
+    <Style TargetType="{x:Type Button}" x:Key="HeaderButtonClosed">
+
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="wpf:ButtonAssist.BorderRadius" Value="5"/>
+        <Setter Property="wpf:ButtonAssist.ColorMouseEnter" Value="{DynamicResource DefaultButtonHeaderEnter}"/>
+        <Setter Property="wpf:ButtonAssist.ColorMouseClick" Value="{DynamicResource DefaultButtonHeaderClick}"/>
+        <Setter Property="Background" Value="{DynamicResource DefaultButtonHeaderClosed}"/>
+        <Setter Property="Foreground" Value="{DynamicResource DefaultTextForegroud}"/>
+
+
+        <Setter Property="Padding" Value="3"/>
+
+
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}"
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                             Padding="{TemplateBinding Padding}"
+                            CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonAssist.BorderRadius)}"
+                            x:Name="root">
+                        <ContentPresenter  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="root" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.ColorMouseEnter)}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="root" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.ColorMouseClick)}"/>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="{DynamicResource DefaultButtonTextNotEnabled}"/>
+                            <Setter TargetName="root" Property="Background" Value="{DynamicResource DefaultButtonNotEnabled}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+  
+    <Style TargetType="{x:Type Button}" x:Key="PopupButtonStyle">
+        <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="MinHeight" Value="30"/>
+        <Setter Property="MinWidth" Value="30"/>
+        <Setter Property="wpf:ButtonAssist.IconMargin" Value="10 0 5 0"/>
+        <Setter Property="wpf:ButtonAssist.IconPosition" Value="left"/>
+        <Setter Property="wpf:ButtonAssist.IconView" Value="False"/>
+        <Setter Property="wpf:ButtonAssist.Icon" Value="Abacus"/>
+        <Setter Property="wpf:ButtonAssist.BorderRadius" Value="5"/>
+        <Setter Property="wpf:ButtonAssist.IconSize" Value="15"/>
+        <Setter Property="wpf:ButtonAssist.ColorMouseEnter" Value="{DynamicResource DefaultButtonMouseEnter}"/>
+        <Setter Property="wpf:ButtonAssist.ColorMouseClick" Value="{DynamicResource DefaultButtonMouseClick}"/>
+        <Setter Property="wpf:PopupAssist.IsView" Value="False"/>
+        <Setter Property="Background" Value="{DynamicResource DefaultButtonBackground}"/>
+        <Setter Property="Foreground" Value="{DynamicResource DefaultTextForegroud}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="3"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}"
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"                            
+                            CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonAssist.BorderRadius)}">
+
+                        <Grid>
+                            <Border x:Name="root" Width="{TemplateBinding Width}" Visibility="Collapsed"
+                                Height="{TemplateBinding Height}"
+                                Background="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.ColorMouseEnter)}"
+                                CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonAssist.BorderRadius)}"/>
+
+
+                            <Grid VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <icon:PackIconMaterial Grid.Column="0" 
+                                                   Kind="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.Icon)}" 
+                                                   FontSize="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.IconSize)}"
+                                                    Width="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.IconSize)}"
+                                                   Height="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.IconSize)}"
+                                                   VerticalAlignment="Center"
+                                                     Margin="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.IconMargin)}"
+                                                   Name="leftPosition"
+                                                   Foreground="{TemplateBinding Foreground}"
+                                                   />
+
+                                <ContentPresenter Grid.Column="1" Margin="5 5 5 5" 
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                                  Cursor="Hand"/>
+
+                                <icon:PackIconMaterial Grid.Column="2" 
+                                                   Kind="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.Icon)}" 
+                                                   FontSize="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.IconSize)}"
+                                                   Width="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.IconSize)}"
+                                                   Height="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.IconSize)}"
+                                                   VerticalAlignment="Center"
+                                                     Margin="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.IconMargin)}"                                                  
+                                                   Name="rightPosition"
+                                                   Foreground="{TemplateBinding Foreground}"
+                                                   Visibility="Collapsed"/>
+
+                            </Grid>
+
+                            <Popup Name="PART_popupContent" 
+                                   PopupAnimation="fade"
+                                   StaysOpen ="True"
+                                   AllowsTransparency="true"
+                                   VerticalOffset="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:PopupAssist.VerticalOffset)}"
+                                   HorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:PopupAssist.HorizontalOffset)}"
+                                  
+                                   IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:PopupAssist.IsOpenPopup)}"
+                                   Child="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:PopupAssist.PopupContent)}"/>
+
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+
+
+                        <Trigger Property="wpf:ButtonAssist.IconView" Value="False">
+                            <Setter TargetName="leftPosition" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="rightPosition" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="wpf:ButtonAssist.IconView" Value="true"/>
+                                <Condition Property="wpf:ButtonAssist.IconPosition" Value="left"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="leftPosition" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="rightPosition" Property="Visibility" Value="Collapsed"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="wpf:ButtonAssist.IconView" Value="true"/>
+                                <Condition Property="wpf:ButtonAssist.IconPosition" Value="right"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="leftPosition" Property="Visibility" Value="Collapsed"/>
+                                <Setter TargetName="rightPosition" Property="Visibility" Value="Visible"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+
+
+
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="root" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="false"/>
+                                <Condition Property="wpf:PopupAssist.IsOpenPopup" Value="true"/>
+                            </MultiTrigger.Conditions>
+
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="root" Property="Visibility" Value="Visible"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+
+
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsPressed" Value="true"/>
+                                <Condition Property="wpf:PopupAssist.IsOpenPopup" Value="true"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="wpf:PopupAssist.IsOpenPopup" Value="False"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsPressed" Value="true"/>
+                                <Condition Property="wpf:PopupAssist.IsOpenPopup" Value="false"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="wpf:PopupAssist.IsOpenPopup" Value="true"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+
+
+
+
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="root" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.ColorMouseClick)}"/>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="{DynamicResource DefaultButtonTextNotEnabled}"/>
+                            <Setter TargetName="root" Property="Background" Value="{DynamicResource DefaultButtonNotEnabled}"/>
+                        </Trigger>
+
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    
+    <Style x:Key="CalendarHeaderContentButton" TargetType="{x:Type Button}">
+        <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="MinHeight" Value="30"/>
+        <Setter Property="MinWidth" Value="30"/>
+        <Setter Property="wpf:ButtonAssist.IconView" Value="False"/>
+        <Setter Property="wpf:ButtonAssist.Icon" Value="Abacus"/>
+        <Setter Property="wpf:ButtonAssist.BorderRadius" Value="5"/>
+        <Setter Property="wpf:ButtonAssist.ColorMouseEnter" Value="{DynamicResource DefaultButtonMouseEnter}"/>
+        <Setter Property="wpf:ButtonAssist.ColorMouseClick" Value="{DynamicResource DefaultButtonMouseClick}"/>
+        <Setter Property="Background" Value="{DynamicResource DefaultButtonBackground}"/>
+        <Setter Property="Foreground" Value="{DynamicResource DefaultTextForegroud}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="10 3 10 3"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}"
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            
+                            CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonAssist.BorderRadius)}">
+
+                        <Grid>
+                            <Border x:Name="root" Width="{TemplateBinding Width}" Visibility="Collapsed"
+                                Height="{TemplateBinding Height}"
+                                Background="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.ColorMouseEnter)}"
+                                CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(wpf:ButtonAssist.BorderRadius)}"/>
+
+
+                            <Grid VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <icon:PackIconMaterial Grid.Column="0" 
+                                                   Kind="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.Icon)}" 
+                                                   FontSize="{TemplateBinding FontSize}"
+                                                   VerticalAlignment="Center"
+                                                   Margin="10 0 5 0"
+                                                   Foreground="{TemplateBinding Foreground}"
+                                                   Visibility="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.IconVisibility)}"/>
+
+                                <ContentPresenter Grid.Column="1" Margin="5 5 5 5" 
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                                  Cursor="Hand"/>
+
+
+                            </Grid>
+
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="root" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="root" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=(wpf:ButtonAssist.ColorMouseClick)}"/>
+
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="false">
+
+                        </Trigger>
+
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+</ResourceDictionary>

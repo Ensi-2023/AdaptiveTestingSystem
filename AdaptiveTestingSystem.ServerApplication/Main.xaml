@@ -1,0 +1,250 @@
+﻿<Window x:Class="AdaptiveTestingSystem.ServerApplication.Main"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AdaptiveTestingSystem.ServerApplication"
+        mc:Ignorable="d"
+        
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:wpf="clr-namespace:AdaptiveTestingSystem.DLL.wpf;assembly=AdaptiveTestingSystem.DLL"
+        xmlns:component="clr-namespace:AdaptiveTestingSystem.Control.Themes;assembly=AdaptiveTestingSystem.Control"
+      
+        Name="windowRoot"
+        Title="Сервер не запущен"
+        Height="650"
+        Width="1190"  
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        WindowStyle="None" AllowsTransparency="True" 
+        Foreground="{StaticResource DefaultTextForegroud}"
+        ResizeMode="NoResize">
+    <Border Style="{DynamicResource BorderMainPanel}" Name="root">
+        <Grid>
+
+            <Grid Cursor="Hand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Background="Transparent" MouseLeftButtonDown="MainMenyViewer_MouseLeftButtonDown">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Name="MainMeny" 
+                            Style="{StaticResource IconButtonStyle}"
+                            Margin="5 0 0 0"        
+                            wpf:ButtonAssist.Icon="Menu" 
+                            wpf:ButtonAssist.IconView="True"  
+                            Cursor="Hand"
+                            Click="MainMeny_Click"/>
+                    <TextBlock Text="{Binding Title,ElementName=windowRoot}"
+                           Grid.Column="1"
+                           Name="TitleStatusServer"
+                           VerticalAlignment="Center"
+                           Margin="5"/>
+                    <StackPanel Grid.Column="2"
+                            Orientation="Horizontal">
+                        <Button Style="{StaticResource IconButtonStyle}"
+                                     wpf:ButtonAssist.Icon="WindowMinimize"   Name="FormMinimize" Click="FormMinimize_Click"/>
+                        <Button Style="{StaticResource IconButtonStyle}"
+                                     wpf:ButtonAssist.Icon="WindowMaximize" Name="FormMaximize" Click="FormMaximize_Click" Cursor="Hand"/>
+                        <Button Content="&#x2A09;" Style="{StaticResource HeaderButtonClosed}"  Cursor="Hand" Name="FormClose" Click="FormClose_Click"/>
+                    </StackPanel>
+
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Name="ButtonCommand" Style="{StaticResource BorderContentPanel}"
+                        Grid.Row="0">
+
+                        <Grid Margin="2">
+                            <StackPanel Orientation="Horizontal">
+
+
+                                <Button Cursor="Hand"
+                                        Style="{StaticResource IconButtonStyle}"
+                                    
+                                    wpf:ButtonAssist.Icon="Server"
+                                    wpf:ButtonAssist.IconView="True"
+                                    ToolTip="Активировать сервер"
+                                    Name="ServerOnButton"  
+                                     Click="ServerOnButton_Click"
+                                    FontSize="22" />
+
+                                <Button Cursor="Hand"
+                                        Style="{StaticResource IconButtonStyle}"
+                                    
+                                    IsEnabled="False"
+                                    wpf:ButtonAssist.Icon="ServerOff"
+                                    wpf:ButtonAssist.IconView="True"
+                                    ToolTip="Отключить сервер"  
+                                        Name="ServerOffButton"
+                                        Click="ServerOffButton_Click"
+                                    FontSize="22" />
+
+
+                                <Button Cursor="Hand"
+                                        Style="{StaticResource IconButtonStyle}"
+                                    
+                                    IsEnabled="False"
+                                    Name="ServerRebootingButton"
+                                    wpf:ButtonAssist.Icon="Restore"
+                                    wpf:ButtonAssist.IconView="True"
+                                    ToolTip="Перезагрузить сервер"
+                                    Click="ServerRebootingButton_Click"
+                                    FontSize="22" />
+
+                                <Button Cursor="Hand"
+                                        Style="{StaticResource IconButtonStyle}"
+                                    
+                                    IsEnabled="False"
+                                    Name="ServerClientViewButton"
+                                    wpf:ButtonAssist.Icon="Account"
+                                    wpf:ButtonAssist.IconView="True"
+                                    ToolTip="Просмотреть подключенных клиентов"
+                                    FontSize="22" />
+
+                                <Button Cursor="Hand" 
+                                    Style="{StaticResource IconButtonStyle}"
+                                                          
+                                    wpf:ButtonAssist.Icon="Comment"
+                                    ToolTip="Открыть лог"
+                                    wpf:ButtonAssist.IconView="True"
+                                    FontSize="22" />
+
+
+                                <Button Cursor="Hand" 
+                                    Style="{StaticResource IconButtonStyle}"
+                                    wpf:ButtonAssist.Icon="Cog"
+                                    ToolTip="Настройки приложения"
+                                    Name="SettingButton"
+                                    Click="SettingButton_Click"
+                                    wpf:ButtonAssist.IconView="True"
+                                    FontSize="22" />
+
+
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+
+
+                    <RichTextBox Grid.Row="1" Style="{StaticResource DefaultRich}"
+                                 Block.LineHeight="1"
+                                 Name="Log"
+                                 Margin="10 0"
+                                 ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                 TextChanged="Log_TextChanged"
+                                 MouseEnter="Log_MouseEnter" 
+                                 MouseLeave="Log_MouseLeave"
+                                 Background="{DynamicResource LogRichBoxColor}"
+                                 IsReadOnly="True" Cursor="Hand"/>
+
+
+
+                    <Border 
+                        Grid.Row="2"
+                        >
+                        <Grid Margin="4 0">
+
+                            <component:ComboTextBox                               
+                                 Height="40"        
+                                 KeyDown="ConsoleBox_KeyDown"  
+                                 IsEditable="True"
+                                 OnSearch="True"
+                                 Wotemark="Введите команду"
+                                 WotemarkVisible="True"
+                                 wpf:TextFieldAssist.Icon="Console"
+                                 wpf:TextFieldAssist.IconView="True" x:Name="ConsoleBox"
+                                 WotemarkFontSize="20" Cursor="Hand">
+                            </component:ComboTextBox>
+
+
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                <Grid x:Name="ChildenContent" Visibility="Collapsed" Grid.Row="1"/>
+
+                <Grid  Grid.Row="1"
+                Name="Overlay"   
+                Visibility="Collapsed">
+                    <Border CornerRadius="5" Background="Black" Opacity=".6"/>
+                    <StackPanel Orientation="Vertical"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center">
+                        <ProgressBar Width="40" Height="40" Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                         IsIndeterminate="True"/>
+                        <TextBlock HorizontalAlignment="Center" Name="OverlayMessage" FontSize="15" Margin="0 15 0 0" Text="Подождите..."/>
+                    </StackPanel>
+
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Время запуска программы: " Foreground="Gray"/>
+                        <Label Content="" Foreground="White" x:Name="TimeStartProgramm"/>
+                        <Border BorderBrush="{StaticResource BorderColor}" BorderThickness="1 0 0 0" Margin="10 1 10 1"/>
+                        <Label Content="Статус сервера: " Foreground="Gray"/>
+                        <Label Content="{Binding ElementName=TitleStatusServer,Path=Text}" Foreground="White" />
+                        <Border BorderBrush="{StaticResource BorderColor}" BorderThickness="1 0 0 0" Margin="10 1 10 1"/>
+                        <Label Content="Количество авторизованных пользователей: " Foreground="Gray"/>
+                        <Label Content="0" Foreground="White" x:Name="CountConnectedClient"/>
+                    </StackPanel>
+                </Grid>
+
+            </Grid>
+
+
+            <Grid Visibility="Collapsed" Name="MainMenyViewer" MouseLeftButtonDown="MainMenyViewer_MouseLeftButtonDown">
+                <Border CornerRadius="5" Name="OverlayMeny" Background="Black"
+                        Opacity=".0" PreviewMouseLeftButtonDown="OverlayMeny_PreviewMouseLeftButtonDown"/>
+
+
+                <Border Style="{StaticResource BorderContentPanel}"
+                        HorizontalAlignment="Left"
+                        Name="MainMenyViewerContent"
+                        Width="0" Margin="0">
+                    <Grid Margin="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="Меню"
+                                       VerticalAlignment="Center"
+                                       FontSize="15"/>
+                            <Button 
+                                wpf:ButtonAssist.Icon="ArrowLeft"
+                                wpf:ButtonAssist.IconView="True"
+                                HorizontalAlignment="Right"
+                                Grid.Column="1" Name="MenyClosed"
+                                Click="MenyClosed_Click"/>
+                        </Grid>
+
+                    </Grid>
+                </Border>
+            </Grid>
+
+        </Grid>
+    </Border>
+</Window>
