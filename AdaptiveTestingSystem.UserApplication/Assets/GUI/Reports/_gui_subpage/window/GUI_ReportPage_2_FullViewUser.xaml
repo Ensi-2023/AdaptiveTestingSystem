@@ -8,7 +8,8 @@
         Foreground="{DynamicResource DefaultTextForegroud}"
         xmlns:wpf="clr-namespace:AdaptiveTestingSystem.DLL.wpf;assembly=AdaptiveTestingSystem.DLL"   
         xmlns:component="clr-namespace:AdaptiveTestingSystem.Control.Themes;assembly=AdaptiveTestingSystem.Control"
-            
+        Loaded="root_Loaded"
+        Unloaded="root_Unloaded"
         xmlns:control="clr-namespace:AdaptiveTestingSystem.Control.CustomControl;assembly=AdaptiveTestingSystem.Control"
         FontFamily="Segoe UI Light"
         WindowStartupLocation="CenterScreen"
@@ -18,13 +19,18 @@
         AllowsTransparency="True"
         Background="Transparent" 
         Title="Список пользователей"
-  
-        ResizeMode="CanResize" Height="750" Width="1000">
+        xmlns:conventer="clr-namespace:AdaptiveTestingSystem.DLL.Converts;assembly=AdaptiveTestingSystem.DLL"
+        ResizeMode="CanResize" Height="750" Width="1000"
+         xmlns:ccontrol="clr-namespace:AdaptiveTestingSystem.Control.Themes;assembly=AdaptiveTestingSystem.Control">
+
+    <Window.Resources>
+        <conventer:StringToPercentString x:Key="StringToPercent"/>
+    </Window.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <control:HeaderControl Name="Header" HeaderButton="Close"
@@ -34,7 +40,15 @@
                                
                                    Grid.Row="0"
                                    Title="{Binding Title,ElementName=root}"/>
+        <Grid Name="body" Grid.Row="1" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
+      
 
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
@@ -65,7 +79,7 @@
                                  WotemarkVisible="True"
                                  VisibilityOpenButton="Collapsed"
                                  wpf:TextFieldAssist.Icon="Text"
-                                 wpf:TextFieldAssist.IconView="True" x:Name="ConsoleBox"
+                                 wpf:TextFieldAssist.IconView="True" x:Name="searchBox"
                                  WotemarkFontSize="20" Cursor="Hand">
                         </component:ComboTextBox>
 
@@ -83,9 +97,9 @@
                                       FontSize="18"
                                       Grid.Row="1"
                                       MouseLeftButtonDown="DataGrid_MouseLeftButtonDown"
-                                        SelectionChanged="userList_SelectionChanged"
+                                      SelectionChanged="userList_SelectionChanged"
                                       RowDetailsVisibilityMode="VisibleWhenSelected"
-                                      ItemsSource="{Binding UserView,UpdateSourceTrigger=PropertyChanged}"
+                                      ItemsSource="{Binding UserCollectionViewer,UpdateSourceTrigger=PropertyChanged}"
                                       ScrollViewer.VerticalScrollBarVisibility="Auto"
                                       ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                       AutoGenerateColumns="False"
@@ -99,7 +113,7 @@
                     <DataGridTextColumn Header="ФИО"
                                             MinWidth="350"
                                             Width="SizeToCells"                                    
-                                            Binding="{Binding Name}">
+                                            Binding="{Binding FIO}">
                         
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -126,7 +140,7 @@
                     <DataGridTextColumn Header="Дата рождения"
                                             MinWidth="250"
                                             Width="SizeToCells"                                    
-                                            Binding="{Binding DateBirch}">
+                                            Binding="{Binding Datebirch}">
 
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -181,11 +195,145 @@
 
                     <Button Name="ClearSelect"
                             Click="ClearSelect_Click" Content="Снять выделение"/>
-                </StackPanel>
+
+                        <Button Name="SelectALL"
+                            Click="SelectALL_Click" Content="Выбрать всех"/>
+                    </StackPanel>
 
             </Grid>
         </Border>
 
-  
+        <Grid Grid.Row="3"  Name="_managerPanel1"
+              Margin="5"
+              Background="{DynamicResource DefaultPanelBackground}"
+              Height="41">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Opacity=".3" Height="1" Grid.ColumnSpan="3" Background="Black"/>
+
+            <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal">
+
+                <Label Content="На странице: "
+                       FontSize="18"  VerticalAlignment="Center"
+                       Foreground="{DynamicResource DefaultTextForegroud}"/>
+
+                <ccontrol:ComboTextBox  IsEditable="False"
+                                     Width="Auto"  VerticalAlignment="Center"
+                                     SelectedText="20"
+                                         Name="countView"
+                                     SelectionChanged="PTextBox_SelectionChanged"
+                                     WotemarkFontSize="14" Wotemark="На странице"
+                                     SelectedIndex="0">
+                    <ccontrol:ComboTextBox.Items>
+                        <ccontrol:PopupItemControl Caption="20" Description=""/>
+                        <ccontrol:PopupItemControl Caption="40" Description=""/>
+                        <ccontrol:PopupItemControl Caption="60" Description=""/>
+                        <ccontrol:PopupItemControl Caption="100" Description=""/>
+                    </ccontrol:ComboTextBox.Items>
+                </ccontrol:ComboTextBox>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal" Grid.Column="2">
+
+
+                <Label Content="Всего: "
+                       FontSize="18" 
+                       Foreground="{DynamicResource DefaultTextForegroud}"/>
+                <Label Content="{Binding TotalItems, UpdateSourceTrigger=PropertyChanged}"
+                       FontSize="18"               
+                       Foreground="{DynamicResource DefaultTextForegroud}" />
+
+
+            </StackPanel>
+
+
+
+
+
+        </Grid>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" 
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Margin="5"
+                    Name="_managerPanel2"
+                        Grid.Column="1" Cursor="Hand">
+
+
+            <Button Style="{DynamicResource IconButtonStyle}"
+                        wpf:ButtonAssist.Icon="ChevronDoubleLeft"
+                        Command="{Binding FirstPage}"
+                        ToolTip="Первая страница"
+                        FontSize="14"/>
+
+            <Button Style="{DynamicResource IconButtonStyle}"
+                        wpf:ButtonAssist.Icon="ChevronLeft"
+                        Command="{Binding PrevPage}"
+                       ToolTip="Предыдущая страница"
+                        FontSize="14" Cursor="Hand"/>
+
+            <Label Content="{Binding Start}"
+                       FontSize="18"  VerticalAlignment="Center"
+                       Foreground="{DynamicResource DefaultTextForegroud}"/>
+
+            <Label Content="из"
+                       FontSize="18"  VerticalAlignment="Center"
+                       Foreground="{DynamicResource DefaultSubTextForegroud}"/>
+
+            <Label Content="{Binding End}"
+                       FontSize="18"
+                      VerticalAlignment="Center"
+                       Foreground="{DynamicResource DefaultTextForegroud}"/>
+
+
+            <Button Style="{DynamicResource IconButtonStyle}"
+                        wpf:ButtonAssist.Icon="ChevronRight"
+                        FontSize="14" ToolTip="Следующая страница"
+                        Command="{Binding NextPage}" Cursor="Hand"/>
+
+
+            <Button Style="{DynamicResource IconButtonStyle}"
+                        wpf:ButtonAssist.Icon="ChevronDoubleRight"
+                        FontSize="14" ToolTip="К последней странице"
+                        Command="{Binding LastPage}" Cursor="Hand"/>
+
+        </StackPanel>
+
+
+    </Grid>
+        <Grid Name="Overlay"
+              Grid.Row="1"
+              Grid.RowSpan="3">
+            <Border Background="Black" 
+                    CornerRadius="0 5 5 0"
+                    Opacity=".2"/>
+
+            <Grid  HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                <Border CornerRadius="10"
+                    Height="150"
+                    Width="150"
+                      
+                    Background="Black" Opacity=".5"/>
+
+                <ProgressBar IsIndeterminate="True"
+                             Style="{DynamicResource MaterialDesignCircularProgressBar}"
+                             Height="70"
+                             Width="70"/>
+
+                <TextBlock Text="" FontSize="18" VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Name="percentLoad"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

@@ -3,6 +3,7 @@ using AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage.uc_c
 using AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage.viewmodel;
 using AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage.window;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,19 +26,19 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage
     /// </summary>
     public partial class GUI_Report_Page2 : UserControl
     {
-
+        ViewResultUserModel _resultUserModel;
         CreateReportPage_2_Range reportPage_2_Range;
         private GUI_ReportPage_2_RangeDay _countrols;
-
-        public modelPage_2 modelPage_2 { get; set; }
-
+    
         public bool IsCancelUpload { get; internal set; }
 
         public GUI_Report_Page2()
         {
             InitializeComponent();
             reportPage_2_Range = new CreateReportPage_2_Range();
-            DataContext = modelPage_2 = new modelPage_2();
+ 
+            DataContext = _resultUserModel = _Main.Instance.MVVM_Manager.ResultUserModel;
+
 
         }
 
@@ -45,23 +46,7 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage
         {
             if (e.Key == Key.Enter)
             {
-                var select = modelPage_2.Search((sender as ComboTextBox).Text, userList.SelectedItems);
-
-                if (select.Count > 0)
-                {
-                    foreach (var item in select)
-                    { 
-                        var obj = item as modelPage_2_user;
-
-                        foreach (modelPage_2_user rrr in userList.Items)
-                        {
-                            if (rrr.Index == obj.Index)
-                            {
-                                userList.SelectedItem= rrr;
-                            }
-                        }
-                    }
-                }
+                _resultUserModel.Search((sender as ComboTextBox).Text);              
             }
         }
 
@@ -69,13 +54,76 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage
 
         private void root_Loaded(object sender, RoutedEventArgs e)
         {
-            SendToServer();
+            _resultUserModel.Update += _resultUserModel_Update; 
+            _resultUserModel.OverlayShowing += _resultUserModel_OverlayShowing; 
+            _resultUserModel.OverlayChangeInformation += _resultUserModel_OverlayChangeInformation;
+            _resultUserModel.SelectUsersInGrid += _resultUserModel_SelectUsersInGrid;  
+            _resultUserModel.IsView = true;
+            _resultUserModel.OnUpdate();
+        }
 
-          
+        public void _resultUserModel_SelectUsersInGrid(List<User> users)
+        {
+            userList.SelectionMode = DataGridSelectionMode.Extended;
+     
+            foreach (User _user in users)
+            {
+                foreach (User item in userList.Items)
+                {
+                    if (item.Index == _user.Index)
+                    {
+                        userList.SelectedItems.Add(item);
+                    }
+                }           
+            }
+
+
+            if (userList.SelectedItems.Count > 0)
+            {
+                titleCountSelect.Text = userList.SelectedItems.Count.ToString();
+
+                button_cancleSelect.Visibility = Visibility.Visible;
+                Animation.AnimatedOpacity(button_cancleSelect, button_cancleSelect.Opacity, 1, TimeSpan.FromMilliseconds(150));
+            }
+            else
+            {
+                button_cancleSelect.Visibility = Visibility.Collapsed;
+            }
+
+        }
+
+        private void _resultUserModel_OverlayChangeInformation(string firstValue, string lastValue)
+        {
+            _Main.Instance.OverlayShow(true, TypeOverlay.loading, title: $"Пользователи", subtitle: $"Обработано: {firstValue} из {lastValue}");
+
+        }
+
+        private void _resultUserModel_OverlayShowing(bool show)
+        {
+            _Main.Instance.OverlayShow(show);
+        }
+
+        private async void _resultUserModel_Update(bool skipCheck)
+        {
+            _Main.Instance.OverlayShow(!skipCheck, TypeOverlay.loading, title: $"Данные", subtitle: "загрузка...", visibleButton: Visibility.Visible);
+
+            await Task.Delay(250);
+
+            var packet = new Data_StatisticPacket()
+            {
+                IsCode = Code.ThreadStart
+            };
+
+            ThreadManager.Send("Command_StatisticCustom", packet);
         }
 
         private void root_Unloaded(object sender, RoutedEventArgs e)
         {
+            _resultUserModel.IsView = false;
+            _resultUserModel.Update -= _resultUserModel_Update; 
+            _resultUserModel.OverlayShowing -= _resultUserModel_OverlayShowing; 
+            _resultUserModel.OverlayChangeInformation -= _resultUserModel_OverlayChangeInformation; 
+            _resultUserModel.SelectUsersInGrid -= _resultUserModel_SelectUsersInGrid;
             ThreadManager.CloseActiveThread();
         }
 
@@ -105,28 +153,7 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage
 
         }
 
-        private async void SendToServer()
-        {
-            IsCancelUpload = false;
-            indicator.Visibility = Visibility.Visible;
-            body.Visibility = Visibility.Collapsed;
-            retryUpload.Visibility = Visibility.Collapsed;
-            overlay.Visibility = Visibility.Visible;
-
-            indicator.Value = 0;
-
-            await Task.Delay(250);
-
-
-            var packet = new Data_StatisticPacket()
-            {
-                IsCode = Code.ThreadStart
-            };
-
-            ThreadManager.Send("Command_StatisticCustom", packet);
-        }
-
-
+       
         public async void SetError()
         {
             _Main.Instance.IsEnabled = true;
@@ -163,8 +190,8 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage
             _Main.Instance.IsEnabled = true;
             body.Visibility = Visibility.Visible;
             overlay.Visibility = Visibility.Collapsed;
-            Logger.Debug($"User: {custom.data_AllUsers.Count}");
-            SetSearchPopupItem(custom.data_AllUsers);
+      
+            SetViewModelItem(custom.data_AllUsers);
             ThreadManager.Clear();
 
 
@@ -176,36 +203,15 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage
             dayRadioButton.IsChecked = true;
         }
 
-        private async void SetSearchPopupItem(List<Data_AllUserPacket> data_AllUsers)
+        private async void SetViewModelItem(List<Data_AllUserPacket> data_AllUsers)
         {
-            ConsoleBox.Items.Clear();
-            _Main.Instance.OverlayShow(true);
-
-         //   for (int i = 0; i < 5000; i++)
+            await Application.Current.Dispatcher.Invoke(async () =>
             {
-
-                foreach (var item in data_AllUsers.ToList())
+                await Task.Factory.StartNew(() =>
                 {
-                    ConsoleBox.Items.Add(new PopupItemControl()
-                    {
-                        Index = item.Index,
-                        Caption = $"{item.Name}",
-                        HiddenField = item.Gender
-                    });
-
-                    modelPage_2.SetUser(item.Index, item.Name, item.Gender, item.DateBirch);
-            
-
-                 //   _Main.Instance.OverlayShow(true,TypeOverlay.loading,"Обработка данных",$"Packet: {i+1} из {5000}");
-
-                }
-
-
-                await Task.Delay(20);
-
-            }
-            _Main.Instance.OverlayShow(false);
-
+                    _resultUserModel.SetCollection(data_AllUsers);
+                });
+            });
         }
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
@@ -227,23 +233,23 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage
             filterRangeData.Children.Add(ui);
         }
 
-        private async void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var obj = sender as DataGrid;
 
             if (obj == null) return;
 
+          
+
             if (obj.SelectedItems.Count > 0)
             {
+                _resultUserModel.AddSelect(obj.SelectedItems);
                 titleCountSelect.Text = obj.SelectedItems.Count.ToString();
-
                 button_cancleSelect.Visibility = Visibility.Visible;
                 Animation.AnimatedOpacity(button_cancleSelect, button_cancleSelect.Opacity, 1, TimeSpan.FromMilliseconds(150));
             }
             else
             {
-                Animation.AnimatedOpacity(button_cancleSelect, button_cancleSelect.Opacity, 0, TimeSpan.FromMilliseconds(150));
-                await Task.Delay(170);
                 button_cancleSelect.Visibility = Visibility.Collapsed;
             }
         }
@@ -254,18 +260,33 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage
             var row = DataGridHelper.GetRow(sender, e);
             if (row == null) return;
 
-            if (row.IsSelected) row.IsSelected = false;
+            if (row.IsSelected) 
+            { 
+                row.IsSelected = false;
+                var user = row.Item as User;
+
+                _resultUserModel.DeleteSelectUser(user);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             userList.UnselectAll();
+            _resultUserModel.AddSelect(userList.SelectedItems);
         }
 
         private void openUserViewer_Click(object sender, RoutedEventArgs e)
         {
-            var obj = new GUI_ReportPage_2_FullViewUser(this, modelPage_2);
+            _resultUserModel.IsView = false;
+            var obj = new GUI_ReportPage_2_FullViewUser(this);
             obj.ShowDialog();
+            _resultUserModel.IsView = true;
+        }
+
+        public void SetSelectUser(IList selectedItems)
+        {
+            _resultUserModel.AddSelect(selectedItems);
+            _resultUserModel.ViewAllSelectUser();
         }
     }
 }

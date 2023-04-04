@@ -1,4 +1,6 @@
 ﻿using AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports;
+using AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage.window;
+using AdaptiveTestingSystem.UserApplication.Assets.GUI.Users._user_page.window;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -103,11 +105,28 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.Command
             if (obj != null)
             {
 
-                var window = CheckUI.GetMainBodyUI() as GUI_Statistic;
-                if (window != null)
+                if (UIHelper.IsWindowOpen<GUI_ReportPage_2_FullViewUser>())
                 {
-                    window.SetData(null, obj);
+                    foreach (var item in Application.Current.Windows)
+                    {
+                        var windowOpen = item as GUI_ReportPage_2_FullViewUser;
+                        if (windowOpen != null)
+                        {
+                            Application.Current.Dispatcher.Invoke(() =>
+                            {
+                                windowOpen.SetData(obj);
+                            });
+
+                            return;
+                        }
+                    }
                 }
+
+                var window = CheckUI.GetMainBodyUI() as GUI_Statistic;
+                    if (window != null)
+                    {
+                        window.SetData(null, obj);
+                    }
             }
         }
     }

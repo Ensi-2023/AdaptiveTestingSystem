@@ -105,41 +105,119 @@
                                     <RowDefinition Height="*"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                                <DataGrid
+
+                                <Grid Grid.Row="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+
+                                    <DataGrid
                                       Margin="5"    
                                       Name="userList"
                                       SelectionMode="Extended"
                                       CanUserResizeColumns="False"
                                       FontSize="18"
-                                      MaxHeight="350"
+                                      Height="420"
                                       RowDetailsVisibilityMode="VisibleWhenSelected"
-                                      Height="350"
-                                      MinWidth="230"
+                                      Grid.Row="0"
+                                      MinWidth="350"
+                                      
                                       MouseLeftButtonDown="DataGrid_MouseLeftButtonDown"
                                       SelectionChanged="DataGrid_SelectionChanged"
                                       ScrollViewer.VerticalScrollBarVisibility="Auto"
                                       ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                       AutoGenerateColumns="False"
-                                      ItemsSource="{Binding UserView,UpdateSourceTrigger=PropertyChanged}">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="#"
+                                      ItemsSource="{Binding UserCollectionViewer,UpdateSourceTrigger=PropertyChanged}">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="#"
                                             MinWidth="40"
                                             Width="Auto"                               
                                             Binding="{Binding Index}"/>
 
-                                        <DataGridTextColumn Header="ФИО"
+                                            <DataGridTextColumn Header="ФИО"
                                             MinWidth="150"
                                             Width="SizeToCells"                                    
-                                            Binding="{Binding Name}">
-                                            <DataGridTextColumn.ElementStyle>
-                                                <Style TargetType="TextBlock">
-                                                    <Setter Property="TextWrapping" Value="Wrap"></Setter>
-                                                </Style>
-                                            </DataGridTextColumn.ElementStyle>
-                                        </DataGridTextColumn>
+                                            Binding="{Binding FIO}">
+                                                <DataGridTextColumn.ElementStyle>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                                                    </Style>
+                                                </DataGridTextColumn.ElementStyle>
+                                            </DataGridTextColumn>
 
-                                    </DataGrid.Columns>
-                                </DataGrid>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+
+
+                                    <Border Background="{DynamicResource DefaultDataGridPanelBackground}"
+                                            CornerRadius="5" Margin="5 0 5 5" Grid.Row="1">
+                                        <Grid Margin="5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>                                                
+                                            </Grid.ColumnDefinitions>
+
+                                            <StackPanel Orientation="Horizontal"
+                                                        Grid.Column="0">
+                                                <Label Content="Всего: "
+                                                       FontSize="18" 
+                                                       Foreground="{DynamicResource DefaultTextForegroud}"/>
+                                                   
+                                                <Label Content="{Binding TotalItems, UpdateSourceTrigger=PropertyChanged}"
+                                                       FontSize="18"               
+                                                       Foreground="{DynamicResource DefaultTextForegroud}" />
+
+                                                </StackPanel>
+                                            
+                                            <StackPanel Orientation="Horizontal" Grid.Column="1">
+                                                <Button Style="{DynamicResource IconButtonStyle}"
+                                                    wpf:ButtonAssist.Icon="ChevronDoubleLeft"
+                                                    Command="{Binding FirstPage}"
+                                                    ToolTip="Первая страница"
+                                                    FontSize="14"/>
+
+                                                <Button Style="{DynamicResource IconButtonStyle}"
+                                                        wpf:ButtonAssist.Icon="ChevronLeft"
+                                                        Command="{Binding PrevPage}"
+                                                       ToolTip="Предыдущая страница"
+                                                        FontSize="14" Cursor="Hand"/>
+
+                                                <Label Content="{Binding Start}"
+                                                       FontSize="18"  VerticalAlignment="Center"
+                                                       Foreground="{DynamicResource DefaultTextForegroud}"/>
+
+                                                <Label Content="из"
+                                                       FontSize="18"  VerticalAlignment="Center"
+                                                       Foreground="{DynamicResource DefaultSubTextForegroud}"/>
+
+                                                <Label Content="{Binding End}"
+                                                       FontSize="18"
+                                                       VerticalAlignment="Center"
+                                                       Foreground="{DynamicResource DefaultTextForegroud}"/>
+
+
+                                                 <Button Style="{DynamicResource IconButtonStyle}"
+                                                        wpf:ButtonAssist.Icon="ChevronRight"
+                                                        FontSize="14" ToolTip="Следующая страница"
+                                                        Command="{Binding NextPage}" Cursor="Hand"/>
+
+
+                                                <Button Style="{DynamicResource IconButtonStyle}"
+                                                        wpf:ButtonAssist.Icon="ChevronDoubleRight"
+                                                        FontSize="14" ToolTip="К последней странице"
+                                                        Command="{Binding LastPage}" Cursor="Hand"/>
+
+                                            </StackPanel>
+                                            
+                                        </Grid>
+                                    </Border>
+
+                                </Grid>
+                                
+                                                            
+                                
                                 <Border CornerRadius="5"
                                         Name="button_cancleSelect"
                                         Visibility="Collapsed"
@@ -164,8 +242,8 @@
 
                                 <Button HorizontalAlignment="Right"
                                         VerticalAlignment="Top"
-                                        Height="50"
-                                        Width="50"
+                                        Height="40"
+                                        Width="40"
                                         Click="openUserViewer_Click"
                                         Name="openUserViewer"
                                         Style="{DynamicResource IconButtonStyle}"
@@ -221,9 +299,15 @@
                                     </Grid>
                                 </Border>
 
+
+
+
+
                             <Border CornerRadius="5"
-                                Margin="5"
-                                Grid.Column="3"
+                                Margin="5 5 5 10"
+                                Grid.Column="1"
+                                Grid.Row="1"
+                                Height="205" VerticalAlignment="Top"
                                 Background="{DynamicResource DefaultDataGridPanelBackground}">
                                 <Grid Margin="10">
                                     <Grid.RowDefinitions>
@@ -247,11 +331,13 @@
                                 </Grid>
                             </Border>
 
+
                             <Border CornerRadius="5"
                                     Margin="5 5 5 10"
-                                    Grid.Column="1"
+                                    Grid.Column="2"
                                     Grid.ColumnSpan="3"
                                     Grid.Row="1" 
+                                     Height="100" VerticalAlignment="Top"
                                     Background="{DynamicResource DefaultDataGridPanelBackground}">
                                 <Grid Margin="10">
                                     <Grid.RowDefinitions>

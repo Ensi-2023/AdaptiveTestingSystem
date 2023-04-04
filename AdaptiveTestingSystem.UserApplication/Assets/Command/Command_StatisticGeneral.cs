@@ -105,6 +105,10 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.Command
             if (obj != null)
             {
 
+
+
+
+
                 var window = CheckUI.GetMainBodyUI() as GUI_Statistic;
                 if (window != null)
                 {

@@ -10,50 +10,6 @@ using System.Threading.Tasks;
 
 namespace AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage.viewmodel
 {
-    public class modelPage_2_user : INotifyPropertyChanged
-    {
-        public event PropertyChangedEventHandler? PropertyChanged;
-        public void OnPropertyChange([CallerMemberName] string propd = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propd));
-        }
-
-        private int _index;
-
-        public int Index
-        {
-            get { return _index; }
-            set { _index = value; OnPropertyChange("Index"); }
-        }
-
-
-        private string _name;
-
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; OnPropertyChange("Name"); }
-        }
-
-        private string _gender;
-
-        public string Gender
-        {
-            get { return _gender; }
-            set { _gender = value; OnPropertyChange("Gender"); }
-        }
-
-
-        private string _datebirch;
-
-        public string DateBirch
-        {
-            get { return _datebirch; }
-            set { _datebirch = value; OnPropertyChange("DateBirch"); }
-        }
-
-    }
-
     public class modelPage_2 : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;

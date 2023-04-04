@@ -16,6 +16,10 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.MVVM
         public ViewRolyUserModel RolyModel { get; private set; }
         public ViewTestModel TestingModel { get; private set; }
         public ViewServerBrowserModel ServerBrowserModel { get; private set; }
+        public ViewResultUserModel ResultUserModel { get; private set; }
+        public ViewResultUserModel ResultViewDetailUserModel { get; private set; }
+
+
         public MVVM_Manager()
         {
             UserModel = new ViewUserModel();
@@ -26,6 +30,8 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.MVVM
             RolyModel= new ViewRolyUserModel();
             TestingModel = new ViewTestModel();
             ServerBrowserModel= new ViewServerBrowserModel();
+            ResultUserModel = new ViewResultUserModel();
+            ResultViewDetailUserModel = new ViewResultUserModel();
         }
     }
 }

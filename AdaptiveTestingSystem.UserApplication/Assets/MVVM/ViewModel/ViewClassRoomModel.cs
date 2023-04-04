@@ -17,8 +17,7 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.MVVM.ViewModel
         public ViewClassRoomModel()
         {
             Collection = new ObservableCollection<object>();
-            RoomCollectionViewer = new ObservableCollection<CRoom>();
-           
+            RoomCollectionViewer = new ObservableCollection<CRoom>();       
         }
 
         public ICommand FirstPage
