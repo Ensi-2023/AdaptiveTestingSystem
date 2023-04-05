@@ -153,7 +153,7 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.GUI.Testing._testing_subp
             else
             {
                 test.Login = _Main.Instance.MyAccount.Login;
-                ThreadSendingToServer.SendTest(test, cancelTokenSource, token,isEdit);
+                ThreadSendingTestToServer.SendTest(test, cancelTokenSource, token,isEdit);
             }
 
         }
@@ -191,7 +191,7 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.GUI.Testing._testing_subp
                             if (sendToServer)
                             {
                                 test.Login = _Main.Instance.MyAccount.Login;
-                                ThreadSendingToServer.SendTest(test, cancelTokenSource, token, isedit);
+                                ThreadSendingTestToServer.SendTest(test, cancelTokenSource, token, isedit);
                             }
 
                         } 

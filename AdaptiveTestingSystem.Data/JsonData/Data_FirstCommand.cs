@@ -11,6 +11,7 @@ namespace AdaptiveTestingSystem.Data.JsonData
 
     public class Data_Base
     {
+        public string IdentityCommand { get; set; } = string .Empty;
         public string PacketIndex { get; set; }
         public Code IsCode { get; set; }
         public byte[] Data { get; set; } = new byte[0];

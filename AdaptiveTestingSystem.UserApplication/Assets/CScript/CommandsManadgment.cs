@@ -59,6 +59,8 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.CScript
             new Command_StatisticGeneral(),
             new Command_ConnectAdminTestServer(),
             new Command_StatisticCustom(),
+
+       
         };
 
 
@@ -71,30 +73,7 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.CScript
         static public void Parse(string json, InternetClient client)
         {
             try
-            {
-                //if (IsUpload)
-                //{
-                //    try
-                //    {
-                //        var jsons = JsonSerializer.Deserialize<Data_FirstCommand>(json);
-                //        if (jsons != null)
-                //        {
-                //            if (jsons.IsCloseThread)
-                //            {
-                //                IsUpload = false;
-                //            }
-                //        }
-                //    }
-                //    catch { }
-
-                //    var searchclass = CommandClass.Find(o => o.GetType() == GetTypeCommand(Command));
-                //    if (searchclass != null)
-                //    {
-
-                //    }
-                //}
-                //else
-                {
+            {    
                     var jsonDes = JsonSerializer.Deserialize<Data_FirstCommand>(json);
                     if (jsonDes == null) return;
 
@@ -108,7 +87,7 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.CScript
                     {
                         _class.Execut(jsonDes.Json, client);
                     }
-                }
+                
             }
             catch(Exception ex)
             {

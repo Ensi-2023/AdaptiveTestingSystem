@@ -23,7 +23,7 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage.
     {
         private GUI_Report_Page2 _gui_Report_Page2  { get; set; }
 
-    public ViewResultUserModel _resultUserModel { get; set; }
+        public ViewResultUserModel _resultUserModel { get; set; }
         public bool IsViewSelect { get; private set; }
 
         public GUI_ReportPage_2_FullViewUser(GUI_Report_Page2 gui_Report_Page2)

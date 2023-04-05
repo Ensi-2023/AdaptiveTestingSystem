@@ -149,7 +149,6 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.CScript
                 while (QueueByte.Count != 0)
                 {
                     if (QueueByte.Count == 0) break;
-
                     int step = dataPakcet.Length;
                     var data = QueueByte.Dequeue();
                     Array.Resize(ref dataPakcet, dataPakcet.Length + data.Item2.Length);

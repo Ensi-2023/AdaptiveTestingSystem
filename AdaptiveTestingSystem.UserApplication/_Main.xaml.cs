@@ -46,6 +46,7 @@ namespace AdaptiveTestingSystem.UserApplication
         public ThreadAcceptData threadAcceptData { get; set; }
 
         public NotificationViewerManager NotificationViewerManagerNotificationViewerManager { get; set; }
+
         public Key KeyPress { get; private set; }
 
         //public CancellationTokenSource cancelTokenSource = new CancellationTokenSource();

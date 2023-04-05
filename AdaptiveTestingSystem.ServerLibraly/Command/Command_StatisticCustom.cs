@@ -15,7 +15,7 @@ namespace AdaptiveTestingSystem.ServerLibraly.Command
         {
             try
             {
-                var obj = JsonSerializer.Deserialize<Data_StatisticPacket>(json);
+                var obj = JsonSerializer.Deserialize<Data_StatisticCustom>(json);
 
                 if (obj != null)
                 {
@@ -38,10 +38,10 @@ namespace AdaptiveTestingSystem.ServerLibraly.Command
             if (sendPacket != null) { sendPacket.Dispose(); sendPacket = null; }
         }
 
-        private async void StartSendData(Data_StatisticPacket obj, ClientObject client, ServerObject activeServer)
+        private async void StartSendData(Data_StatisticCustom obj, ClientObject client, ServerObject activeServer)
         {
             sendPacket = new ThreadSendPacket("Command_StatisticCustom", client, activeServer);
-            var listEmployee = await DBSearchMethods.GetCustomStatistic(obj.Index);
+            var listEmployee = await DBSearchMethods.GetCustomStatistic(obj);
             sendPacket.StartSend(listEmployee);
         }
 

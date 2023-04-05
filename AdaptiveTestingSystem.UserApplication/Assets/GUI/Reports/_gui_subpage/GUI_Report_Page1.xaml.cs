@@ -131,8 +131,7 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage
 
             await Task.Delay(250);
 
-            retryUpload.Visibility = Visibility.Visible;
-    
+            retryUpload.Visibility = Visibility.Visible;   
         }
 
         private void GUI_MostActiveOneUser_MouseEnter(object sender, MouseEventArgs e)
@@ -144,7 +143,6 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage
         private void GUI_MostActiveOneUser_MouseLeave(object sender, MouseEventArgs e)
         {
             IsNoMouseScroll = false;
-        }
-       
+        }       
     }
 }

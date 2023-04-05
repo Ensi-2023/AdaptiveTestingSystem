@@ -117,9 +117,11 @@ namespace AdaptiveTestingSystem.Data.JsonData
 
     }
 
-    public class Data_StatisticCustom
+    public class Data_StatisticCustom:Data_Base
     { 
         public List<Data_AllUserPacket> data_AllUsers { get; set; } =  new List<Data_AllUserPacket>();
+        public Data_CustomReportFilter customReportFilter { get; set; } = new Data_CustomReportFilter();
+        public bool IsSearch { get; set; } = false;
     }
 
     public class Data_AllUserPacket 
@@ -128,6 +130,17 @@ namespace AdaptiveTestingSystem.Data.JsonData
         public string Name { get; set; } = string.Empty;
         public string Gender { get; set; } = string.Empty;
         public string DateBirch { get; set; } = string.Empty;
+    }
+
+    public class Data_CustomReportFilter
+    {
+        public string MonthStart { get; set; } = "0";
+        public string MonthEnd { get; set; } = "";
+        public string DayStart { get; set; } = ""; 
+        public string DayEnd { get; set; } = "";
+        public string YearStart { get; set; } = "";
+        public string YearEnd { get; set; } = "";
+        public ViewData ViewData { get; set; } = ViewData.day;
     }
 
 }

@@ -358,7 +358,7 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.GUI.Testing._testing_subp
             {
 
                 _Main.Instance.OverlayShow(true, TypeOverlay.loading, "Генерация вопроса", $"Ожидаю выделения порта передачи.");
-                ThreadSendingToServer.StartSendEditOrInsertQuest(packet, _isInsert);
+                ThreadSendingTestToServer.StartSendEditOrInsertQuest(packet, _isInsert);
             }
 
             Logger.Debug($"Edit: #{Data.Index} ");
@@ -439,7 +439,7 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.GUI.Testing._testing_subp
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            ThreadSendingToServer.CancelThread();
+            ThreadSendingTestToServer.CancelThread();
         }
     }
 }

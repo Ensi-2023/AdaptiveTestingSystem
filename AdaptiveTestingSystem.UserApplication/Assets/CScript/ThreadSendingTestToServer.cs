@@ -9,7 +9,7 @@ using System.Windows.Markup;
 
 namespace AdaptiveTestingSystem.UserApplication.Assets.CScript
 {
-    public class ThreadSendingToServer
+    public class ThreadSendingTestToServer
     {
 
         static double _sizes = 0;

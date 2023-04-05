@@ -1127,27 +1127,28 @@ namespace AdaptiveTestingSystem.Data.NotEntityFramework
             return list;
         }
 
-        public static async Task<Data_StatisticCustom> GetCustomStatistic(int index)
+        public static async Task<Data_StatisticCustom> GetCustomStatistic(Data_StatisticCustom obj)
         {
-            var data_Statistics = new Data_StatisticCustom();
+            var data_Statistics = new Data_StatisticCustom() { IsSearch = obj.IsSearch };
             data_Statistics.data_AllUsers = new List<Data_AllUserPacket>();
 
-            var userList = await DBDataMethod.GetUserList(Code.GUI_User);
-            var userModifyList = await DBDataMethod.GetUserList(Code.GUI_UserModify);
+            if (obj.IsSearch == false)
+            {
 
-            AddToListUser(data_Statistics, userList);
-            AddToListUser(data_Statistics, userModifyList);
+                var userList = await DBDataMethod.GetUserList(Code.GUI_User);
+                var userModifyList = await DBDataMethod.GetUserList(Code.GUI_UserModify);
 
-            if(index==0) return data_Statistics;
+                AddToListUser(data_Statistics, userList);
+                AddToListUser(data_Statistics, userModifyList);
 
+                return data_Statistics;
 
-
-
-
-
-
-
-            else return data_Statistics;
+            }
+            else
+            {
+                Logger.Debug("lala");
+               return data_Statistics;
+            }
         }
 
         private static void AddToListUser(Data_StatisticCustom data_Statistics, List<Data_UserList> userList)

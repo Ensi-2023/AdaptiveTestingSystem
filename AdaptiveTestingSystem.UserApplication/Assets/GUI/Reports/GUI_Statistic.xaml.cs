@@ -1,4 +1,5 @@
 ﻿using AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage;
+using AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage.CScript;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
+
 
 namespace AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports
 {

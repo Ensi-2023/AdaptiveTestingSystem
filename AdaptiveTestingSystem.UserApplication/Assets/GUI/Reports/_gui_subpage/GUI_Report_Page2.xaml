@@ -8,12 +8,10 @@
              xmlns:component="clr-namespace:AdaptiveTestingSystem.Control.Themes;assembly=AdaptiveTestingSystem.Control"
              xmlns:convert="clr-namespace:AdaptiveTestingSystem.DLL.Converts;assembly=AdaptiveTestingSystem.DLL"  
              xmlns:ucm ="clr-namespace:AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage.uc_control"
-             Name="root"
-           
+             Name="root"    
              mc:Ignorable="d"
              Loaded="root_Loaded"
              Unloaded="root_Unloaded">
-
 
     <UserControl.Resources>
         <convert:StringToPercentString x:Key="StringToPercentString"/>
@@ -364,6 +362,8 @@
                                                 VerticalAlignment="Top"
                                                 Grid.Row="2">
                                         <Button Content="Сформировать"
+                                                Name="CreateCustomReport"
+                                                Click="CreateCustomReport_Click"
                                                 Background="{DynamicResource NotificationButtonAccept_Background}"
                                                 Foreground="{DynamicResource NotificationButtonAccept_Foreground}"/>
                                     </StackPanel>

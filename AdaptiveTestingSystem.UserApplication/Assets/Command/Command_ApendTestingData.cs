@@ -20,8 +20,7 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.Command
     {
 
         private GUI_TestReady _GUI_TestReady;
-        ThreadAcceptData AcceptData;
-     
+        ThreadAcceptData AcceptData;    
 
         public override void Execut(string json, InternetClient client)
         {

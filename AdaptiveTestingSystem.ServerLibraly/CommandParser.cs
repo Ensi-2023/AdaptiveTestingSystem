@@ -68,6 +68,7 @@ namespace AdaptiveTestingSystem.ServerLibraly
             new Command_GetUserResultTesting(),
             new Command_StatisticGeneral(),
             new Command_StatisticCustom(),
+     
         };
 
 
@@ -75,6 +76,9 @@ namespace AdaptiveTestingSystem.ServerLibraly
         {
             return Type.GetType($"AdaptiveTestingSystem.ServerLibraly.Command.{command}");
         }
+
+
+
 
         public void Parse(string message,ClientObject client,ServerObject activeServer)
         {

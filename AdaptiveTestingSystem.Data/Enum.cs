@@ -3,6 +3,12 @@ namespace AdaptiveTestingSystem.Data
 {
     public class Enums
     {
+
+        public enum ViewData
+        {
+            day, month, year
+        }
+
         public enum Code
         {
             Null = 0,
@@ -83,6 +89,7 @@ namespace AdaptiveTestingSystem.Data
             ThreadNext = 10002,
             ThreadStop = 10003,
             NoThreadStart=10004,
+            ThreadNewCommand=10005,
 
 
 

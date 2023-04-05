@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage.uc_control.CScript.CreateReportPage_2_Range;
 
 namespace AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage.uc_control
 {
@@ -25,10 +26,6 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage.
     {
         CreateReportPage_2_Range createReport;
 
-        public enum ViewData
-        { 
-            day, month, year
-        }
         private ViewData _viewData = ViewData.day;
 
         public GUI_ReportPage_2_RangeDay(CreateReportPage_2_Range createReportPage)
@@ -106,7 +103,7 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage.
             }
         }
 
-        public object CreateReport()
+        public ReportRange CreateReport()
         {
             createReport.Add(DayBox_start.IsError?"": DayBox_start.Text,
                 MonthBox_start.IsError?"": MonthBox_start.Text, 

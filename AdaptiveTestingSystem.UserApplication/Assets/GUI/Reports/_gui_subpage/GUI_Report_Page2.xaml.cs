@@ -1,4 +1,6 @@
-﻿using AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage.uc_control;
+﻿using AdaptiveTestingSystem.Control.Windows;
+using AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage.CScript;
+using AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage.uc_control;
 using AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage.uc_control.CScript;
 using AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage.viewmodel;
 using AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage.window;
@@ -49,8 +51,7 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage
                 _resultUserModel.Search((sender as ComboTextBox).Text);              
             }
         }
-
-    
+   
 
         private void root_Loaded(object sender, RoutedEventArgs e)
         {
@@ -76,7 +77,6 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage
                     }
                 }           
             }
-
 
             if (userList.SelectedItems.Count > 0)
             {
@@ -109,9 +109,10 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage
 
             await Task.Delay(250);
 
-            var packet = new Data_StatisticPacket()
+            var packet = new Data_StatisticCustom()
             {
-                IsCode = Code.ThreadStart
+                IsCode = Code.ThreadStart,
+                IsSearch = false
             };
 
             ThreadManager.Send("Command_StatisticCustom", packet);
@@ -139,7 +140,6 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage
 
         public void SendInfo(double size, double maxsize)
         {
-
             if (size != 0)
             {
                 double c = maxsize / size;
@@ -148,9 +148,6 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage
                 indicator.IsIndeterminate = false;
             }
             percUpload.Visibility = Visibility.Visible;
-
-
-
         }
 
        
@@ -190,18 +187,20 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage
             _Main.Instance.IsEnabled = true;
             body.Visibility = Visibility.Visible;
             overlay.Visibility = Visibility.Collapsed;
-      
-            SetViewModelItem(custom.data_AllUsers);
-            ThreadManager.Clear();
+            if (custom.IsSearch == false)
+            {
+                SetViewModelItem(custom.data_AllUsers);
+                _countrols = new uc_control.GUI_ReportPage_2_RangeDay(reportPage_2_Range);
+                FilterRangeDataSetUI(_countrols);
+                dayRadioButton.IsChecked = true;
+            }
+            else
+            {
+                Logger.Debug("lala");
+            }
 
-
-
-            _countrols = new uc_control.GUI_ReportPage_2_RangeDay(reportPage_2_Range);
-
-            FilterRangeDataSetUI(_countrols);
-
-            dayRadioButton.IsChecked = true;
-        }
+                ThreadManager.Clear();
+            }
 
         private async void SetViewModelItem(List<Data_AllUserPacket> data_AllUsers)
         {
@@ -221,9 +220,9 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage
             {
                 switch (obj.Uid)
                 {
-                    case "1": _countrols.SetView(GUI_ReportPage_2_RangeDay.ViewData.day); break;
-                    case "2": _countrols.SetView(GUI_ReportPage_2_RangeDay.ViewData.month); break;
-                    case "3": _countrols.SetView(GUI_ReportPage_2_RangeDay.ViewData.year); break;
+                    case "1": _countrols.SetView(ViewData.day); break;
+                    case "2": _countrols.SetView(ViewData.month); break;
+                    case "3": _countrols.SetView(ViewData.year); break;
                 }
             }
         }
@@ -238,8 +237,7 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage
             var obj = sender as DataGrid;
 
             if (obj == null) return;
-
-          
+         
 
             if (obj.SelectedItems.Count > 0)
             {
@@ -287,6 +285,72 @@ namespace AdaptiveTestingSystem.UserApplication.Assets.GUI.Reports._gui_subpage
         {
             _resultUserModel.AddSelect(selectedItems);
             _resultUserModel.ViewAllSelectUser();
+        }
+
+        private void CreateCustomReport_Click(object sender, RoutedEventArgs e)
+        {
+            var filterData = AddDataInReport.Create(_countrols.CreateReport());
+            var selectItem = userList.SelectedItems;
+            if (selectItem.Count == 0)
+            {
+                _Main.Instance._Notification.Add("", "Выберите хотя бы 1 пользователя", TypeNotification.Error);
+                return;
+            }
+
+
+            if (selectItem.Count > 30)
+            {
+                _Main.Instance._Notification.Add("", "Вы выбрали слишком много пользователей, макс.: 30",TypeNotification.Error);
+                return;
+            }
+
+            if (selectItem.Count > 10)
+            {
+                if (MessageShow.Show("Вы действительно хотите отобразить на графике больше 10 записей?","",MessageShow.Type.Question) == false)
+                {
+                    return;
+                }
+            }
+
+            List<Data_AllUserPacket> selectUser = GetUserSelectData();
+            Data_StatisticCustom data = new Data_StatisticCustom()
+            {
+                customReportFilter = new Data_CustomReportFilter()
+                {
+                    DayEnd = filterData.DayEnd,
+                    DayStart = filterData.DayStart,
+                    MonthEnd = filterData.MonthEnd,
+                    MonthStart = filterData.MonthStart,
+                    ViewData = filterData.ViewData,
+                    YearEnd = filterData.YearEnd,
+                    YearStart = filterData.YearStart,
+                },
+                data_AllUsers = selectUser,
+                IsSearch = true
+ 
+           };
+            _Main.Instance.OverlayShow(true);
+
+            ThreadManager.Send("Command_StatisticCustom", data);
+
+        }
+ 
+
+        private List<Data_AllUserPacket> GetUserSelectData()
+        {
+            List < Data_AllUserPacket > list = new List<Data_AllUserPacket>();
+            foreach (User item in userList.SelectedItems)
+            {
+                list.Add(new Data_AllUserPacket() 
+                {
+                    Index = item.Index,
+                    DateBirch  = item.Datebirch,
+                    Gender= item.Gender,    
+                    Name = item.FIO
+                });
+            }
+
+            return list;
         }
     }
 }
